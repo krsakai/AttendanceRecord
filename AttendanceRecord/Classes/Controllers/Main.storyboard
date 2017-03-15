@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mAc-pA-Cqq">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Mfk-xg-ezg">
+            <objects>
+                <navigationController storyboardIdentifier="MainNavigationController" navigationBarHidden="YES" id="mAc-pA-Cqq" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <navigationBar key="navigationBar" hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="fSK-uG-qjK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ZpC-BT-gpE" kind="relationship" relationship="rootViewController" id="qpf-7A-Bkb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LEK-bg-4B4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-68" y="137"/>
+        </scene>
+        <!--Mode Select View Controller-->
+        <scene sceneID="gIb-c2-j0b">
+            <objects>
+                <viewController storyboardIdentifier="ModeSelectViewController" id="ZpC-BT-gpE" customClass="ModeSelectViewController" customModule="AttendanceRecord" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9iF-Oe-aGN"/>
+                        <viewControllerLayoutGuide type="bottom" id="7IL-RK-mgg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ukn-yu-vMm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l1z-3J-GDN" customClass="HeaderView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="3YD-em-jIG"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="AgH-bM-N8N">
+                                <rect key="frame" x="0.0" y="71" width="375" height="596"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="l1z-3J-GDN" firstAttribute="leading" secondItem="Ukn-yu-vMm" secondAttribute="leading" id="26N-DE-bEW"/>
+                            <constraint firstItem="AgH-bM-N8N" firstAttribute="leading" secondItem="Ukn-yu-vMm" secondAttribute="leading" id="2bH-Sk-9ae"/>
+                            <constraint firstAttribute="trailing" secondItem="AgH-bM-N8N" secondAttribute="trailing" id="3al-QJ-E5i"/>
+                            <constraint firstAttribute="trailing" secondItem="l1z-3J-GDN" secondAttribute="trailing" id="F18-Wt-zlQ"/>
+                            <constraint firstItem="7IL-RK-mgg" firstAttribute="top" secondItem="AgH-bM-N8N" secondAttribute="bottom" id="bdY-oY-qPs"/>
+                            <constraint firstItem="l1z-3J-GDN" firstAttribute="top" secondItem="Ukn-yu-vMm" secondAttribute="top" id="eXU-Yy-9Uf"/>
+                            <constraint firstItem="AgH-bM-N8N" firstAttribute="top" secondItem="l1z-3J-GDN" secondAttribute="bottom" id="obu-dO-ejz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="YCT-nh-d5u"/>
+                    <connections>
+                        <outlet property="headerView" destination="l1z-3J-GDN" id="iq0-ak-HOV"/>
+                        <outlet property="stackView" destination="AgH-bM-N8N" id="Uxu-yi-vGn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m6A-A1-bVy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="748" y="135.38230884557723"/>
+        </scene>
+    </scenes>
+</document>

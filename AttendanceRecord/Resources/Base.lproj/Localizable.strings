@@ -1,0 +1,64 @@
+/*
+ Localizable.strings
+ RestaurantBoard
+ 
+ Created by 酒井 邦也 on 2017/02/25.
+ Copyright © 2017年 Recruit Lifestyle Co., Ltd. All rights reserved.
+ */
+
+// 共通
+"Common.ApplicationName"      = "出席簿";
+"Common.Label.RangeSeparator" = "〜";
+"Common.Label.ListSeparator"  = "，";
+"Common.Label.SlashSeparator" = "／";
+"Common.Label.Plus"           = "＋";
+"Common.Label.Minus"          = "ー";
+"Common.Label.PersonNumber"   = "%@名";
+"Common.Label.OK"             = "OK";
+"Common.Label.YES"             = "はい";
+"Common.Label.NO"             = "いいえ";
+"Common.Label.Cancel"         = "キャンセル";
+
+"Common.Label.Yesterday"            = "昨日";
+"Common.Label.Today"                = "今日";
+"Common.Label.Tomorrow"             = "明日";
+"Common.label.TheDayAfterTomorrow"  = "明後日";
+
+"Common.Label.AttendanceInput" = "出欠入力";
+"Alert.Title.MemberRegistComfirm" = "登録";
+"Alert.Message.MemberAdd" = "入力した内容で\n登録してもよろしいですか？";
+"Alert.Title.UserDeleteComfirm" = "削除";
+"Alert.Message.UserDelete" = "選択中の内容を\n削除してもよろしいですか？";
+
+// サイドメニュー
+"SideMenu.HeaderLabel.MenuList" = "メニュー";
+"SideMenu.Label.MemberList" = "メンバー";
+"SideMenu.Label.AttendanceTable" = "出席表";
+"SideMenu.Label.BackNumber" = "バックナンバー";
+"SideMenu.Label.Setting" = "設定";
+"SideMenu.Label.LessonList" = "レッスン";
+
+
+// ヘッダー
+"Header.Button.Label.UserRegist" = "登録";
+"Header.Title.Label.EventList" = "イベント";
+"Header.Button.Label.Reception" = "受付";
+
+// モード
+"Mode.Title.Label.ModeSelect" = "モード選択";
+"Mode.Button.Label.Member" = "メンバー";
+"Mode.Button.Label.Organizer" = "開催者";
+
+// ローディング
+"Loading.Title.Label.MemberSearch" = "メンバー受付中";
+"Loading.SubTitle.Label.TapCancel" = "画面タップで検索中断";
+
+// 入力画面
+"InputView.Button.Toolbar.Today" = "今日";
+"InpurtView.Button.Toolbar.Done" = "完了";
+"InputView.Label.Lesson.Title" = "レッスン名";
+"InputView.Label.Event.Title" = "イベント名";
+"InputView.Label.Event.Date" = "開催日";
+"InputView.Label.Member.NameRoma" = "名前 (ローマ字)";
+"InputView.Label.Member.NameJp" = "名前 (漢字)";
+"InputView.Label.Member.Email" = "メールアドレス";

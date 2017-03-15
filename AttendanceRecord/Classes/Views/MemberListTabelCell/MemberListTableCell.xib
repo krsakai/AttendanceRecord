@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="YQG-UC-GxH" customClass="MemberListTableCell" customModule="AttendanceRecord" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="369" height="105"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQG-UC-GxH" id="2ud-bl-TF1">
+                <rect key="frame" x="0.0" y="0.0" width="369" height="104.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHl-Ra-6RM">
+                        <rect key="frame" x="0.0" y="0.0" width="369" height="104"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q5s-CR-aeC">
+                                <rect key="frame" x="0.0" y="0.0" width="119" height="104"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1cu-oB-gUI" userLabel="Member Info View">
+                                <rect key="frame" x="119" y="0.0" width="250" height="104"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHi-3N-tPO">
+                                        <rect key="frame" x="198" y="42" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBc-fp-zVX">
+                                        <rect key="frame" x="204.5" y="77" width="35.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ax-pn-oBt">
+                                        <rect key="frame" x="209" y="22.5" width="31" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.34975809009999997" green="0.34975809009999997" blue="0.34975809009999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="5Pb-2D-QLw"/>
+                                    <constraint firstItem="sHi-3N-tPO" firstAttribute="centerY" secondItem="1cu-oB-gUI" secondAttribute="centerY" id="5gq-9w-fJi"/>
+                                    <constraint firstItem="sHi-3N-tPO" firstAttribute="top" secondItem="5Ax-pn-oBt" secondAttribute="bottom" constant="5" id="CBo-u7-Bye"/>
+                                    <constraint firstItem="IBc-fp-zVX" firstAttribute="trailing" secondItem="sHi-3N-tPO" secondAttribute="trailing" id="R9X-pi-Lit"/>
+                                    <constraint firstAttribute="bottom" secondItem="IBc-fp-zVX" secondAttribute="bottom" constant="10" id="XzJ-DC-ExS"/>
+                                    <constraint firstAttribute="trailing" secondItem="sHi-3N-tPO" secondAttribute="trailing" constant="10" id="com-Rv-D9v"/>
+                                    <constraint firstItem="5Ax-pn-oBt" firstAttribute="trailing" secondItem="sHi-3N-tPO" secondAttribute="trailing" id="tZ0-2s-pNy"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                    </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4KG-F1-gR7" userLabel="Under Line View" customClass="UnderLineView" customModule="AttendanceRecord" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="103.5" width="369" height="1"/>
+                        <color key="backgroundColor" red="0.57647058819999997" green="0.75686274509999996" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="nBQ-di-Uae"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="4KG-F1-gR7" secondAttribute="bottom" id="Jfm-ey-tAM"/>
+                    <constraint firstItem="4KG-F1-gR7" firstAttribute="leading" secondItem="2ud-bl-TF1" secondAttribute="leading" id="Ya5-dU-DeK"/>
+                    <constraint firstAttribute="trailing" secondItem="4KG-F1-gR7" secondAttribute="trailing" id="aKy-KQ-dvf"/>
+                    <constraint firstItem="rHl-Ra-6RM" firstAttribute="leading" secondItem="2ud-bl-TF1" secondAttribute="leading" id="bDs-gg-deZ"/>
+                    <constraint firstItem="rHl-Ra-6RM" firstAttribute="top" secondItem="2ud-bl-TF1" secondAttribute="top" id="d8I-id-lnK"/>
+                    <constraint firstAttribute="trailing" secondItem="rHl-Ra-6RM" secondAttribute="trailing" id="fRj-lg-AJ6"/>
+                    <constraint firstItem="4KG-F1-gR7" firstAttribute="top" secondItem="rHl-Ra-6RM" secondAttribute="bottom" id="z5U-bZ-Slg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="emailLabel" destination="IBc-fp-zVX" id="W3w-G5-8w7"/>
+                <outlet property="nameJpLabel" destination="sHi-3N-tPO" id="kIy-5A-eqx"/>
+                <outlet property="nameRomaLabel" destination="5Ax-pn-oBt" id="6pN-i8-Fmo"/>
+            </connections>
+            <point key="canvasLocation" x="-134.5" y="-26.5"/>
+        </tableViewCell>
+    </objects>
+</document>

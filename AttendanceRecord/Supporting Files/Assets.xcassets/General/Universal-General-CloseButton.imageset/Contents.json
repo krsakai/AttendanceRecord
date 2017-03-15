@@ -1,0 +1,16 @@
+{
+  "images" : [
+    {
+      "idiom" : "iphone",
+      "filename" : "iPhone-General-CloseButton.pdf"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "iPad-General-CloseButton.pdf"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

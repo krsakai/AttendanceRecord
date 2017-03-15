@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--List View Controller-->
+        <scene sceneID="1yb-KQ-tOB">
+            <objects>
+                <viewController storyboardIdentifier="ListViewController" id="KB1-3W-D9L" customClass="ListViewController" customModule="AttendanceRecord" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VSm-Vx-K6q"/>
+                        <viewControllerLayoutGuide type="bottom" id="QPY-5H-FUd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dBV-IG-Qe6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emn-TV-x99" customClass="HeaderView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="wwm-es-drQ"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="3Ex-6b-OUi">
+                                <rect key="frame" x="0.0" y="71" width="375" height="571"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="KB1-3W-D9L" id="Fim-5v-dQm"/>
+                                    <outlet property="delegate" destination="KB1-3W-D9L" id="UBG-lG-cm2"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPU-aR-VMC" userLabel="Footer View" customClass="FooterView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="642" width="375" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="iWV-mv-itV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3Ex-6b-OUi" secondAttribute="trailing" id="8NZ-MJ-NJf"/>
+                            <constraint firstItem="3Ex-6b-OUi" firstAttribute="leading" secondItem="dBV-IG-Qe6" secondAttribute="leading" id="K2j-sD-f0e"/>
+                            <constraint firstItem="emn-TV-x99" firstAttribute="top" secondItem="dBV-IG-Qe6" secondAttribute="top" id="Kiw-Ty-Fxp"/>
+                            <constraint firstAttribute="trailing" secondItem="lPU-aR-VMC" secondAttribute="trailing" id="WvS-vE-NtY"/>
+                            <constraint firstItem="emn-TV-x99" firstAttribute="leading" secondItem="dBV-IG-Qe6" secondAttribute="leading" id="Z3J-BH-0rp"/>
+                            <constraint firstItem="3Ex-6b-OUi" firstAttribute="top" secondItem="emn-TV-x99" secondAttribute="bottom" id="epA-xl-GXJ"/>
+                            <constraint firstItem="lPU-aR-VMC" firstAttribute="leading" secondItem="dBV-IG-Qe6" secondAttribute="leading" id="f6U-5x-FIu"/>
+                            <constraint firstItem="lPU-aR-VMC" firstAttribute="top" secondItem="3Ex-6b-OUi" secondAttribute="bottom" id="gCY-C6-Oga"/>
+                            <constraint firstAttribute="trailing" secondItem="emn-TV-x99" secondAttribute="trailing" id="hEQ-NK-71b"/>
+                            <constraint firstAttribute="bottom" secondItem="lPU-aR-VMC" secondAttribute="bottom" id="sEU-ZJ-wKN"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="kqb-An-grg"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="headerView" destination="emn-TV-x99" id="RsV-V0-UPu"/>
+                        <outlet property="tableView" destination="3Ex-6b-OUi" id="SIS-Ug-ine"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5hZ-op-TYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="760.79999999999995" y="137.18140929535232"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Common Web View Controller-->
+        <scene sceneID="jDs-oB-YZ0">
+            <objects>
+                <viewController storyboardIdentifier="CommonWebViewController" id="aW5-wW-Mzu" customClass="CommonWebViewController" customModule="AttendanceRecord" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kZj-hg-IaW"/>
+                        <viewControllerLayoutGuide type="bottom" id="unO-l8-Jdy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wlz-yd-C6Z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ed8-4v-48Y" customClass="HeaderView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="Fvg-F3-jKn"/>
+                                </constraints>
+                            </view>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Soh-JG-YXf">
+                                <rect key="frame" x="0.0" y="71" width="375" height="596"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="aW5-wW-Mzu" id="tyb-Wb-I73"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Soh-JG-YXf" firstAttribute="top" secondItem="ed8-4v-48Y" secondAttribute="bottom" id="0Mm-cs-zbg"/>
+                            <constraint firstItem="Soh-JG-YXf" firstAttribute="leading" secondItem="wlz-yd-C6Z" secondAttribute="leading" id="1PU-pT-fLp"/>
+                            <constraint firstItem="ed8-4v-48Y" firstAttribute="leading" secondItem="wlz-yd-C6Z" secondAttribute="leading" id="Bkw-a9-Pcz"/>
+                            <constraint firstItem="ed8-4v-48Y" firstAttribute="top" secondItem="wlz-yd-C6Z" secondAttribute="top" id="GwY-kU-Tzz"/>
+                            <constraint firstItem="unO-l8-Jdy" firstAttribute="top" secondItem="Soh-JG-YXf" secondAttribute="bottom" id="UWd-6P-fa4"/>
+                            <constraint firstAttribute="trailing" secondItem="ed8-4v-48Y" secondAttribute="trailing" id="grd-SH-xdH"/>
+                            <constraint firstAttribute="trailing" secondItem="Soh-JG-YXf" secondAttribute="trailing" id="uOn-GT-vDG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="headerView" destination="ed8-4v-48Y" id="pM0-dM-UNO"/>
+                        <outlet property="webView" destination="Soh-JG-YXf" id="H9v-OA-Gxz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t4J-0W-56c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-234" y="113"/>
+        </scene>
+    </scenes>
+</document>

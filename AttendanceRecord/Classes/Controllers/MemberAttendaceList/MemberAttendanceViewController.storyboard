@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Member Attendance View Controller-->
+        <scene sceneID="JX6-Eq-7zm">
+            <objects>
+                <viewController storyboardIdentifier="MemberAttendanceViewController" id="kSU-z7-rMg" customClass="MemberAttendanceViewController" customModule="AttendanceRecord" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vu0-1o-Ot0"/>
+                        <viewControllerLayoutGuide type="bottom" id="fnW-n9-xHp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KJX-od-5yC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0G9-Rt-CfE" customClass="HeaderView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="Dud-Hp-0dg"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EMQ-SG-in6">
+                                <rect key="frame" x="0.0" y="71" width="375" height="596"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="kSU-z7-rMg" id="QN5-la-rOL"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0G9-Rt-CfE" firstAttribute="leading" secondItem="KJX-od-5yC" secondAttribute="leading" id="RQx-I0-mx3"/>
+                            <constraint firstItem="EMQ-SG-in6" firstAttribute="leading" secondItem="KJX-od-5yC" secondAttribute="leading" id="RRa-68-WlX"/>
+                            <constraint firstItem="0G9-Rt-CfE" firstAttribute="top" secondItem="KJX-od-5yC" secondAttribute="top" id="SSB-OK-X8q"/>
+                            <constraint firstItem="EMQ-SG-in6" firstAttribute="top" secondItem="0G9-Rt-CfE" secondAttribute="bottom" id="WDf-X5-t7X"/>
+                            <constraint firstItem="fnW-n9-xHp" firstAttribute="top" secondItem="EMQ-SG-in6" secondAttribute="bottom" id="fTW-Wa-WyW"/>
+                            <constraint firstAttribute="trailing" secondItem="EMQ-SG-in6" secondAttribute="trailing" id="nYr-1Y-G2j"/>
+                            <constraint firstAttribute="trailing" secondItem="0G9-Rt-CfE" secondAttribute="trailing" id="rZy-p1-saS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="headerView" destination="0G9-Rt-CfE" id="ydf-Mi-Xt1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hmH-up-hGP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="12" y="-77.811094452773617"/>
+        </scene>
+    </scenes>
+</document>
