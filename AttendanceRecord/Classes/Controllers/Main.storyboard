@@ -45,16 +45,26 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="AgH-bM-N8N">
-                                <rect key="frame" x="0.0" y="71" width="375" height="596"/>
+                                <rect key="frame" x="0.0" y="71" width="375" height="571"/>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="euK-pN-OTL" customClass="FooterView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="642" width="375" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="04d-TN-seV"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="l1z-3J-GDN" firstAttribute="leading" secondItem="Ukn-yu-vMm" secondAttribute="leading" id="26N-DE-bEW"/>
                             <constraint firstItem="AgH-bM-N8N" firstAttribute="leading" secondItem="Ukn-yu-vMm" secondAttribute="leading" id="2bH-Sk-9ae"/>
                             <constraint firstAttribute="trailing" secondItem="AgH-bM-N8N" secondAttribute="trailing" id="3al-QJ-E5i"/>
+                            <constraint firstItem="euK-pN-OTL" firstAttribute="leading" secondItem="Ukn-yu-vMm" secondAttribute="leading" id="C7t-6t-nuM"/>
+                            <constraint firstAttribute="trailing" secondItem="euK-pN-OTL" secondAttribute="trailing" id="E4A-ZV-mYK"/>
                             <constraint firstAttribute="trailing" secondItem="l1z-3J-GDN" secondAttribute="trailing" id="F18-Wt-zlQ"/>
-                            <constraint firstItem="7IL-RK-mgg" firstAttribute="top" secondItem="AgH-bM-N8N" secondAttribute="bottom" id="bdY-oY-qPs"/>
+                            <constraint firstItem="7IL-RK-mgg" firstAttribute="top" secondItem="euK-pN-OTL" secondAttribute="bottom" id="Vd5-v1-JEA"/>
+                            <constraint firstItem="euK-pN-OTL" firstAttribute="top" secondItem="AgH-bM-N8N" secondAttribute="bottom" id="W70-VR-Pk1"/>
                             <constraint firstItem="l1z-3J-GDN" firstAttribute="top" secondItem="Ukn-yu-vMm" secondAttribute="top" id="eXU-Yy-9Uf"/>
                             <constraint firstItem="AgH-bM-N8N" firstAttribute="top" secondItem="l1z-3J-GDN" secondAttribute="bottom" id="obu-dO-ejz"/>
                         </constraints>

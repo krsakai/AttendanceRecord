@@ -7,19 +7,30 @@
 //
 
 import UIKit
+import RealmSwift
+import SWTableViewCell
 
-internal class EventListTableCell: UITableViewCell {
+internal class EventListTableCell: SWTableViewCell {
     
     @IBOutlet private weak var eventTitleLabel: UILabel!
     @IBOutlet private weak var eventDateLabel: UILabel!
     
     private var event: Event!
     
-    static func instantiate(_ owner: AnyObject, event: Event) -> EventListTableCell {
+    override var entity: Object? {
+        return event as Object
+    }
+    
+    static func instantiate(_ owner: SWTableViewCellDelegate, event: Event) -> EventListTableCell {
         let cell = R.nib.eventListTableCell.firstView(owner: owner, options: nil)!
         cell.eventTitleLabel.text = event.eventTitle
         cell.eventDateLabel.text = event.eventDate.stringToDisplayedFormat
         cell.event = event
+        
+        let utilityButtons = NSMutableArray()
+        utilityButtons.sw_addUtilityButton(with: AttendanceRecordColor.Cell.red, title: "削除")
+        cell.rightUtilityButtons = utilityButtons as [AnyObject]
+        cell.delegate = owner
         return cell
     }
 }

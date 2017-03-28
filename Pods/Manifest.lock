@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.3.0)
+  - HSegmentControl (2.1.0)
   - R.swift (3.2.0):
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
@@ -8,19 +9,27 @@ PODS:
   - Realm/Headers (2.4.3)
   - RealmSwift (2.4.3):
     - Realm (= 2.4.3)
+  - SwiftCop (1.0.0)
+  - SWTableViewCell (0.3.7)
 
 DEPENDENCIES:
   - Alamofire
+  - HSegmentControl
   - R.swift
   - RealmSwift
+  - SwiftCop
+  - SWTableViewCell (~> 0.3.7)
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  HSegmentControl: a97413afadbcbd4d45f66987c7e2226af3dd103d
   R.swift: 207a372a2b5977caef440c696a368009460641d1
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
   Realm: e08d60b0048ccccd3949c8c28a92c4db5712d7e9
   RealmSwift: 30d49739ccb3385d201242736ca4dda56aec9dfc
+  SwiftCop: 5ae17ee59ea702b662072495588ace8540571bef
+  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
 
-PODFILE CHECKSUM: f7933fda1aa00dc3a9a27cdbc48e752bd1cdf8dc
+PODFILE CHECKSUM: 4e30283e78a71e3cee9425910389f5107d6eb48b
 
 COCOAPODS: 1.2.0

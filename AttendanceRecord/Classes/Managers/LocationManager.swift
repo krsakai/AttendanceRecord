@@ -86,9 +86,9 @@ extension LocationManager: CLLocationManagerDelegate {
             // STEP7: 発見したBeaconの数だけLoopをまわす
             beacons.forEach { beacon in
                 
-                let beaconUUID = beacon.proximityUUID;
-                let minorID = beacon.minor
-                let majorID = beacon.major
+                _ = beacon.proximityUUID;
+                _ = beacon.minor
+                _ = beacon.major
                 
                 var proximity = ""
                 

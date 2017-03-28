@@ -10,15 +10,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EventListTableCell" selectionStyle="default" indentationWidth="10" rowHeight="203" id="j7N-XW-N6X" customClass="EventListTableCell" customModule="AttendanceRecord" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EventListTableCell" selectionStyle="none" indentationWidth="10" rowHeight="203" id="j7N-XW-N6X" customClass="EventListTableCell" customModule="AttendanceRecord" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="203"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j7N-XW-N6X" id="2LY-A3-szw">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="202.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="202"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="miP-km-Mke">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="201.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="202"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzy-nH-GW4">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="101"/>
@@ -37,7 +37,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PKh-nB-v2t">
-                                <rect key="frame" x="0.0" y="101" width="375" height="100.5"/>
+                                <rect key="frame" x="0.0" y="101" width="375" height="101"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Dy-wR-Ng9">
                                         <rect key="frame" x="323" y="40" width="42" height="20.5"/>
@@ -54,22 +54,12 @@
                             </view>
                         </subviews>
                     </stackView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gw4-rU-hYf" userLabel="Under Line View" customClass="UnderLineView" customModule="AttendanceRecord" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="201.5" width="375" height="1"/>
-                        <color key="backgroundColor" red="0.57647058819999997" green="0.75686274509999996" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="B28-yd-TuI"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="miP-km-Mke" secondAttribute="trailing" id="0GZ-w0-eQF"/>
-                    <constraint firstItem="gw4-rU-hYf" firstAttribute="top" secondItem="miP-km-Mke" secondAttribute="bottom" id="Aja-LB-OUC"/>
-                    <constraint firstItem="gw4-rU-hYf" firstAttribute="leading" secondItem="2LY-A3-szw" secondAttribute="leading" id="C7q-aV-4gp"/>
                     <constraint firstItem="miP-km-Mke" firstAttribute="top" secondItem="2LY-A3-szw" secondAttribute="top" id="KKl-tU-xbK"/>
-                    <constraint firstAttribute="bottom" secondItem="gw4-rU-hYf" secondAttribute="bottom" id="boc-NQ-wF0"/>
-                    <constraint firstAttribute="trailing" secondItem="gw4-rU-hYf" secondAttribute="trailing" id="cdW-zC-dS6"/>
                     <constraint firstItem="miP-km-Mke" firstAttribute="leading" secondItem="2LY-A3-szw" secondAttribute="leading" id="rfr-3W-ccF"/>
+                    <constraint firstAttribute="bottom" secondItem="miP-km-Mke" secondAttribute="bottom" id="x4a-wG-tGU"/>
                 </constraints>
             </tableViewCellContentView>
             <accessibility key="accessibilityConfiguration" identifier="EventListTableCell"/>

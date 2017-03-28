@@ -10,11 +10,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="YQG-UC-GxH" customClass="MemberListTableCell" customModule="AttendanceRecord" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="105" id="YQG-UC-GxH" customClass="MemberListTableCell" customModule="AttendanceRecord" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="369" height="105"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQG-UC-GxH" id="2ud-bl-TF1">
-                <rect key="frame" x="0.0" y="0.0" width="369" height="104.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="369" height="104"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHl-Ra-6RM">
@@ -39,7 +39,7 @@
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ax-pn-oBt">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ax-pn-oBt" userLabel="Name Kana Label">
                                         <rect key="frame" x="209" y="22.5" width="31" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.34975809009999997" green="0.34975809009999997" blue="0.34975809009999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -59,28 +59,18 @@
                             </view>
                         </subviews>
                     </stackView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4KG-F1-gR7" userLabel="Under Line View" customClass="UnderLineView" customModule="AttendanceRecord" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="103.5" width="369" height="1"/>
-                        <color key="backgroundColor" red="0.57647058819999997" green="0.75686274509999996" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="nBQ-di-Uae"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="4KG-F1-gR7" secondAttribute="bottom" id="Jfm-ey-tAM"/>
-                    <constraint firstItem="4KG-F1-gR7" firstAttribute="leading" secondItem="2ud-bl-TF1" secondAttribute="leading" id="Ya5-dU-DeK"/>
-                    <constraint firstAttribute="trailing" secondItem="4KG-F1-gR7" secondAttribute="trailing" id="aKy-KQ-dvf"/>
                     <constraint firstItem="rHl-Ra-6RM" firstAttribute="leading" secondItem="2ud-bl-TF1" secondAttribute="leading" id="bDs-gg-deZ"/>
                     <constraint firstItem="rHl-Ra-6RM" firstAttribute="top" secondItem="2ud-bl-TF1" secondAttribute="top" id="d8I-id-lnK"/>
                     <constraint firstAttribute="trailing" secondItem="rHl-Ra-6RM" secondAttribute="trailing" id="fRj-lg-AJ6"/>
-                    <constraint firstItem="4KG-F1-gR7" firstAttribute="top" secondItem="rHl-Ra-6RM" secondAttribute="bottom" id="z5U-bZ-Slg"/>
+                    <constraint firstAttribute="bottom" secondItem="rHl-Ra-6RM" secondAttribute="bottom" id="jUG-zn-BxW"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="emailLabel" destination="IBc-fp-zVX" id="W3w-G5-8w7"/>
                 <outlet property="nameJpLabel" destination="sHi-3N-tPO" id="kIy-5A-eqx"/>
-                <outlet property="nameRomaLabel" destination="5Ax-pn-oBt" id="6pN-i8-Fmo"/>
+                <outlet property="nameKanaLabel" destination="5Ax-pn-oBt" id="WKp-en-vip"/>
             </connections>
             <point key="canvasLocation" x="-134.5" y="-26.5"/>
         </tableViewCell>

@@ -15,6 +15,10 @@ internal struct AttendanceRecordColor {
         static let add = UIColor.white
     }
     
+    struct Cell {
+        static let red = UIColor(hex6: 0xff2828)
+    }
+    
     struct Common {
         static let green   = UIColor(hex6: 0x93C154)
         

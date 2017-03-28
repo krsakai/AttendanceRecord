@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SWTableViewCell
 import RealmSwift
 import ObjectMapper
 
@@ -29,7 +30,7 @@ internal enum ListType: HeaderButtonModel {
         switch self {
         case .lesson(let model): return model?.titleName ?? R.string.localizable.sideMenuLabelLessonList()
         case .event(let model): return model?.titleName ?? R.string.localizable.headerTitleLabelEventList()
-        case .member(let model): return model?.titleName ?? R.string.localizable.sideMenuLabelMemberList()
+        case .member(let model): return model?.titleName ?? R.string.localizable.sideMenuLabelAttendanceMemberList()
         }
     }
     
@@ -57,7 +58,7 @@ internal enum ListType: HeaderButtonModel {
         }
     }
     
-    func cell(owner: AnyObject, model: Object) -> UITableViewCell {
+    func cell(owner: SWTableViewCellDelegate, model: Object) -> UITableViewCell {
         switch self {
         case .lesson: return LessonTableViewCell.instantiate(owner, lesson: model as! Lesson)
         case .event: return EventListTableCell.instantiate(owner, event: model as! Event)
@@ -78,7 +79,7 @@ internal enum ListType: HeaderButtonModel {
         case .lesson:
             return ListViewController.instantiate(type: .event(sourceViewModel))
         case .event:
-            return ListViewController.instantiate(type: .member(sourceViewModel))
+            return MemberAttendanceViewController.instantiate(event: sourceViewModel as! Event)
         case .member: return nil
         }
     }
@@ -87,6 +88,8 @@ internal enum ListType: HeaderButtonModel {
 internal final class ListViewController: UIViewController, HeaderViewDisplayable {
     
     @IBOutlet weak var headerView: HeaderView!
+    
+    @IBOutlet fileprivate weak var footerView: FooterView!
     @IBOutlet fileprivate weak var tableView: UITableView!
     
     fileprivate var type: ListType = .lesson(nil)
@@ -104,6 +107,7 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = ListViewController.defalutCellRowHeight
+        tableView.separatorColor = DeviceModel.themeColor.color
         
         setupHeaderView(type.headerTitle, buttonTypes: headerButtons)
     }
@@ -117,31 +121,17 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
         
         switch type {
         case .lesson(let model):
-            let addAction = {
-                let viewController = EntryViewController.instantiate(entryType: self.type.entryType, sourceViewModel: model, completion: nil)
-                self.navigationController?.present(viewController, animated: true, completion: nil)
-            }
-
-            return [[.sideMenu],[.add(addAction)]]
+            return [[.sideMenu],
+                    [.add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
         case .event(let model):
-            let addAction = {
-                let viewController = EntryViewController.instantiate(entryType: self.type.entryType, sourceViewModel: model, completion: nil)
-                self.navigationController?.present(viewController, animated: true, completion: nil)
-            }
-            let receptionAction = {
-                MemberEntryCentralManager.shared.searchMember()
-            }
-            let deleteAction = {
-                LessonManager.shared.removeLessonToRealm(model as! Lesson)
-                _ = self.navigationController?.popViewController(animated: true)
-            }
-            return [[.back],[.delete(deleteAction), .memberReception(receptionAction), .add(addAction)]]
+            return [[.back],
+                    [.memberReception(HeaderModel() {
+                        MemberEntryCentralManager.shared.searchMember()
+                    }),
+                     .add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
         case .member(let model):
-            let addAction = {
-                let viewController = EntryViewController.instantiate(entryType: self.type.entryType, sourceViewModel: model, completion: nil)
-                self.navigationController?.present(viewController, animated: true, completion: nil)
-            }
-            return [[.back],[.add(addAction)]]
+            return [[.sideMenu],
+                    [.add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
         }
     }
 }
@@ -169,7 +159,7 @@ extension ListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return type.cell(owner: tableView, model: list[indexPath.row])
+        return type.cell(owner: self, model: list[indexPath.row])
     }
 }
 
@@ -183,5 +173,38 @@ extension ListViewController: UITableViewDelegate {
             return
         }
         navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension ListViewController: SWTableViewCellDelegate {
+    
+    func swipeableTableViewCell(_ cell: SWTableViewCell!, didTriggerRightUtilityButtonWith index: Int) {
+        guard let entity = cell.entity, !entity.id.isEmpty else {
+            return
+        }
+        
+        let action = {
+            switch self.type {
+            case .lesson: LessonManager.shared.removeLessonToRealm(entity as! Lesson)
+            case .event: EventManager.shared.removeEventToRealm(entity as! Event)
+            case .member: MemberManager.shared.removeMemberToRealm(entity as! Member)
+            }
+        }
+        
+        AlertController.showAlert(title: R.string.localizable.alertTitleDeleteComfirm(),
+                                  message: R.string.localizable.alertMessageDelete(entity.titleName), ok: { _ in
+            action()
+            self.tableView.reloadData()
+        })
+    }
+}
+
+extension ListViewController: ScreenReloadable {
+    func reloadScreen() {
+        // Xibからビュー生成前に呼ばれる対策
+        guard headerView != nil else { return }
+        headerView.refreshLayout()
+        footerView.refreshLayout()
+        tableView.reloadData()
     }
 }

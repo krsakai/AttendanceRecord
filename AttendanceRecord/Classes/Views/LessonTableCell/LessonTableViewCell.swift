@@ -7,17 +7,28 @@
 //
 
 import UIKit
+import RealmSwift
+import SWTableViewCell
 
-internal final class LessonTableViewCell: UITableViewCell {
+internal final class LessonTableViewCell: SWTableViewCell {
     
     @IBOutlet private weak var lessonTitleLabel: UILabel!
     
     private var lesson: Lesson!
     
-    static func instantiate(_ owner: AnyObject, lesson: Lesson) -> LessonTableViewCell {
+    override var entity: Object? {
+        return lesson as Object
+    }
+    
+    static func instantiate(_ owner: SWTableViewCellDelegate, lesson: Lesson) -> LessonTableViewCell {
         let cell = R.nib.lessonTableViewCell.firstView(owner: owner, options: nil)!
         cell.lessonTitleLabel.text = lesson.lessonTitle
         cell.lesson = lesson
+        
+        let utilityButtons = NSMutableArray()
+        utilityButtons.sw_addUtilityButton(with: AttendanceRecordColor.Cell.red, title: "削除")
+        cell.rightUtilityButtons = utilityButtons as [AnyObject]
+        cell.delegate = owner
         return cell
     }
 }

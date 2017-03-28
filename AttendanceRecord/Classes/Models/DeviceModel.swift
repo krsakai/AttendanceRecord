@@ -16,6 +16,14 @@ internal enum ThemeColor: Int {
     case green  = 2
     case blue   = 3
     
+    var title: String {
+        switch self {
+        case .red:   return "赤"
+        case .green: return "緑"
+        case .blue:  return "青"
+        }
+    }
+    
     var color: UIColor {
         switch self {
         case .red: return AttendanceRecordColor.Common.red
@@ -54,10 +62,6 @@ internal final class DeviceModel {
         case themeColor              = "ThemeColor"
     }
     
-    static var lessonId: String {
-        return "0001"
-    }
-    
     static var isFirstReadMasterData: Bool {
         if UserDefaults.standard.bool(forKey: UserDefaultsKey.isFirstReadMasterData.rawValue) {
             return true
@@ -89,7 +93,7 @@ internal final class DeviceModel {
     enum KeychainKey: String {
         case MemberId       = "MemberId"
         case MemberNameJp   = "MemberNameJp"
-        case MemberNameRoma = "MemberNameRoma"
+        case MemberNameKana = "MemberNameKana"
         case MemberEmail    = "MemberEmail"
     }
     
@@ -115,12 +119,12 @@ internal final class DeviceModel {
         }
     }
     
-    static var memberNameRoma: String {
+    static var memberNameKana: String {
         get {
-            return Keychain()[string: KeychainKey.MemberNameRoma.rawValue] ?? ""
+            return Keychain()[string: KeychainKey.MemberNameKana.rawValue] ?? ""
         }
         set {
-            Keychain()[string: KeychainKey.MemberNameRoma.rawValue] = newValue
+            Keychain()[string: KeychainKey.MemberNameKana.rawValue] = newValue
         }
     }
     
@@ -134,16 +138,16 @@ internal final class DeviceModel {
     }
     
     static var currentMember: Member? {
-        let memberInfoList = [memberNameJp, memberNameRoma, memberEmail]
+        let memberInfoList = [memberNameJp, memberNameKana, memberEmail]
         guard let _ = (memberInfoList.filter { $0 == "" }.first) else {
-            return Member(memberId: memberId, nameJp: memberNameJp, nameRoma: memberNameRoma, email: memberEmail)
+            return Member(memberId: memberId, nameJp: memberNameJp, nameKana: memberNameKana, email: memberEmail, memberType: MemberType.normal)
         }
         return nil
     }
     
     static func setCurrentMember(member: Member) {
         memberNameJp = member.nameJp
-        memberNameRoma = member.nameRoma
+        memberNameKana = member.nameKana
         memberEmail = member.email
     }
     

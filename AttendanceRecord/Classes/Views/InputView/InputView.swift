@@ -8,12 +8,13 @@
 
 import UIKit
 import SnapKit
+import SwiftCop
 
 internal enum InputType {
     case lessonTitle
     case eventTitle
     case eventDate
-    case memberNameRoma
+    case memberNameKana
     case memberNameJp
     case memberEmail
     
@@ -22,9 +23,19 @@ internal enum InputType {
         case .lessonTitle: return R.string.localizable.inputViewLabelLessonTitle()
         case .eventTitle: return R.string.localizable.inputViewLabelEventTitle()
         case .eventDate: return R.string.localizable.inputViewLabelEventDate()
-        case .memberNameRoma: return R.string.localizable.inputViewLabelMemberNameRoma()
+        case .memberNameKana: return R.string.localizable.inputViewLabelMemberNameKana()
         case .memberNameJp: return R.string.localizable.inputViewLabelMemberNameJp()
         case .memberEmail: return R.string.localizable.inputViewLabelMemberEmail()
+        }
+    }
+    
+    var validations: [EntryTrial] {
+        switch self {
+        case .memberEmail: return [.space, .lengthMin(1), .lengthMax(100), .email]
+        case .memberNameJp: return [.space, .lengthMin(1), .lengthMax(20)]
+        case .memberNameKana: return [.space, .lengthMin(1), .lengthMax(20), .hiragana]
+        case .lessonTitle, .eventTitle: return [.space, .lengthMin(1), .lengthMax(100)]
+        case .eventDate: return [.format(format: "^([0-9]{4}[年][.* ].*[0-9][月].*[0-9][日][.* ].*[0-9][時].*[0-9][分])$", alert: AttendaceRecordFormat.displayedYearToMin.rawValue)]
         }
     }
     
@@ -46,6 +57,9 @@ internal final class InputView: UIView {
     
     @IBOutlet fileprivate(set) weak var textField: UITextField!
     @IBOutlet fileprivate weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var underLineView: UnderLineView!
+    
+    let swiftCop = SwiftCop()
     
     private var datePicker: UIDatePicker!
     private var toolBar: UIToolbar!
@@ -65,13 +79,18 @@ internal final class InputView: UIView {
         inputView.textField.returnKeyType = inputType.returnKeyType
         inputView.inputType = inputType
         
+        inputType.validations.forEach { validation in
+            inputView.swiftCop.addSuspect(Suspect(view: inputView.textField, sentence: validation.message, trial: validation))
+        }
+        
         guard inputType.isDate else {
             return inputView
         }
         
         inputView.datePicker = UIDatePicker()
         inputView.datePicker.addTarget(inputView, action: #selector(InputView.changedDate), for: UIControlEvents.valueChanged)
-        inputView.datePicker.datePickerMode = UIDatePickerMode.date
+        inputView.datePicker.datePickerMode = UIDatePickerMode.dateAndTime
+        inputView.datePicker.minuteInterval = 15
         inputView.textField.inputView = inputView.datePicker
         inputView.toolBar = UIToolbar()
         inputView.toolBar.tintColor = UIColor.darkGray
@@ -79,9 +98,7 @@ internal final class InputView: UIView {
         
         let toolBarBtn      = UIBarButtonItem(title: R.string.localizable.inpurtViewButtonToolbarDone(),
                                               style: .plain, target: inputView, action: #selector(InputView.tappedDone))
-        let toolBarBtnToday = UIBarButtonItem(title: R.string.localizable.inputViewButtonToolbarToday(),
-                                              style: .plain, target: inputView, action: #selector(InputView.tappedToday))
-        inputView.toolBar.items = [toolBarBtn, toolBarBtnToday]
+        inputView.toolBar.items = [toolBarBtn]
         inputView.textField.inputAccessoryView = inputView.toolBar
         inputView.toolBar.snp.makeConstraints { make in
             make.height.equalTo(40)
@@ -99,9 +116,10 @@ internal final class InputView: UIView {
         NotificationCenter.default.post(name: .UITextFieldTextDidChange, object: nil)
         textField.resignFirstResponder()
     }
-    
-    func tappedToday(_ barButtonItem: UIBarButtonItem) {
-        datePicker.date = Date()
-        textField.text = datePicker.date.stringToDisplayedFormat
+}
+
+extension InputView: LayoutUpdable {
+    func refreshLayout() {
+        underLineView.backgroundColor = DeviceModel.themeColor.color
     }
 }

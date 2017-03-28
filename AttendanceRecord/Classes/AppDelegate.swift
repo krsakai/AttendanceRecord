@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         _ = MemberEntryCentralManager.shared
-        DeviceModel.removeKeychainAll()
         setupMasterData()
         window?.rootViewController = instantiateRootViewController
         
@@ -72,6 +71,18 @@ extension AppDelegate {
     static var sideMenu: SideMenuViewController? {
         return drawer?.leftDrawerViewController as? SideMenuViewController
     }
+    
+    static func reloadScreen() {
+        AppDelegate.sideMenu?.reloadScreen()
+        
+        if let viewController = AppDelegate.navigation?.topViewController as? ScreenReloadable {
+            viewController.reloadScreen()
+        }
+        
+        if let viewController = UIApplication.topViewController() as? ScreenReloadable {
+            viewController.reloadScreen()
+        }
+    }
 }
 
 extension AppDelegate {
@@ -122,4 +133,20 @@ extension UIApplication {
         }
         return base
     }
+}
+
+internal protocol LayoutUpdable {
+    func refreshLayout()
+}
+
+extension LayoutUpdable where Self: UIView {
+    func refreshLayout() {}
+}
+
+internal protocol ScreenReloadable {
+    func reloadScreen()
+}
+
+extension ScreenReloadable where Self: UIViewController {
+    func reloadScreen() {}
 }

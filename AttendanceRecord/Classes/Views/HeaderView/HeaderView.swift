@@ -82,14 +82,14 @@ internal final class HeaderView: UIView {
     
     /// ボタン種別
     enum ButtonType {
-        case sideMenu                   // サイドメニュー
-        case close                      // 閉じる
-        case back                       // 戻る
-        case add(Action)                // 追加
-        case regist(Action)             // 登録
-        case delete(Action)             // 削除
-        case memberReception(Action)    // メンバー受付
-        case attendaceReception(Action) // 出欠受付
+        case sideMenu                         // サイドメニュー
+        case close(HeaderModel?)              // 閉じる
+        case back                             // 戻る
+        case add(HeaderModel?)                // 追加
+        case regist(HeaderModel?)             // 登録
+        case delete(HeaderModel?)             // 削除
+        case memberReception(HeaderModel?)    // メンバー受付
+        case attendaceReception(HeaderModel?) // 出欠受付
 
         
         // 左側のボタンか
@@ -162,32 +162,35 @@ internal final class HeaderView: UIView {
                 return { _ in
                     _ = AppDelegate.navigation?.popViewController(animated: true)
                 }
-            case .delete(let action):
+            case .delete(let model):
                 return { _ in
-                    AlertController.showAlert(title: R.string.localizable.alertTitleUserDeleteComfirm(), message: R.string.localizable.alertMessageUserDelete(), ok: { _ in
-                        action?()
+                    AlertController.showAlert(title: R.string.localizable.alertTitleDeleteComfirm(), message: R.string.localizable.alertMessageDelete(model?.displayInfo ?? ""), ok: { _ in
+                        model?.action?()
                         _ = AppDelegate.navigation?.popViewController(animated: true)
                     })
                 }
-            case .regist(let action):
+            case .regist(let model):
                 return { _ in
                     AlertController.showAlert(title: R.string.localizable.alertTitleMemberRegistComfirm(),
-                                              message: R.string.localizable.alertMessageMemberAdd(), ok: {
-                        action?()
-                        AppDelegate.navigation?.dismiss(animated: true, completion: nil)
+                                              message: R.string.localizable.alertMessageAdd(), ok: {
+                        model?.action?()
+                        UIApplication.topViewController()?.dismiss(animated: true, completion: nil)
                     })
                 }
-            case .add(let action):
+            case .add(let model):
                 return { _ in
-                    action?()
+                    let viewController = EntryViewController.instantiate(entryModel: model?.entryModel ?? EntryModel())
+                    UIApplication.topViewController()?.present(viewController, animated: true, completion: nil)
+                    model?.action?()
                 }
-            case .close:
+            case .close(let model):
                 return { _ in
+                    model?.action?()
                     UIApplication.topViewController()?.dismiss(animated: true, completion: nil)
                 }
-            case .memberReception(let action):
+            case .memberReception(let model):
                 return { _ in
-                    action?()
+                    model?.action?()
                 }
             default:
                 return nil
@@ -205,15 +208,23 @@ internal final class HeaderView: UIView {
     @IBOutlet fileprivate weak var rightStackView: UIStackView!
     @IBOutlet fileprivate weak var title: UILabel!
     
+    fileprivate var contentView: UIView!
+    
     // MARK: - Initializer
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let contentView = R.nib.headerView.firstView(owner: self, options: nil)!
+        contentView = R.nib.headerView.firstView(owner: self, options: nil)!
         addSubview(contentView)
         contentView.snp.makeConstraints { make in
             make.right.left.bottom.top.equalTo(0)
         }
+        contentView.backgroundColor = DeviceModel.themeColor.color
+    }
+}
+
+extension HeaderView: LayoutUpdable {
+    func refreshLayout() {
         contentView.backgroundColor = DeviceModel.themeColor.color
     }
 }

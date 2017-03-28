@@ -11,11 +11,15 @@ import Foundation
 internal struct ActionKyes {
     static let registComplete = "RegistComplete"
     
-    static let lessonAdd        = "lessonAdd"
-    static let eventAdd         = "eventAdd"
-    static let memberAdd        = "memberAdd"
+    static let lessonAdd                  = "lessonAdd"
+    static let eventAdd                   = "eventAdd"
+    static let memberAdd                  = "memberAdd"
     
-    static let lessonEntry      = "LessonEntry"
-    static let eventEntry       = "EventEntry"
-    static let memberEntry      = "MemberEntry"
+    static let lessonEntryCompletion      = "LessonEntryCompletion"
+    static let eventEntryCompletion       = "EventEntryCompletion"
+    static let memberEntryCompletion      = "MemberEntryCompletion"
+    
+    static let lessonEntryReject          = "LessonEntryReject"
+    static let eventEntryReject           = "EventEntryReject"
+    static let memberEntryReject          = "MemberEntryReject"
 }

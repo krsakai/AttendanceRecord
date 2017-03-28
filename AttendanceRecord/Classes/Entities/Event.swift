@@ -13,7 +13,6 @@ import ObjectMapper
 internal final class Event: Object {
     
     dynamic fileprivate(set) var eventId    = UUID().uuidString.replacingOccurrences(of: "-", with: "")
-    // TODO: 他のレッスンを分けて管理できるようにする
     dynamic fileprivate(set) var lessonId   = ""
     dynamic fileprivate(set) var eventTitle = ""
     dynamic fileprivate(set) var eventDate  = NSDateZero

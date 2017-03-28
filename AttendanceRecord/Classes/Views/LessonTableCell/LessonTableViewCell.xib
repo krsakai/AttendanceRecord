@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="82" id="dqx-tB-Ite" customClass="LessonTableViewCell" customModule="AttendanceRecord" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="82" id="dqx-tB-Ite" customClass="LessonTableViewCell" customModule="AttendanceRecord" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dqx-tB-Ite" id="LZs-L8-dpC">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="81.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39v-VO-uDc">
@@ -24,23 +24,14 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R8V-a6-QKz" userLabel="Under Line View" customClass="UnderLineView" customModule="AttendanceRecord" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="80.5" width="375" height="1"/>
-                        <color key="backgroundColor" red="0.57647058819999997" green="0.75686274509999996" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="UMu-PY-P3K"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="39v-VO-uDc" secondAttribute="trailing" constant="10" id="8Fn-uZ-zHk"/>
-                    <constraint firstItem="R8V-a6-QKz" firstAttribute="leading" secondItem="LZs-L8-dpC" secondAttribute="leading" id="ICy-hZ-BV6"/>
                     <constraint firstItem="39v-VO-uDc" firstAttribute="centerY" secondItem="LZs-L8-dpC" secondAttribute="centerY" id="RRq-EY-RLZ"/>
-                    <constraint firstAttribute="trailing" secondItem="R8V-a6-QKz" secondAttribute="trailing" id="rwH-gz-xKe"/>
-                    <constraint firstAttribute="bottom" secondItem="R8V-a6-QKz" secondAttribute="bottom" id="znK-Wq-qJE"/>
                 </constraints>
             </tableViewCellContentView>
             <accessibility key="accessibilityConfiguration" identifier="LessonTableViewCell"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="lessonTitleLabel" destination="39v-VO-uDc" id="L4z-hk-bQ3"/>
             </connections>

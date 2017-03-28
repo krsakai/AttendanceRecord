@@ -25,12 +25,6 @@ internal final class MemberManager {
                     realm.add(member, update: true)
                 } else {
                     realm.add(member, update: true)
-                    
-                    // FIXME: 他講義を考慮する
-                    let eventList = EventManager.shared.eventListDataFromRealm()
-                    eventList.forEach { event in
-                        realm.add(Attendance(eventId: event.eventId, memberId: member.memberId, attendanceStatus: .noEntry))
-                    }
                 }
             }
         }
@@ -48,7 +42,7 @@ internal final class MemberManager {
     
     /// メンバー一覧情報をRealmから取得
     func memberListDataFromRealm(predicate: NSPredicate? = nil, realm: Realm = try! Realm()) -> [Member] {
-        let sortParameters = [SortDescriptor(keyPath: "nameRoma", ascending: false)]
+        let sortParameters = [SortDescriptor(keyPath: "nameKana", ascending: false)]
         guard let predicate = predicate else {
             return Array(realm.objects(Member.self).sorted(by: sortParameters))
         }

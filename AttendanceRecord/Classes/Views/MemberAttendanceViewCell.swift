@@ -12,21 +12,23 @@ internal final class MemberAttendanceViewCell: UITableViewCell {
     
     private var completion: (() -> Void)?
     
-    @IBOutlet private weak var numberLabel: UILabel!
-    @IBOutlet private weak var eventNameLabel: UILabel!
-    @IBOutlet private weak var eventDateLabel: UILabel!
+    @IBOutlet private weak var kanaNameLabel: UILabel!
+    @IBOutlet private weak var jpNameLabel: UILabel!
+    @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var attendanceButton: UIButton!
     
-    private var viewModel: MemberAttendanceViewModel!
+    private var viewModel: AttendanceViewModel!
     
-    static func instantiate(_ owner: AnyObject, viewModel: MemberAttendanceViewModel,
+    static func instantiate(_ owner: AnyObject, viewModel: AttendanceViewModel,
                             index: Int, completion: (() -> Void)? = nil) -> MemberAttendanceViewCell {
         let cell = R.nib.memberAttendanceViewCell.firstView(owner: owner, options: nil)!
-        cell.numberLabel.text = String(index + 1)
-        cell.eventNameLabel.text = viewModel.event.eventTitle
-        cell.eventDateLabel.text = viewModel.event.eventDate.stringFromDate(format: .displayedYearToDay)
+        cell.kanaNameLabel.text = viewModel.member.nameKana
+        cell.jpNameLabel.text = viewModel.member.nameJp
+        cell.emailLabel.text = viewModel.member.email
         cell.attendanceButton.setTitle(viewModel.attendance.attendanceStatusRawValue, for: .normal)
         cell.attendanceButton.setTitle(viewModel.attendance.attendanceStatusRawValue, for: .highlighted)
+        cell.attendanceButton.setTitleColor(DeviceModel.themeColor.color, for: .normal)
+        cell.attendanceButton.setTitleColor(DeviceModel.themeColor.color, for: .highlighted)
         cell.completion = completion
         cell.viewModel = viewModel
         return cell
@@ -34,7 +36,7 @@ internal final class MemberAttendanceViewCell: UITableViewCell {
     
     @IBAction func didTap(attendanceButton: UIButton) {
         let alert = UIAlertController(title: R.string.localizable.commonLabelAttendanceInput(),
-                                      message: viewModel.event.eventDate.stringFromDate(format: .displayedYearToDay),
+                                      message: viewModel.event.eventTitle,
                                       preferredStyle: .actionSheet)
         
         
@@ -50,10 +52,17 @@ internal final class MemberAttendanceViewCell: UITableViewCell {
             AttendanceManager.shared.saveAttendanceListToRealm([attendance])
             self.completion?()
         }
+        let noEntryAction = UIAlertAction(title: AttendanceStatus.noEntry.rawValue,  style: UIAlertActionStyle.default) { _ in
+            let attendance = self.viewModel.attendance.clone
+            attendance.attendanceStatusRawValue = AttendanceStatus.noEntry.rawValue
+            AttendanceManager.shared.saveAttendanceListToRealm([attendance])
+            self.completion?()
+        }
         let cancelAction = UIAlertAction(title: R.string.localizable.commonLabelCancel(),
                                          style: UIAlertActionStyle.cancel)
         alert.addAction(attendAction)
         alert.addAction(absencAction)
+        alert.addAction(noEntryAction)
         alert.addAction(cancelAction)
         AppDelegate.navigation?.present(alert, animated: true, completion: nil)
     }

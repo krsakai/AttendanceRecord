@@ -27,9 +27,11 @@
                                     <constraint firstAttribute="height" constant="71" id="wwm-es-drQ"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="3Ex-6b-OUi">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="3Ex-6b-OUi">
                                 <rect key="frame" x="0.0" y="71" width="375" height="571"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.015686274510000001" green="0.23529411759999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="dataSource" destination="KB1-3W-D9L" id="Fim-5v-dQm"/>
                                     <outlet property="delegate" destination="KB1-3W-D9L" id="UBG-lG-cm2"/>
@@ -60,6 +62,7 @@
                     <navigationItem key="navigationItem" id="kqb-An-grg"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="footerView" destination="lPU-aR-VMC" id="Itu-hE-1Ox"/>
                         <outlet property="headerView" destination="emn-TV-x99" id="RsV-V0-UPu"/>
                         <outlet property="tableView" destination="3Ex-6b-OUi" id="SIS-Ug-ine"/>
                     </connections>

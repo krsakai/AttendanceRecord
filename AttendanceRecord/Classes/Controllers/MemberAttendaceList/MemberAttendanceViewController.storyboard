@@ -27,27 +27,41 @@
                                     <constraint firstAttribute="height" constant="71" id="Dud-Hp-0dg"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EMQ-SG-in6">
-                                <rect key="frame" x="0.0" y="71" width="375" height="596"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EMQ-SG-in6">
+                                <rect key="frame" x="0.0" y="71" width="375" height="571"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.015686274510000001" green="0.23529411759999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="dataSource" destination="kSU-z7-rMg" id="QN5-la-rOL"/>
+                                    <outlet property="delegate" destination="kSU-z7-rMg" id="QZ1-4C-zlq"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HQA-sl-9jv" customClass="FooterView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="642" width="375" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="1VH-1q-hEj"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="HQA-sl-9jv" firstAttribute="top" secondItem="EMQ-SG-in6" secondAttribute="bottom" id="3QH-vG-7Q3"/>
                             <constraint firstItem="0G9-Rt-CfE" firstAttribute="leading" secondItem="KJX-od-5yC" secondAttribute="leading" id="RQx-I0-mx3"/>
                             <constraint firstItem="EMQ-SG-in6" firstAttribute="leading" secondItem="KJX-od-5yC" secondAttribute="leading" id="RRa-68-WlX"/>
                             <constraint firstItem="0G9-Rt-CfE" firstAttribute="top" secondItem="KJX-od-5yC" secondAttribute="top" id="SSB-OK-X8q"/>
+                            <constraint firstAttribute="trailing" secondItem="HQA-sl-9jv" secondAttribute="trailing" id="TXJ-O7-waJ"/>
                             <constraint firstItem="EMQ-SG-in6" firstAttribute="top" secondItem="0G9-Rt-CfE" secondAttribute="bottom" id="WDf-X5-t7X"/>
-                            <constraint firstItem="fnW-n9-xHp" firstAttribute="top" secondItem="EMQ-SG-in6" secondAttribute="bottom" id="fTW-Wa-WyW"/>
                             <constraint firstAttribute="trailing" secondItem="EMQ-SG-in6" secondAttribute="trailing" id="nYr-1Y-G2j"/>
+                            <constraint firstItem="HQA-sl-9jv" firstAttribute="leading" secondItem="KJX-od-5yC" secondAttribute="leading" id="rZr-Lg-m1L"/>
                             <constraint firstAttribute="trailing" secondItem="0G9-Rt-CfE" secondAttribute="trailing" id="rZy-p1-saS"/>
+                            <constraint firstItem="fnW-n9-xHp" firstAttribute="top" secondItem="HQA-sl-9jv" secondAttribute="bottom" id="z3E-Sq-TrK"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="headerView" destination="0G9-Rt-CfE" id="ydf-Mi-Xt1"/>
+                        <outlet property="tableView" destination="EMQ-SG-in6" id="cVJ-RJ-Lav"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hmH-up-hGP" userLabel="First Responder" sceneMemberID="firstResponder"/>

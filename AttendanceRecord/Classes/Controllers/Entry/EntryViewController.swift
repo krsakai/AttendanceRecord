@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import EasyTipView
 
 internal enum EntryType: HeaderButtonModel {
     case lesson
@@ -18,34 +19,35 @@ internal enum EntryType: HeaderButtonModel {
         switch self {
         case .lesson: return [.lessonTitle]
         case .event:  return [.eventTitle, .eventDate]
-        case .member: return [.memberNameRoma, .memberNameJp, .memberEmail]
+        case .member: return [.memberNameKana, .memberNameJp, .memberEmail]
         }
     }
     
     var headerTitle: String {
         switch self {
-        case .lesson: return R.string.localizable.sideMenuLabelLessonList()
-        case .event:  return R.string.localizable.headerTitleLabelEventList()
-        case .member: return R.string.localizable.sideMenuLabelMemberList()
+        case .lesson: return R.string.localizable.entryHeaderLabelLesson()
+        case .event:  return R.string.localizable.entryHeaderLabelEvent()
+        case .member: return R.string.localizable.entryHeaderLabelMember()
         }
     }
     
     func headerButtonItems(actions: [String: HeaderView.Action]? = nil) -> [[HeaderView.ButtonType]] {
         switch self {
         case .lesson:
-            let action = actions?[ActionKyes.lessonEntry] ?? {}
-            return [[.close],[.regist(action)]]
+            let entryCompletion = actions?[ActionKyes.lessonEntryCompletion] ?? {}
+            let entryReject = actions?[ActionKyes.lessonEntryReject] ?? {}
+            return [[.close(HeaderModel(action: entryReject))],[.regist(HeaderModel(action: entryCompletion))]]
         case .event:
-            let action = actions?[ActionKyes.eventEntry] ?? {}
-            return [[.close],[.regist(action)]]
+            let entryCompletion = actions?[ActionKyes.eventEntryCompletion] ?? {}
+            let entryReject = actions?[ActionKyes.eventEntryReject] ?? {}
+            return [[.close(HeaderModel(action: entryReject))],[.regist(HeaderModel(action: entryCompletion))]]
         case .member:
-            let action = actions?[ActionKyes.memberEntry] ?? {}
-            return [[.close],[.regist(action)]]
+            let entryCompletion = actions?[ActionKyes.memberEntryCompletion] ?? {}
+            let entryReject = actions?[ActionKyes.memberEntryReject] ?? {}
+            return [[.close(HeaderModel(action: entryReject))],[.regist(HeaderModel(action: entryCompletion))]]
         }
     }
 }
-
-typealias EntryCompletion = ((Object?) -> Void)
 
 internal final class EntryViewController: UIViewController, HeaderViewDisplayable {
     
@@ -66,42 +68,63 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
             return [InputView.instantiate(owner: self, inputType: .eventTitle),
                     InputView.instantiate(owner: self, inputType: .eventDate)]
         case .member:
-            return [InputView.instantiate(owner: self, inputType: .memberNameRoma),
+            return [InputView.instantiate(owner: self, inputType: .memberNameKana),
                     InputView.instantiate(owner: self, inputType: .memberNameJp),
                     InputView.instantiate(owner: self, inputType: .memberEmail)]
         }
     }()
     
+    fileprivate var toolTipViewList = [(tipView: EasyTipView, sourceView: UIView)]()
+    
+    fileprivate static let toolTipPreferences: EasyTipView.Preferences = {
+        var preferences = EasyTipView.Preferences()
+        preferences.drawing.backgroundColor = .black
+        return preferences
+    }()
     
     fileprivate var entryType: EntryType = .lesson
     
     var entryCompletion: EntryCompletion?
+    var entryReject: EntryCompletion?
     
     private var actions: [String: HeaderView.Action] {
         switch entryType {
         case .lesson:
-            return [ActionKyes.lessonEntry: {
+            return [ActionKyes.lessonEntryCompletion: {
                 let title = self.inputViews.filter { $0.inputType == .lessonTitle }.first!
                 let lesson = Lesson(lessonTitle: title.inputString)
                 LessonManager.shared.saveLessonListToRealm([lesson])
                 self.entryCompletion?(lesson) ?? {}()
+                }, ActionKyes.lessonEntryReject: {
+                    self.entryReject?(nil)
                 }]
         case .event:
-            return [ActionKyes.eventEntry: {
+            return [ActionKyes.eventEntryCompletion: {
                 let title = self.inputViews.filter { $0.inputType == .eventTitle }.first!
                 let date = self.inputViews.filter { $0.inputType == .eventDate }.first!
                 let event = Event(lessonId: self.sourceViewModel?.id ?? "", eventDate: date.inputString.dateFromDisplayedFormat,  eventTitle: title.inputString)
                 EventManager.shared.saveEventListToRealm([event])
                 self.entryCompletion?(event) ?? {}()
+                }, ActionKyes.eventEntryReject: {
+                    self.entryReject?(nil)
                 }]
         case .member:
-            return [ActionKyes.memberEntry: {
-                let roma = self.inputViews.filter { $0.inputType == .memberNameRoma }.first!
+            return [ActionKyes.memberEntryCompletion: {
+                let kana = self.inputViews.filter { $0.inputType == .memberNameKana }.first!
                 let jp = self.inputViews.filter { $0.inputType == .memberNameJp }.first!
                 let email = self.inputViews.filter { $0.inputType == .memberEmail }.first!
-                let member = Member(nameJp: jp.inputString, nameRoma: roma.inputString, email: email.inputString)
+                let member = Member(nameJp: jp.inputString, nameKana: kana.inputString, email: email.inputString)
                 MemberManager.shared.saveMemberListToRealm([member])
+                guard let eventId = self.sourceViewModel?.id, eventId != "" else {
+                    self.entryCompletion?(member) ?? {}()
+                    return
+                }
+                
+                let event = EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(eventId: eventId)).first ?? Event()
+                LessonManager.shared.saveLessonMemberListToRealm([LessonMember(lessonId: event.lessonId, memberId: member.memberId)])
                 self.entryCompletion?(member) ?? {}()
+                }, ActionKyes.memberEntryReject: {
+                    self.entryReject?(nil)
                 }]
         }
     }
@@ -110,13 +133,27 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
         return inputViews.map { $0.textField }
     }
     
+    fileprivate var isInputCompleted: Bool {
+        return textFields.filter { $0.text?.characters.count == 0 }.isEmpty
+    }
+    
+    fileprivate var isInputValid: Bool {
+        guard let _ = (inputViews.filter { inputView in
+            inputView.swiftCop.isGuilty(inputView.textField)?.verdict() != nil
+        }).first else {
+            return true
+        }
+        return false
+    }
+    
     // MARK: - Initializer
     
-    static func instantiate(entryType: EntryType, sourceViewModel: DisplayModel? = nil, completion: EntryCompletion? = nil) -> EntryViewController {
+    static func instantiate(entryModel: EntryModel) -> EntryViewController {
         let viewController = R.storyboard.entryViewController.entryViewController()!
-        viewController.entryCompletion = completion
-        viewController.sourceViewModel = sourceViewModel
-        viewController.entryType = entryType
+        viewController.entryCompletion = entryModel.entryCompletion
+        viewController.entryReject = entryModel.entryReject
+        viewController.sourceViewModel = entryModel.displayModel
+        viewController.entryType = entryModel.entryType
         return viewController
     }
     
@@ -187,10 +224,56 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
     }
     
     func textFieldDidChange(notification: NSNotification) {
-        refreshHeaderView(enabled: (textFields.filter { $0.text?.characters.count == 0 }.isEmpty), buttonTypes: [[],[.regist(nil)]])
+        validate()
+        refreshHeaderView(enabled: isInputCompleted && isInputValid, buttonTypes: [[],[.regist(nil)]])
     }
     
-    func updateScrollViewSize(moveSize: CGFloat, duration: TimeInterval) {
+    // MARK: Private Method
+    
+    private func validate() {
+        inputViews.forEach { inputView in
+            inputValidationCheck(inputView: inputView)
+        }
+    }
+    
+    private func inputValidationCheck(inputView: InputView) {
+        guard let textField = inputView.textField, let text = textField.text else {
+            disableValidateAlert(inputView)
+            return
+        }
+        
+        guard !text.isEmpty else {
+            disableValidateAlert(inputView)
+            return
+        }
+        
+        if let message = inputView.swiftCop.isGuilty(textField)?.verdict() {
+            if (toolTipViewList.isEmpty || toolTipViewList.contains(where: {
+                ($0.tipView.text != message || $0.sourceView != inputView.textField)
+            })) {
+                disableValidateAlert(inputView)
+                displayValidateAlert(inputView.textField, message: message)
+            }
+        } else {
+            disableValidateAlert(inputView)
+        }
+    }
+    
+    private func displayValidateAlert(_ sourceView: UIView, message: String) {
+        let toolTipView = EasyTipView(text: message, preferences: type(of: self).toolTipPreferences)
+        toolTipView.show(forView: sourceView, withinSuperview: view)
+        toolTipViewList.append((toolTipView, sourceView))
+    }
+    
+    private func disableValidateAlert(_ sourceView: InputView) {
+        guard let index = toolTipViewList.index(where: { $0.1 == sourceView.textField! }) else {
+            return
+        }
+        toolTipViewList[index].tipView.dismiss()
+        toolTipViewList.remove(at: index)
+    }
+    
+    private func updateScrollViewSize(moveSize: CGFloat, duration: TimeInterval) {
         UIView.beginAnimations("Animation ID", context: nil)
         UIView.setAnimationDuration(duration)
         
@@ -202,7 +285,7 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
         UIView.commitAnimations()
     }
     
-    func restoreScrollViewSize() {
+    private func restoreScrollViewSize() {
         scrollView.contentInset = UIEdgeInsets.zero
         scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
@@ -218,6 +301,13 @@ extension EntryViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension EntryViewController: ScreenReloadable {
+    func reloadScreen() {
+        headerView.refreshLayout()
+        inputViews.forEach { $0.refreshLayout() }
     }
 }
 

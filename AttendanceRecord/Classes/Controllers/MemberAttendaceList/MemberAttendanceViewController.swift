@@ -12,13 +12,15 @@ internal final class MemberAttendanceViewController: UIViewController, HeaderVie
     
     @IBOutlet weak var headerView: HeaderView!
     
-    fileprivate var member: Member!
+    @IBOutlet private weak var tableView: UITableView!
+    
+    fileprivate var event: Event!
     
     // MARK: - Initializer
     
-    static func instantiate(member: Member) -> MemberAttendanceViewController {
+    static func instantiate(event: Event) -> MemberAttendanceViewController {
         let viewController = R.storyboard.memberAttendanceViewController.memberAttendanceViewController()!
-        viewController.member = member
+        viewController.event = event
         return viewController
     }
     
@@ -26,9 +28,13 @@ internal final class MemberAttendanceViewController: UIViewController, HeaderVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupHeaderView(member.nameJp, buttonTypes: [[.back], [.delete({
-            MemberManager.shared.removeMemberToRealm(self.member)
-        })]])
+        tableView.separatorColor = DeviceModel.themeColor.color
+        setupHeaderView(event.eventTitle, buttonTypes:
+            [[.back],
+             [.add(HeaderModel(entryModel: EntryModel(entryType: .member, displayModel: event, entryCompletion: { _ in
+                self.tableView.reloadData()
+            })))]]
+        )
     }
 }
 
@@ -36,8 +42,8 @@ extension MemberAttendanceViewController: UITableViewDataSource {
     
     static let defalutCellRowHeight = CGFloat(100)
     
-    var viewModels: [MemberAttendanceViewModel] {
-        return AttendanceManager.shared.memberAttendanceViewModels(member: member)
+    var viewModels: [AttendanceViewModel] {
+        return AttendanceManager.shared.eventAttendanceViewModels(event: event)
     }
     
     // MARK: - UITableView DataSource
@@ -59,5 +65,14 @@ extension MemberAttendanceViewController: UITableViewDataSource {
                                                     index: indexPath.row) { _ in
             tableView.reloadData()
         }
+    }
+}
+
+extension MemberAttendanceViewController: UITableViewDelegate {
+    
+    // MARK: - UITableView Delegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }

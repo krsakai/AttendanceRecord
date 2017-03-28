@@ -11,16 +11,24 @@ import SnapKit
 
 /// ヘッダービュー
 internal final class FooterView: UIView {
+    
+    fileprivate var contentView: UIView!
 
     // MARK: - Initializer
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let contentView = R.nib.footerView.firstView(owner: self, options: nil)!
+        contentView = R.nib.footerView.firstView(owner: self, options: nil)!
         addSubview(contentView)
         contentView.snp.makeConstraints { make in
             make.right.left.bottom.top.equalTo(0)
         }
+        contentView.backgroundColor = DeviceModel.themeColor.color
+    }
+}
+
+extension FooterView: LayoutUpdable {
+    func refreshLayout() {
         contentView.backgroundColor = DeviceModel.themeColor.color
     }
 }

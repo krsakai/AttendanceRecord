@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Setting View Controller-->
+        <scene sceneID="uDS-Yz-x82">
+            <objects>
+                <viewController storyboardIdentifier="SettingViewController" id="DNh-yB-7p8" customClass="SettingViewController" customModule="AttendanceRecord" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qln-hN-YGv"/>
+                        <viewControllerLayoutGuide type="bottom" id="MBL-BK-AD9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RL4-43-KZ7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MpP-uV-9kh" customClass="HeaderView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="5Se-Jj-Bvp"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="n94-Kx-DII">
+                                <rect key="frame" x="0.0" y="71" width="375" height="596"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="DNh-yB-7p8" id="Xrs-Mf-01H"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="n94-Kx-DII" secondAttribute="trailing" id="6Zk-WN-nyi"/>
+                            <constraint firstAttribute="trailing" secondItem="MpP-uV-9kh" secondAttribute="trailing" id="BWx-Og-mTi"/>
+                            <constraint firstItem="MpP-uV-9kh" firstAttribute="top" secondItem="RL4-43-KZ7" secondAttribute="top" id="CEM-xh-p2r"/>
+                            <constraint firstItem="n94-Kx-DII" firstAttribute="leading" secondItem="RL4-43-KZ7" secondAttribute="leading" id="TLB-Df-iZ4"/>
+                            <constraint firstItem="MpP-uV-9kh" firstAttribute="leading" secondItem="RL4-43-KZ7" secondAttribute="leading" id="jcK-qO-kNr"/>
+                            <constraint firstItem="MBL-BK-AD9" firstAttribute="top" secondItem="n94-Kx-DII" secondAttribute="bottom" id="qlk-yt-VsI"/>
+                            <constraint firstItem="n94-Kx-DII" firstAttribute="top" secondItem="MpP-uV-9kh" secondAttribute="bottom" id="zGN-E5-Klq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="headerView" destination="MpP-uV-9kh" id="yWz-cQ-x1k"/>
+                        <outlet property="tableView" destination="n94-Kx-DII" id="36m-tC-EMa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qZZ-uk-kt0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-135.19999999999999" y="-376.46176911544228"/>
+        </scene>
+    </scenes>
+</document>

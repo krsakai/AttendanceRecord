@@ -18,7 +18,7 @@ internal enum AttendanceStatus: String {
 internal final class Attendance: Object, ClonableObject {
     
     dynamic fileprivate(set) var attendanceId               = UUID().uuidString.replacingOccurrences(of: "-", with: "")
-    dynamic fileprivate(set) var lessonId                   = DeviceModel.lessonId
+    dynamic fileprivate(set) var lessonId                   = ""
     dynamic fileprivate(set) var eventId                    = ""
     dynamic fileprivate(set) var memberId                   = ""
     dynamic var attendanceStatusRawValue   = "-"
@@ -64,8 +64,9 @@ extension Attendance {
 
 extension Attendance {
     /// イニシャライザ
-    convenience init(eventId: String, memberId: String, attendanceStatus: AttendanceStatus) {
+    convenience init(lessonId: String, eventId: String, memberId: String, attendanceStatus: AttendanceStatus) {
         self.init()
+        self.lessonId = lessonId
         self.eventId = eventId
         self.memberId = memberId
         self.attendanceStatusRawValue = attendanceStatus.rawValue
@@ -86,7 +87,11 @@ extension Attendance {
 }
 
 extension Attendance {
-    static func predicate(lessonId: String = DeviceModel.lessonId, memberId: String) -> NSPredicate {
+    static func predicate(lessonId: String, memberId: String) -> NSPredicate {
         return NSPredicate(format: "lessonId = %@ AND memberId = %@", lessonId, memberId)
+    }
+    
+    static func predicate(lessonId: String, eventId: String) -> NSPredicate {
+        return NSPredicate(format: "lessonId = %@ AND eventId = %@", lessonId, eventId)
     }
 }

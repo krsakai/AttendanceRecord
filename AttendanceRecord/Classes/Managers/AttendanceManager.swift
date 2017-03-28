@@ -50,32 +50,18 @@ internal final class AttendanceManager {
         }
     }
     
-    /// イベントから出欠を生成する
-    func createAttendances(event: Event) {
-        let memberList = MemberManager.shared.memberListDataFromRealm()
-        var attendanceList = [Attendance]()
-        memberList.forEach { member in
-            let attendance = Attendance(eventId: event.eventId, memberId: member.memberId, attendanceStatus: .noEntry)
-            attendanceList.append(attendance)
+    /// イベント毎出欠一覧ビューモデルを取得
+    func eventAttendanceViewModels(event: Event?) -> [AttendanceViewModel] {
+        guard let event = event else {
+            return [AttendanceViewModel]()
         }
-        saveAttendanceListToRealm(attendanceList)
-    }
-    
-    /// 個人出欠一覧ビューのモデルを取得
-    func memberAttendanceViewModels(member: Member?) -> [MemberAttendanceViewModel] {
-        guard let member = member else {
-            return [MemberAttendanceViewModel]()
-        }
-        let attendanceList = attendanceListDataFromRealm(predicate: Attendance.predicate(memberId: member.memberId))
-        var viewModels = [MemberAttendanceViewModel]()
+        let attendanceList = attendanceListDataFromRealm(predicate: Attendance.predicate(lessonId: event.lessonId, eventId: event.eventId))
+        var viewModels = [AttendanceViewModel]()
         attendanceList.forEach { attendance in
             let event = EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(eventId: attendance.eventId)).first ?? Event()
-            viewModels.append(MemberAttendanceViewModel(event: event, attendance: attendance))
+            let member = MemberManager.shared.memberListDataFromRealm(predicate: Member.predicate(memberId: attendance.memberId)).first ?? Member()
+            viewModels.append(AttendanceViewModel(event: event, member: member, attendance: attendance))
         }
-        return viewModels.sorted { viewModelX, viewModelY in
-            return viewModelX.event.eventDate < viewModelY.event.eventDate
-        }
+        return viewModels
     }
 }
-
-

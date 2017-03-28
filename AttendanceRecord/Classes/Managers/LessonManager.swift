@@ -15,6 +15,8 @@ internal final class LessonManager {
     /// シングルトンインスタンス
     static let shared = LessonManager()
     
+    // MARK: Lesson
+    
     /** レッスン一覧情報をRealmに保存
      - parameter lessonList: レッスン一覧情報  **/
     func saveLessonListToRealm(_ lessonList: [Lesson]) {
@@ -45,20 +47,48 @@ internal final class LessonManager {
         return Array(realm.objects(Lesson.self).filter(predicate).sorted(by: sortParameters))
     }
     
-    /// レッスンRealmを更新
-    func updateMemberToRealm(member: Member, block: (Member) -> Void ) -> Void {
-        let realm = try! Realm()
-        try! realm.write {
-            block( member )
-        }
-    }
-    
     /// レッスンマスタを保存
     func saveDefaultlessonList() {
         let plistPath = Bundle.main.path(forResource: "LessonList", ofType: "plist")!
         let lessonListJson = NSArray(contentsOfFile: plistPath) as! [[String : Any]]
         let lessonList: [Lesson] = Mapper<Lesson>().mapArray(JSONArray: lessonListJson)!
         saveLessonListToRealm(lessonList)
+    }
+    
+    // MARK: LessonMember
+    
+    /** レッスンメンバー情報をRealmに保存
+     - parameter lessonList: レッスン一覧情報  **/
+    func saveLessonMemberListToRealm(_ lessonMemberList: [LessonMember]) {
+        let realm = try! Realm()
+        try! realm.write {
+            for lessonMember in lessonMemberList {
+                realm.add(lessonMember, update: true)
+                let eventList = EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(lessonId: lessonMember.lessonId))
+                eventList.forEach { event in
+                    let attendance = Attendance(lessonId: lessonMember.lessonId, eventId: event.eventId, memberId: lessonMember.memberId, attendanceStatus: .noEntry)
+                    realm.add(attendance, update: false)
+                }
+            }
+        }
+    }
+
+    /// レッスンメンバーの削除
+    func removeLessonMemberToRealm(_ lessonMember: LessonMember) {
+        let realm = try! Realm()
+        try! realm.write {
+            if let _ = realm.object(ofType: LessonMember.self, forPrimaryKey: lessonMember.primaryKeyForRealm) {
+                realm.delete(lessonMember)
+            }
+        }
+    }
+    
+    /// レッスンメンバー一覧情報をRealmから取得
+    func lessonMemberListDataFromRealm(predicate: NSPredicate? = nil, realm: Realm = try! Realm()) -> [LessonMember] {
+        guard let predicate = predicate else {
+            return Array(realm.objects(LessonMember.self))
+        }
+        return Array(realm.objects(LessonMember.self).filter(predicate))
     }
 }
 

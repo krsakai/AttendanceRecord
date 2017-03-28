@@ -50,7 +50,7 @@ extension UIWebView {
         var buttonTypes: [[HeaderView.ButtonType]] {
             switch self {
             case .attendanceList, .backNumber: return [[.sideMenu],[]]
-            case .none: return [[.close],[]]
+            case .none: return [[.close(nil)],[]]
             }
         }
         
@@ -88,23 +88,23 @@ extension UIWebView {
     }
     
     private static var attendanceListString: String {
-        let memberList = MemberManager.shared.memberListDataFromRealm()
-        let viewModels = AttendanceManager.shared.memberAttendanceViewModels(member: memberList.first)
-        var htmlString = "<html><body><table border=1 cellspacing=0 cellpadding=0><tr bgcolor=#BCC8DB><td></td>"
-        viewModels.forEach { viewModel in
-            htmlString.append("<td align=center valign=center> \(viewModel.event.eventDate.stringFromDate(format: .displayMonthToDay)) </td>")
-        }
-        htmlString.append("</tr>")
-        _ = memberList.enumerated().map { (index, member) in
-            let viewModels = AttendanceManager.shared.memberAttendanceViewModels(member: member)
-            let color = index % 2 == 0 ? "whitesmoke" : "#b0c4de"
-            htmlString.append("<tr bgcolor=\(color)><td align=center valign=center>\(member.nameJp)</td>")
-            viewModels.forEach { viewModel in
-                htmlString.append("<td align=center valign=center>\(viewModel.attendance.attendanceStatusRawValue)</td>")
-            }
-            htmlString.append("</tr>")
-        }
-        htmlString.append("</body></table>")
-        return htmlString
+//        let memberList = MemberManager.shared.memberListDataFromRealm()
+//        let viewModels = AttendanceManager.shared.memberAttendanceViewModels(member: memberList.first)
+//        var htmlString = "<html><body><table border=1 cellspacing=0 cellpadding=0><tr bgcolor=#BCC8DB><td></td>"
+//        viewModels.forEach { viewModel in
+//            htmlString.append("<td align=center valign=center> \(viewModel.event.eventDate.stringFromDate(format: .displayMonthToDay)) </td>")
+//        }
+//        htmlString.append("</tr>")
+//        _ = memberList.enumerated().map { (index, member) in
+//            let viewModels = AttendanceManager.shared.memberAttendanceViewModels(member: member)
+//            let color = index % 2 == 0 ? "whitesmoke" : "#b0c4de"
+//            htmlString.append("<tr bgcolor=\(color)><td align=center valign=center>\(member.nameJp)</td>")
+//            viewModels.forEach { viewModel in
+//                htmlString.append("<td align=center valign=center>\(viewModel.attendance.attendanceStatusRawValue)</td>")
+//            }
+//            htmlString.append("</tr>")
+//        }
+//        htmlString.append("</body></table>")
+        return ""//htmlString
     }
 }

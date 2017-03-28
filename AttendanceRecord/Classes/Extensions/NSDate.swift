@@ -37,7 +37,7 @@ internal enum AttendaceRecordFormat: String {
     case slashSeparatorYearToSecond = "yyyy/MM/dd HH:mm:ss"
     
     case displayedYearToDay = "yyyy年 M月d日"
-    case displayedYearToMin = "yyyy年 M月d日 h時m分"
+    case displayedYearToMin = "yyyy年 M月d日 H時mm分"
     case displayMonthToDay   = "M月d日"
 }
 
@@ -85,6 +85,17 @@ internal extension Date {
         dateFormatter.locale = Locale(identifier: "ja_JP")
         dateFormatter.dateFormat = AttendaceRecordFormat.displayedYearToMin.rawValue
         return dateFormatter.string(from: self)
+    }
+    
+    var startOfDay: Date {
+        return NSCalendar.current.startOfDay(for: self)
+    }
+    
+    var endOfDay: Date? {
+        var components = DateComponents()
+        components.day = 1
+        components.second = -1
+        return NSCalendar.current.date(byAdding: components, to: startOfDay)
     }
 }
 

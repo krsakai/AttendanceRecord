@@ -26,28 +26,38 @@
 
 "Common.Label.AttendanceInput" = "出欠入力";
 "Alert.Title.MemberRegistComfirm" = "登録";
-"Alert.Message.MemberAdd" = "入力した内容で\n登録してもよろしいですか？";
-"Alert.Title.UserDeleteComfirm" = "削除";
-"Alert.Message.UserDelete" = "選択中の内容を\n削除してもよろしいですか？";
+"Alert.Message.Add" = "入力した内容で\n登録してもよろしいですか？";
+"Alert.Title.DeleteComfirm" = "削除";
+"Alert.Message.Delete" = "%@を\n削除してもよろしいですか？";
 
 // サイドメニュー
 "SideMenu.HeaderLabel.MenuList" = "メニュー";
-"SideMenu.Label.MemberList" = "メンバー";
+"SideMenu.Label.AttendanceMemberList" = "受講者";
 "SideMenu.Label.AttendanceTable" = "出席表";
 "SideMenu.Label.BackNumber" = "バックナンバー";
 "SideMenu.Label.Setting" = "設定";
-"SideMenu.Label.LessonList" = "レッスン";
+"SideMenu.Label.LessonList" = "開催講義";
+"SideMenu.Label.AttendanceLessonList" = "受講講義";
+
+// 登録
+"Entry.HeaderLabel.Lesson" = "レッスン登録";
+"Entry.HeaderLabel.Event" = "イベント登録";
+"Entry.HeaderLabel.Member" = "メンバー登録";
 
 
 // ヘッダー
 "Header.Button.Label.UserRegist" = "登録";
 "Header.Title.Label.EventList" = "イベント";
 "Header.Button.Label.Reception" = "受付";
+"Header.Title.Label.Settings" = "設定";
 
 // モード
 "Mode.Title.Label.ModeSelect" = "モード選択";
-"Mode.Button.Label.Member" = "メンバー";
+"Mode.Button.Label.Member" = "受講者";
 "Mode.Button.Label.Organizer" = "開催者";
+"Mode.Title.Label.ThemeSelect" = "テーマ色選択";
+"Mode.Alert.Title.NoEntry" = "メンバー未登録";
+"Mode.Alert.Message.NoEntry" = "メンバー未登録です。登録画面よりメンバー登録を行ってください";
 
 // ローディング
 "Loading.Title.Label.MemberSearch" = "メンバー受付中";
@@ -59,6 +69,6 @@
 "InputView.Label.Lesson.Title" = "レッスン名";
 "InputView.Label.Event.Title" = "イベント名";
 "InputView.Label.Event.Date" = "開催日";
-"InputView.Label.Member.NameRoma" = "名前 (ローマ字)";
-"InputView.Label.Member.NameJp" = "名前 (漢字)";
+"InputView.Label.Member.NameKana" = "なまえ (かな)";
+"InputView.Label.Member.NameJp" = "名前 (フルネーム)";
 "InputView.Label.Member.Email" = "メールアドレス";

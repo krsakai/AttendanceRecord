@@ -21,6 +21,8 @@
 		C80696B61E65DF0200978338 /* MemberAttendaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80696B51E65DF0200978338 /* MemberAttendaceViewModel.swift */; };
 		C80696B91E65E08900978338 /* MemberAttendanceViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80696B81E65E08900978338 /* MemberAttendanceViewCell.xib */; };
 		C80696BB1E65E0A200978338 /* MemberAttendanceViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80696BA1E65E0A200978338 /* MemberAttendanceViewCell.swift */; };
+		C82876051E8830EE004B4CC9 /* EntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82876041E8830EE004B4CC9 /* EntryModel.swift */; };
+		C82876071E883300004B4CC9 /* HeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82876061E883300004B4CC9 /* HeaderModel.swift */; };
 		C8508BDE1E745C8D00BCF12A /* EntryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8508BDC1E745C8D00BCF12A /* EntryViewController.storyboard */; };
 		C8508BDF1E745C8D00BCF12A /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8508BDD1E745C8D00BCF12A /* EntryViewController.swift */; };
 		C851AF841E62ACA300D9039E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C851AF821E62ACA300D9039E /* Localizable.strings */; };
@@ -34,6 +36,15 @@
 		C85599A41E755D75000C7C49 /* UnderLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85599A31E755D75000C7C49 /* UnderLineView.swift */; };
 		C85599A61E755E0C000C7C49 /* UnderLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C85599A51E755E0C000C7C49 /* UnderLineView.xib */; };
 		C85599A81E771A98000C7C49 /* MemberList.plist in Resources */ = {isa = PBXBuildFile; fileRef = C85599A71E771A98000C7C49 /* MemberList.plist */; };
+		C8559A721E859E74000C7C49 /* LessonMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8559A711E859E74000C7C49 /* LessonMember.swift */; };
+		C85708321E89BAFD00B21DE4 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85708311E89BAFD00B21DE4 /* CGFloat.swift */; };
+		C85708351E8A281900B21DE4 /* SWTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85708341E8A281900B21DE4 /* SWTableViewCell.swift */; };
+		C85708381E8A42C000B21DE4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85708371E8A42C000B21DE4 /* SettingViewController.swift */; };
+		C857083A1E8A42D200B21DE4 /* SettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C85708391E8A42D200B21DE4 /* SettingViewController.storyboard */; };
+		C85708401E8A4C6100B21DE4 /* ModeChangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C857083F1E8A4C6100B21DE4 /* ModeChangeCell.swift */; };
+		C85708421E8A4C8500B21DE4 /* ModeChangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C85708411E8A4C8500B21DE4 /* ModeChangeCell.xib */; };
+		C85708441E8A4CB800B21DE4 /* ThemeColorSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85708431E8A4CB800B21DE4 /* ThemeColorSelectCell.swift */; };
+		C85708461E8A4CCD00B21DE4 /* ThemeColorSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C85708451E8A4CCD00B21DE4 /* ThemeColorSelectCell.xib */; };
 		C857CC451E6DD713007A3E35 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C857CC441E6DD713007A3E35 /* AlertController.swift */; };
 		C857CC4C1E7061CA007A3E35 /* ModeSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C857CC4B1E7061CA007A3E35 /* ModeSelectViewController.swift */; };
 		C857CC4F1E7065CA007A3E35 /* ModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C857CC4E1E7065CA007A3E35 /* ModeView.swift */; };
@@ -74,6 +85,8 @@
 		C863C9921E61854700FD75F1 /* DrawerController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C863C9911E61854700FD75F1 /* DrawerController.framework */; };
 		C863C9971E62198D00FD75F1 /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C863C9961E62198D00FD75F1 /* FooterView.xib */; };
 		C863C99B1E621CBE00FD75F1 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C863C99A1E621CBE00FD75F1 /* FooterView.swift */; };
+		C86F61731E88DC5A00C829A0 /* EntryTrial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F61721E88DC5A00C829A0 /* EntryTrial.swift */; };
+		C86F61751E88E8D300C829A0 /* EasyTipView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C86F61741E88E8D300C829A0 /* EasyTipView.framework */; };
 		C8D14FA61E68584600FEB634 /* CommonWebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8D14FA41E68584600FEB634 /* CommonWebViewController.storyboard */; };
 		C8D14FA71E68584600FEB634 /* CommonWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D14FA51E68584600FEB634 /* CommonWebViewController.swift */; };
 		C8D14FAE1E6AB0C600FEB634 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D14FAD1E6AB0C600FEB634 /* LocationManager.swift */; };
@@ -110,6 +123,8 @@
 		C80696B51E65DF0200978338 /* MemberAttendaceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberAttendaceViewModel.swift; sourceTree = "<group>"; };
 		C80696B81E65E08900978338 /* MemberAttendanceViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberAttendanceViewCell.xib; sourceTree = "<group>"; };
 		C80696BA1E65E0A200978338 /* MemberAttendanceViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberAttendanceViewCell.swift; sourceTree = "<group>"; };
+		C82876041E8830EE004B4CC9 /* EntryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryModel.swift; sourceTree = "<group>"; };
+		C82876061E883300004B4CC9 /* HeaderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderModel.swift; sourceTree = "<group>"; };
 		C8508BDC1E745C8D00BCF12A /* EntryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EntryViewController.storyboard; sourceTree = "<group>"; };
 		C8508BDD1E745C8D00BCF12A /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		C851AF831E62ACA300D9039E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -123,6 +138,16 @@
 		C85599A31E755D75000C7C49 /* UnderLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderLineView.swift; sourceTree = "<group>"; };
 		C85599A51E755E0C000C7C49 /* UnderLineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnderLineView.xib; sourceTree = "<group>"; };
 		C85599A71E771A98000C7C49 /* MemberList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MemberList.plist; sourceTree = "<group>"; };
+		C8559A711E859E74000C7C49 /* LessonMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonMember.swift; sourceTree = "<group>"; };
+		C85708311E89BAFD00B21DE4 /* CGFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
+		C85708331E89D96100B21DE4 /* objc-headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "objc-headers.h"; sourceTree = "<group>"; };
+		C85708341E8A281900B21DE4 /* SWTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWTableViewCell.swift; sourceTree = "<group>"; };
+		C85708371E8A42C000B21DE4 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		C85708391E8A42D200B21DE4 /* SettingViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingViewController.storyboard; sourceTree = "<group>"; };
+		C857083F1E8A4C6100B21DE4 /* ModeChangeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModeChangeCell.swift; sourceTree = "<group>"; };
+		C85708411E8A4C8500B21DE4 /* ModeChangeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModeChangeCell.xib; sourceTree = "<group>"; };
+		C85708431E8A4CB800B21DE4 /* ThemeColorSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeColorSelectCell.swift; sourceTree = "<group>"; };
+		C85708451E8A4CCD00B21DE4 /* ThemeColorSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemeColorSelectCell.xib; sourceTree = "<group>"; };
 		C857CC441E6DD713007A3E35 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C857CC4B1E7061CA007A3E35 /* ModeSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModeSelectViewController.swift; sourceTree = "<group>"; };
 		C857CC4E1E7065CA007A3E35 /* ModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModeView.swift; sourceTree = "<group>"; };
@@ -166,6 +191,8 @@
 		C863C9911E61854700FD75F1 /* DrawerController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DrawerController.framework; path = Carthage/Build/iOS/DrawerController.framework; sourceTree = "<group>"; };
 		C863C9961E62198D00FD75F1 /* FooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
 		C863C99A1E621CBE00FD75F1 /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		C86F61721E88DC5A00C829A0 /* EntryTrial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryTrial.swift; sourceTree = "<group>"; };
+		C86F61741E88E8D300C829A0 /* EasyTipView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyTipView.framework; path = Carthage/Build/iOS/EasyTipView.framework; sourceTree = "<group>"; };
 		C8D14FA41E68584600FEB634 /* CommonWebViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CommonWebViewController.storyboard; sourceTree = "<group>"; };
 		C8D14FA51E68584600FEB634 /* CommonWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonWebViewController.swift; sourceTree = "<group>"; };
 		C8D14FAD1E6AB0C600FEB634 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -182,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C86F61751E88E8D300C829A0 /* EasyTipView.framework in Frameworks */,
 				C857CC571E7138C2007A3E35 /* SwiftSpinner.framework in Frameworks */,
 				C851AF901E62D05900D9039E /* ObjectMapper.framework in Frameworks */,
 				C863C9921E61854700FD75F1 /* DrawerController.framework in Frameworks */,
@@ -275,6 +303,26 @@
 				C85599A51E755E0C000C7C49 /* UnderLineView.xib */,
 			);
 			path = UnderLineView;
+			sourceTree = "<group>";
+		};
+		C85708361E8A42AD00B21DE4 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				C85708371E8A42C000B21DE4 /* SettingViewController.swift */,
+				C85708391E8A42D200B21DE4 /* SettingViewController.storyboard */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		C857083C1E8A4BEB00B21DE4 /* SettingTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				C857083F1E8A4C6100B21DE4 /* ModeChangeCell.swift */,
+				C85708411E8A4C8500B21DE4 /* ModeChangeCell.xib */,
+				C85708431E8A4CB800B21DE4 /* ThemeColorSelectCell.swift */,
+				C85708451E8A4CCD00B21DE4 /* ThemeColorSelectCell.xib */,
+			);
+			path = SettingTableCell;
 			sourceTree = "<group>";
 		};
 		C857CC431E6B94F8007A3E35 /* AlertController */ = {
@@ -388,6 +436,7 @@
 		C863C91C1E608FA200FD75F1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C85708361E8A42AD00B21DE4 /* Setting */,
 				C8508BDB1E745C8D00BCF12A /* Entry */,
 				C857CC721E71AF2D007A3E35 /* ListView */,
 				C857CC481E70617E007A3E35 /* ModeSelect */,
@@ -407,6 +456,7 @@
 				C80696861E647C7700978338 /* Attendance.swift */,
 				C806968C1E6482B900978338 /* Event.swift */,
 				C857CC691E718B70007A3E35 /* Lesson.swift */,
+				C8559A711E859E74000C7C49 /* LessonMember.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -417,6 +467,7 @@
 				C80696881E6481DE00978338 /* AttendanceRecordColor.swift */,
 				C80696891E6481DE00978338 /* AttendanceRecordFont.swift */,
 				C8FEA7131E73E86D00503ED5 /* ActionKeys.swift */,
+				C86F61721E88DC5A00C829A0 /* EntryTrial.swift */,
 			);
 			path = Enumerations;
 			sourceTree = "<group>";
@@ -427,6 +478,8 @@
 				C863C9301E608FA200FD75F1 /* ClonableObject.swift */,
 				C863C9321E608FA200FD75F1 /* NSDate.swift */,
 				C80696901E648E0300978338 /* Mappable.swift */,
+				C85708311E89BAFD00B21DE4 /* CGFloat.swift */,
+				C85708341E8A281900B21DE4 /* SWTableViewCell.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -448,7 +501,9 @@
 		C863C93A1E608FA200FD75F1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C82876061E883300004B4CC9 /* HeaderModel.swift */,
 				C863C93C1E608FA200FD75F1 /* DeviceModel.swift */,
+				C82876041E8830EE004B4CC9 /* EntryModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -456,6 +511,7 @@
 		C863C93D1E608FA200FD75F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C857083C1E8A4BEB00B21DE4 /* SettingTableCell */,
 				C85599A21E755D67000C7C49 /* UnderLineView */,
 				C8FEA7081E73331000503ED5 /* InputView */,
 				C857CC6D1E719E87007A3E35 /* LessonTableCell */,
@@ -476,6 +532,7 @@
 				C863C9471E608FA200FD75F1 /* Assets.xcassets */,
 				C863C9481E608FA200FD75F1 /* LaunchScreen.storyboard */,
 				C863C94A1E608FA200FD75F1 /* Info.plist */,
+				C85708331E89D96100B21DE4 /* objc-headers.h */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -542,6 +599,7 @@
 		E4D2DB8086E7456DABE4B23C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C86F61741E88E8D300C829A0 /* EasyTipView.framework */,
 				C857CC561E7138C2007A3E35 /* SwiftSpinner.framework */,
 				C851AF8F1E62D05900D9039E /* ObjectMapper.framework */,
 				C863C9911E61854700FD75F1 /* DrawerController.framework */,
@@ -563,13 +621,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C863C9141E608D0C00FD75F1 /* Build configuration list for PBXNativeTarget "AttendanceRecord" */;
 			buildPhases = (
-				B19DAE2ABB21AEAA1D256C21 /* Check Pods Manifest.lock */,
+				B19DAE2ABB21AEAA1D256C21 /* [CP] Check Pods Manifest.lock */,
 				C863C98B1E61738700FD75F1 /* Genarate Swift */,
 				C863C8F31E608D0C00FD75F1 /* Sources */,
 				C863C8F41E608D0C00FD75F1 /* Frameworks */,
 				C863C8F51E608D0C00FD75F1 /* Resources */,
-				740B725ED48AAC478FF6F281 /* Embed Pods Frameworks */,
-				4989F469F62916B77304C26C /* Copy Pods Resources */,
+				740B725ED48AAC478FF6F281 /* [CP] Embed Pods Frameworks */,
+				4989F469F62916B77304C26C /* [CP] Copy Pods Resources */,
 				C863C97C1E60A70500FD75F1 /* Carthage  */,
 			);
 			buildRules = (
@@ -650,13 +708,16 @@
 				C851AF9F1E630D5300D9039E /* MemberListTableCell.xib in Resources */,
 				C85599A61E755E0C000C7C49 /* UnderLineView.xib in Resources */,
 				C8FEA7011E71CD6100503ED5 /* HeaderButtonView.xib in Resources */,
+				C85708461E8A4CCD00B21DE4 /* ThemeColorSelectCell.xib in Resources */,
 				C8508BDE1E745C8D00BCF12A /* EntryViewController.storyboard in Resources */,
 				C85599A81E771A98000C7C49 /* MemberList.plist in Resources */,
 				C857CC751E71AF2D007A3E35 /* ListViewController.storyboard in Resources */,
+				C85708421E8A4C8500B21DE4 /* ModeChangeCell.xib in Resources */,
 				C857CC781E71C2FA007A3E35 /* LessonList.plist in Resources */,
 				C806968F1E648A5300978338 /* EventList.plist in Resources */,
 				C863C9811E616CD800FD75F1 /* HeaderView.xib in Resources */,
 				C80696A61E65D1F200978338 /* MemberAttendanceViewController.storyboard in Resources */,
+				C857083A1E8A42D200B21DE4 /* SettingViewController.storyboard in Resources */,
 				C80696B91E65E08900978338 /* MemberAttendanceViewCell.xib in Resources */,
 				C8FEA70E1E7333EF00503ED5 /* InputView.xib in Resources */,
 				C863C9701E608FA200FD75F1 /* LaunchScreen.storyboard in Resources */,
@@ -682,14 +743,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4989F469F62916B77304C26C /* Copy Pods Resources */ = {
+		4989F469F62916B77304C26C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -697,14 +758,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AttendanceRecord/Pods-AttendanceRecord-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		740B725ED48AAC478FF6F281 /* Embed Pods Frameworks */ = {
+		740B725ED48AAC478FF6F281 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -712,14 +773,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AttendanceRecord/Pods-AttendanceRecord-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B19DAE2ABB21AEAA1D256C21 /* Check Pods Manifest.lock */ = {
+		B19DAE2ABB21AEAA1D256C21 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -742,6 +803,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/DrawerController.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftSpinner.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/EasyTipView.framework",
 			);
 			name = "Carthage ";
 			outputPaths = (
@@ -771,6 +833,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C85708321E89BAFD00B21DE4 /* CGFloat.swift in Sources */,
 				C806968B1E6481DE00978338 /* AttendanceRecordFont.swift in Sources */,
 				C863C95C1E608FA200FD75F1 /* ClonableObject.swift in Sources */,
 				C863C99B1E621CBE00FD75F1 /* FooterView.swift in Sources */,
@@ -780,8 +843,11 @@
 				C857CC6F1E719E99007A3E35 /* LessonTableViewCell.swift in Sources */,
 				C857CC761E71AF2D007A3E35 /* ListViewController.swift in Sources */,
 				C806968A1E6481DE00978338 /* AttendanceRecordColor.swift in Sources */,
+				C85708401E8A4C6100B21DE4 /* ModeChangeCell.swift in Sources */,
 				C806968D1E6482B900978338 /* Event.swift in Sources */,
+				C82876051E8830EE004B4CC9 /* EntryModel.swift in Sources */,
 				C863C98A1E616FDB00FD75F1 /* SideMenuViewController.swift in Sources */,
+				C85708441E8A4CB800B21DE4 /* ThemeColorSelectCell.swift in Sources */,
 				C80696871E647C7700978338 /* Attendance.swift in Sources */,
 				C857CC551E708C2D007A3E35 /* MemberEntryPeripheralManager.swift in Sources */,
 				C857CC4F1E7065CA007A3E35 /* ModeView.swift in Sources */,
@@ -790,6 +856,7 @@
 				C863C94B1E608FA200FD75F1 /* AppDelegate.swift in Sources */,
 				C857CC451E6DD713007A3E35 /* AlertController.swift in Sources */,
 				C8D14FAE1E6AB0C600FEB634 /* LocationManager.swift in Sources */,
+				C85708381E8A42C000B21DE4 /* SettingViewController.swift in Sources */,
 				C857CC541E708C2D007A3E35 /* MemberEntryCentralManager.swift in Sources */,
 				C80696911E648E0300978338 /* Mappable.swift in Sources */,
 				C857CC6C1E718C75007A3E35 /* LessonManager.swift in Sources */,
@@ -798,15 +865,19 @@
 				C857CC591E7138E6007A3E35 /* LoadingController.swift in Sources */,
 				C857CC4C1E7061CA007A3E35 /* ModeSelectViewController.swift in Sources */,
 				C863C9831E616D3F00FD75F1 /* HeaderView.swift in Sources */,
+				C85708351E8A281900B21DE4 /* SWTableViewCell.swift in Sources */,
 				C863C95E1E608FA200FD75F1 /* NSDate.swift in Sources */,
 				C80696931E64910100978338 /* EventManager.swift in Sources */,
 				C8FEA7141E73E86D00503ED5 /* ActionKeys.swift in Sources */,
 				C857CC6A1E718B70007A3E35 /* Lesson.swift in Sources */,
 				C80696BB1E65E0A200978338 /* MemberAttendanceViewCell.swift in Sources */,
 				C8FEA7101E73340200503ED5 /* InputView.swift in Sources */,
+				C82876071E883300004B4CC9 /* HeaderModel.swift in Sources */,
 				C8D14FA71E68584600FEB634 /* CommonWebViewController.swift in Sources */,
 				C851AF9A1E6300F900D9039E /* Member.swift in Sources */,
+				C86F61731E88DC5A00C829A0 /* EntryTrial.swift in Sources */,
 				C857CC611E717E74007A3E35 /* EventListTableCell.swift in Sources */,
+				C8559A721E859E74000C7C49 /* LessonMember.swift in Sources */,
 				C851AF9D1E630D4000D9039E /* MemberListTableCell.swift in Sources */,
 				C863C9661E608FA200FD75F1 /* DeviceModel.swift in Sources */,
 				C80696B61E65DF0200978338 /* MemberAttendaceViewModel.swift in Sources */,
@@ -959,6 +1030,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kudoukun.AttendanceRecord;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -979,6 +1051,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kudoukun.AttendanceRecord;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

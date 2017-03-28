@@ -10,12 +10,27 @@ import Foundation
 import RealmSwift
 import ObjectMapper
 
+internal enum MemberType: String {
+    case normal     = "0"  // 通常
+    case useApp     = "1"  // メンバーアプリを使用している
+}
+
 internal final class Member: Object, ClonableObject {
     
     dynamic fileprivate(set) var memberId   = UUID().uuidString.replacingOccurrences(of: "-", with: "")
     dynamic var nameJp                  = ""
-    dynamic var nameRoma                = ""
+    dynamic var nameKana                = ""
     dynamic var email                   = ""
+    dynamic var memberTypeRawValue      = "0"
+    
+    var memberType: MemberType? {
+        get {
+            return MemberType(rawValue: memberTypeRawValue)
+        }
+        set {
+            memberTypeRawValue = newValue?.rawValue ?? "0"
+        }
+    }
     
     dynamic private(set) var primaryKeyForRealm = ""
     
@@ -27,7 +42,7 @@ internal final class Member: Object, ClonableObject {
     
     // プライマリーキーを更新
     fileprivate func updatePrimaryKey() {
-        primaryKeyForRealm = "\(nameRoma)+\(email)"
+        primaryKeyForRealm = memberId
     }
 }
 
@@ -38,10 +53,11 @@ extension Member: Mappable {
     }
     
     func mapping(map: Map) {
-        memberId   <- map["member_id"]
-        nameJp     <- map["name_jp"]
-        nameRoma   <- map["name_roma"]
-        email      <- map["email"]
+        memberId            <- map["member_id"]
+        nameJp              <- map["name_jp"]
+        nameKana            <- map["name_kana"]
+        email               <- map["email"]
+        memberTypeRawValue  <- map["memberTypeRawValue"]
         
         updatePrimaryKey()
     }
@@ -50,19 +66,21 @@ extension Member: Mappable {
 extension Member {
     /// convinience initializer
     
-    convenience init(memberId: String, nameJp: String, nameRoma: String, email: String) {
+    convenience init(memberId: String, nameJp: String, nameKana: String, email: String, memberType: MemberType) {
         self.init()
         self.memberId = memberId
         self.nameJp = nameJp
-        self.nameRoma  = nameRoma
+        self.nameKana  = nameKana
         self.email = email
+        self.memberTypeRawValue = memberType.rawValue
+        
         updatePrimaryKey()
     }
     
-    convenience init(nameJp: String, nameRoma: String, email: String) {
+    convenience init(nameJp: String, nameKana: String, email: String) {
         self.init()
         self.nameJp = nameJp
-        self.nameRoma  = nameRoma
+        self.nameKana  = nameKana
         self.email = email
         updatePrimaryKey()
     }
@@ -70,8 +88,9 @@ extension Member {
     func updateColumn(reference: Member) -> Member {
         memberId              = reference.memberId
         nameJp                = reference.nameJp
-        nameRoma              = reference.nameRoma
+        nameKana              = reference.nameKana
         email                 = reference.email
+        memberTypeRawValue    = reference.memberTypeRawValue
         
         updatePrimaryKey()
         return self

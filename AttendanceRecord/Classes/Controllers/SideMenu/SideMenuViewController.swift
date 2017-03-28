@@ -10,7 +10,7 @@ import UIKit
 
 internal final class SideMenuViewController: UIViewController, ModeVariety {
     
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet fileprivate weak var tableView: UITableView!
     var mode: Mode = .member
     
     // MARK: - Initializer
@@ -19,15 +19,10 @@ internal final class SideMenuViewController: UIViewController, ModeVariety {
         return R.storyboard.sideMenuViewController.sideMenuViewController()!
     }
     
-    // MARK: - Action
+    // MARK: - IBAction
     
     @IBAction func settingButtonAction(_ settingButton: UIButton) {
         SideMenuItem.setting.selected()
-    }
-    
-    func refresh(mode: Mode) {
-        self.mode = mode
-        tableView.reloadData()
     }
 }
 
@@ -44,7 +39,7 @@ extension SideMenuViewController: UITableViewDataSource {
         
         var title: String {
             switch self {
-            case .memberList: return R.string.localizable.sideMenuLabelMemberList()
+            case .memberList: return R.string.localizable.sideMenuLabelAttendanceMemberList()
             case .lessonList: return R.string.localizable.sideMenuLabelLessonList()
             case .attendanceTable: return R.string.localizable.sideMenuLabelAttendanceTable()
             case .backNumber: return R.string.localizable.sideMenuLabelBackNumber()
@@ -58,7 +53,7 @@ extension SideMenuViewController: UITableViewDataSource {
             case .lessonList: return ListViewController.instantiate(type: .lesson(nil))
             case .attendanceTable: return CommonWebViewController.instantiate(requestType: .attendanceList)
             case .backNumber: return CommonWebViewController.instantiate(requestType: .backNumber)
-            case .setting: return CommonWebViewController.instantiate(requestType: .none)
+            case .setting: return SettingViewController.instantiate()
             }
         }
         
@@ -117,6 +112,26 @@ extension SideMenuViewController: UITableViewDelegate {
         menuItem.selected() { _ in
             tableView.deselectRow(at: indexPath, animated: false)
         }
-        
+    }
+}
+
+extension SideMenuViewController {
+    
+    func changeContentViewController(viewControllerList: [UIViewController]? = nil) {
+        guard let viewControllers = viewControllerList else {
+            if let item = menuItems.first?.first {
+                AppDelegate.navigation?.setViewControllers([item.destinationViewController], animated: false)
+            }
+            return
+        }
+        AppDelegate.navigation?.setViewControllers(viewControllers, animated: false)
+    }
+    
+    func reloadScreen() {
+        if mode != DeviceModel.mode {
+            mode = DeviceModel.mode
+            changeContentViewController()
+        }
+        tableView.reloadData()
     }
 }

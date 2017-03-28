@@ -7,18 +7,32 @@
 //
 
 import UIKit
+import RealmSwift
+import SWTableViewCell
 
-internal class MemberListTableCell: UITableViewCell {
+internal class MemberListTableCell: SWTableViewCell {
     
     @IBOutlet private weak var nameJpLabel: UILabel!
-    @IBOutlet private weak var nameRomaLabel: UILabel!
+    @IBOutlet private weak var nameKanaLabel: UILabel!
     @IBOutlet private weak var emailLabel: UILabel!
     
-    static func instantiate(_ owner: AnyObject, member: Member) -> MemberListTableCell {
+    private var member: Member!
+    
+    override var entity: Object? {
+        return member as Object
+    }
+    
+    static func instantiate(_ owner: SWTableViewCellDelegate, member: Member) -> MemberListTableCell {
         let cell = R.nib.memberListTableCell.firstView(owner: owner, options: nil)!
         cell.nameJpLabel.text = member.nameJp
-        cell.nameRomaLabel.text = member.nameRoma
+        cell.nameKanaLabel.text = member.nameKana
         cell.emailLabel.text = member.email
+        cell.member = member
+        
+        let utilityButtons = NSMutableArray()
+        utilityButtons.sw_addUtilityButton(with: AttendanceRecordColor.Cell.red, title: "削除")
+        cell.rightUtilityButtons = utilityButtons as [AnyObject]
+        cell.delegate = owner
         return cell
     }
 }

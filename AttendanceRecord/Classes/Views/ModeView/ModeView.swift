@@ -23,20 +23,6 @@ internal enum Mode: Int {
         case .organizer: return R.string.localizable.modeButtonLabelOrganizer()
         }
     }
-    
-    var destination: UIViewController {
-        switch self {
-        case .member: return ListViewController.instantiate(type: .lesson(nil))
-        case .organizer: return ListViewController.instantiate(type: .lesson(nil))
-        }
-    }
-    
-    var openContents: (() -> Void)? {
-        return { _ in
-            AppDelegate.sideMenu?.refresh(mode: self)
-            AppDelegate.navigation?.setViewControllers([self.destination], animated: false)
-        }
-    }
 }
 
 typealias ModeSelectTask = Task<Void, Void, Void>
@@ -63,16 +49,17 @@ internal final class ModeView: UIView {
         
         ModeSelectTask {  _, fulfill, _, _ in
             if self.mode == .member, DeviceModel.currentMember == nil {
-                let viewController = EntryViewController.instantiate(entryType: .member, completion: { member in
+                let viewController = EntryViewController.instantiate(entryModel: EntryModel(entryType: .member, entryCompletion: { member in
                     DeviceModel.setCurrentMember(member: member as! Member)
                     fulfill()
-                })
+                }))
                 AppDelegate.navigation?.present(viewController, animated: true)
             } else {
                 fulfill()
             }
         }.success { _ in
-            self.mode.openContents?()
+            AppDelegate.reloadScreen()
+            AppDelegate.sideMenu?.changeContentViewController()
         }
     }
 }

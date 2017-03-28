@@ -22,6 +22,12 @@ internal final class EventManager {
         try! realm.write {
             for event in eventList {
                 realm.add(event, update: true)
+                
+                let lessonMemberList = LessonManager.shared.lessonMemberListDataFromRealm(predicate: Lesson.predicate(lessonId: event.lessonId))
+                lessonMemberList.forEach { lessonMember in
+                    let attendance = Attendance(lessonId: event.lessonId, eventId: event.eventId, memberId: lessonMember.memberId, attendanceStatus: .noEntry)
+                    realm.add(attendance, update: false)
+                }
             }
         }
     }
@@ -61,14 +67,6 @@ internal final class EventManager {
         saveEventListToRealm(eventList)
     }
     
-    /// メンバーが出欠するイベント一覧を取得する
-    func eventList(member: Member) -> [Event] {
-        let eventList = eventListDataFromRealm(predicate: Event.predicate(lessonId: DeviceModel.lessonId))
-        let attendanceList = AttendanceManager.shared.attendanceListDataFromRealm(predicate: Attendance.predicate(lessonId: DeviceModel.lessonId, memberId: member.memberId))
-        return eventList.filter { event in
-            // FIXME: いい感じで書き直す
-            (attendanceList.filter { $0.eventId == event.eventId }.first != nil)
-        }
-    }
+    
 }
 
