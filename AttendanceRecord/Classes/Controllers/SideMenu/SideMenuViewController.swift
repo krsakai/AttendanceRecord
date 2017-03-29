@@ -11,12 +11,20 @@ import UIKit
 internal final class SideMenuViewController: UIViewController, ModeVariety {
     
     @IBOutlet fileprivate weak var tableView: UITableView!
+    @IBOutlet fileprivate weak var topLabel: UILabel!
+    
     var mode: Mode = .member
     
     // MARK: - Initializer
     
     static func instantiate() -> SideMenuViewController {
         return R.storyboard.sideMenuViewController.sideMenuViewController()!
+    }
+    
+    // MARK: - View Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        topLabel.text = R.string.localizable.sideMenuHeaderLabelMenuList(mode.buttonText)
     }
     
     // MARK: - IBAction
@@ -38,12 +46,13 @@ extension SideMenuViewController: UITableViewDataSource {
         case setting
         
         var title: String {
-            switch self {
-            case .memberList: return R.string.localizable.sideMenuLabelAttendanceMemberList()
-            case .lessonList: return R.string.localizable.sideMenuLabelLessonList()
-            case .attendanceTable: return R.string.localizable.sideMenuLabelAttendanceTable()
-            case .backNumber: return R.string.localizable.sideMenuLabelBackNumber()
-            case .setting: return R.string.localizable.sideMenuLabelSetting()
+            switch (self, DeviceModel.mode) {
+            case (.memberList, _): return R.string.localizable.sideMenuLabelAttendanceMemberList()
+            case (.lessonList, .organizer): return R.string.localizable.sideMenuLabelLessonList()
+            case (.lessonList, .member): return R.string.localizable.sideMenuLabelAttendanceLessonList()
+            case (.attendanceTable, _): return R.string.localizable.sideMenuLabelAttendanceTable()
+            case (.backNumber, _): return R.string.localizable.sideMenuLabelBackNumber()
+            case (.setting, _): return R.string.localizable.sideMenuLabelSetting()
             }
         }
         

@@ -11,6 +11,7 @@ import RealmSwift
 
 internal final class LessonMember: Object, ClonableObject {
     
+    dynamic var lessonMemberId = UUID().uuidString.replacingOccurrences(of: "-", with: "")
     dynamic var lessonId   = ""
     dynamic var memberId   = ""
     
@@ -47,8 +48,19 @@ extension LessonMember {
 }
 
 extension LessonMember {
-    static func predicate(lessonId: String) -> NSPredicate {
-        return NSPredicate(format: "lessonId = %@", lessonId)
+    override var id: String {
+        return memberId
+    }
+    
+    override var titleName: String {
+        return ""
+    }
+}
+
+
+extension LessonMember {
+    static func predicate(memberId: String) -> NSPredicate {
+        return NSPredicate(format: "memberId = %@", memberId)
     }
 }
 

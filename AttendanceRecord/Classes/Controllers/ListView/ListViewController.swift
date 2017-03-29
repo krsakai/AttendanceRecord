@@ -27,10 +27,12 @@ internal enum ListType: HeaderButtonModel {
     case member(DisplayModel?)
     
     var headerTitle: String {
-        switch self {
-        case .lesson(let model): return model?.titleName ?? R.string.localizable.sideMenuLabelLessonList()
-        case .event(let model): return model?.titleName ?? R.string.localizable.headerTitleLabelEventList()
-        case .member(let model): return model?.titleName ?? R.string.localizable.sideMenuLabelAttendanceMemberList()
+        switch (self, DeviceModel.mode) {
+        case (.lesson, .organizer): return R.string.localizable.sideMenuLabelLessonList()
+        case (.lesson, .member): return R.string.localizable.sideMenuLabelAttendanceLessonList()
+        case (.event(let model), _): return model?.titleName ?? R.string.localizable.headerTitleLabelEventList()
+        case (.member(let model), _): return model?.titleName ?? R.string.localizable.sideMenuLabelAttendanceMemberList()
+        default: return ""
         }
     }
     
@@ -67,20 +69,26 @@ internal enum ListType: HeaderButtonModel {
     }
     
     func list(sourceViewModel: DisplayModel? = nil) -> [Object] {
-        switch self {
-        case .lesson: return LessonManager.shared.lessonListDataFromRealm()
-        case .event: return EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(lessonId: sourceViewModel?.id ?? ""))
-        case .member: return MemberManager.shared.memberListDataFromRealm()
+        switch (self, DeviceModel.mode) {
+        case (.lesson, .organizer):
+            return LessonManager.shared.lessonListDataFromRealm()
+        case (.lesson, .member):
+            return LessonManager.shared.lessonMemberListDataFromRealm(predicate: LessonMember.predicate(memberId: sourceViewModel?.id ?? ""))
+        case (.event, _): return EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(lessonId: sourceViewModel?.id ?? ""))
+        case (.member, _): return MemberManager.shared.memberListDataFromRealm()
+        default: return [Object()]
         }
     }
     
     func destination(sourceViewModel: DisplayModel) -> UIViewController? {
-        switch self {
-        case .lesson:
+        switch (self, DeviceModel.mode) {
+        case (.lesson, _):
             return ListViewController.instantiate(type: .event(sourceViewModel))
-        case .event:
+        case (.event, .organizer):
             return MemberAttendanceViewController.instantiate(event: sourceViewModel as! Event)
-        case .member: return nil
+        case (.event, .member):
+            return nil
+        case (.member, _): return nil
         }
     }
 }
@@ -119,19 +127,24 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
     
     private var headerButtons: [[HeaderView.ButtonType]] {
         
-        switch type {
-        case .lesson(let model):
+        switch (type, DeviceModel.mode) {
+        case (.lesson(let model), .organizer):
             return [[.sideMenu],
                     [.add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
-        case .event(let model):
+        case (.lesson, .member):
+            return [[.sideMenu],[]]
+        case (.event(let model), .organizer):
             return [[.back],
                     [.memberReception(HeaderModel() {
                         MemberEntryCentralManager.shared.searchMember()
                     }),
                      .add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
-        case .member(let model):
+        case (.event, .member):
+            return [[.back],[]]
+        case (.member(let model), _):
             return [[.sideMenu],
                     [.add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
+        default: return [[],[]]
         }
     }
 }

@@ -35,8 +35,8 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メニュー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58f-Yt-hw8" userLabel="Title Label">
-                                                <rect key="frame" x="15" y="40.5" width="69.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="15" y="42" width="61.5" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -132,6 +132,7 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="tableView" destination="4FR-nJ-SAH" id="CCu-1T-Ntm"/>
+                        <outlet property="topLabel" destination="58f-Yt-hw8" id="llg-MJ-yer"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5lQ-AJ-7gz" userLabel="First Responder" sceneMemberID="firstResponder"/>

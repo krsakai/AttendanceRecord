@@ -58,6 +58,7 @@ internal final class ModeView: UIView {
                 fulfill()
             }
         }.success { _ in
+            DeviceModel.mode = self.mode
             AppDelegate.reloadScreen()
             AppDelegate.sideMenu?.changeContentViewController()
         }
