@@ -30,10 +30,7 @@ internal final class MemberAttendanceViewController: UIViewController, HeaderVie
         super.viewDidLoad()
         tableView.separatorColor = DeviceModel.themeColor.color
         setupHeaderView(event.eventTitle, buttonTypes:
-            [[.back],
-             [.add(HeaderModel(entryModel: EntryModel(entryType: .member, displayModel: event, entryCompletion: { _ in
-                self.tableView.reloadData()
-            })))]]
+            [[.back],[]]
         )
     }
 }

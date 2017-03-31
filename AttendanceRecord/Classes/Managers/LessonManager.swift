@@ -33,6 +33,21 @@ internal final class LessonManager {
         let realm = try! Realm()
         try! realm.write {
             if let _ = realm.object(ofType: Lesson.self, forPrimaryKey: lesson.lessonId) {
+                LessonManager.shared.lessonMemberListDataFromRealm(predicate: LessonMember.predicate(lessonId: lesson.lessonId)).forEach { lessonMember in
+                    // レッスンが紐づく受講メンバーも削除
+                    realm.delete(lessonMember)
+                }
+                
+                // レッスンにひもづく出欠/イベントもまとめて削除する
+                EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(lessonId: lesson.lessonId)).forEach { event in
+                    AttendanceManager.shared.attendanceListDataFromRealm(predicate: Attendance.predicate(lessonId: lesson.lessonId, eventId: event.eventId)).forEach { attendance in
+                        // レッスンが紐づく出欠を削除
+                        realm.delete(attendance)
+                    }
+                    // レッスンが紐づくイベントを削除
+                    realm.delete(event)
+                }
+                
                 realm.delete(lesson)
             }
         }
@@ -55,7 +70,7 @@ internal final class LessonManager {
         saveLessonListToRealm(lessonList)
     }
     
-    // MARK: LessonMember
+    // MARK: LessonMember (とあるメンバーの受講リスト)
     
     /** レッスンメンバー情報をRealmに保存
      - parameter lessonList: レッスン一覧情報  **/
@@ -63,12 +78,13 @@ internal final class LessonManager {
         let realm = try! Realm()
         try! realm.write {
             for lessonMember in lessonMemberList {
-                realm.add(lessonMember, update: true)
                 let eventList = EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(lessonId: lessonMember.lessonId))
                 eventList.forEach { event in
                     let attendance = Attendance(lessonId: lessonMember.lessonId, eventId: event.eventId, memberId: lessonMember.memberId, attendanceStatus: .noEntry)
+                    // レッスンに紐づくイベントの出欠も登録
                     realm.add(attendance, update: false)
                 }
+                realm.add(lessonMember, update: true)
             }
         }
     }

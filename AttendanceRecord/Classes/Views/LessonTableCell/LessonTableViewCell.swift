@@ -20,10 +20,14 @@ internal final class LessonTableViewCell: SWTableViewCell {
         return lesson as Object
     }
     
-    static func instantiate(_ owner: SWTableViewCellDelegate, lesson: Lesson) -> LessonTableViewCell {
+    static func instantiate(_ owner: SWTableViewCellDelegate, lesson: Lesson, listType: ListType) -> LessonTableViewCell {
         let cell = R.nib.lessonTableViewCell.firstView(owner: owner, options: nil)!
         cell.lessonTitleLabel.text = lesson.lessonTitle
         cell.lesson = lesson
+        
+        if DeviceModel.mode == .member, case .attendance = listType {
+            return cell
+        }
         
         let utilityButtons = NSMutableArray()
         utilityButtons.sw_addUtilityButton(with: AttendanceRecordColor.Cell.red, title: "削除")

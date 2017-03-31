@@ -115,13 +115,11 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
                 let email = self.inputViews.filter { $0.inputType == .memberEmail }.first!
                 let member = Member(nameJp: jp.inputString, nameKana: kana.inputString, email: email.inputString)
                 MemberManager.shared.saveMemberListToRealm([member])
-                guard let eventId = self.sourceViewModel?.id, eventId != "" else {
+                guard let lessonId = self.sourceViewModel?.id, lessonId != "" else {
                     self.entryCompletion?(member) ?? {}()
                     return
                 }
-                
-                let event = EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(eventId: eventId)).first ?? Event()
-                LessonManager.shared.saveLessonMemberListToRealm([LessonMember(lessonId: event.lessonId, memberId: member.memberId)])
+                LessonManager.shared.saveLessonMemberListToRealm([LessonMember(lessonId: lessonId, memberId: member.memberId)])
                 self.entryCompletion?(member) ?? {}()
                 }, ActionKyes.memberEntryReject: {
                     self.entryReject?(nil)

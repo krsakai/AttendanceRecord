@@ -29,6 +29,10 @@ internal class MemberListTableCell: SWTableViewCell {
         cell.emailLabel.text = member.email
         cell.member = member
         
+        guard DeviceModel.mode == .organizer else {
+            return cell
+        }
+        
         let utilityButtons = NSMutableArray()
         utilityButtons.sw_addUtilityButton(with: AttendanceRecordColor.Cell.red, title: "削除")
         cell.rightUtilityButtons = utilityButtons as [AnyObject]

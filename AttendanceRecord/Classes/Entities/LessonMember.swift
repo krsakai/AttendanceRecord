@@ -62,5 +62,9 @@ extension LessonMember {
     static func predicate(memberId: String) -> NSPredicate {
         return NSPredicate(format: "memberId = %@", memberId)
     }
+    
+    static func predicate(lessonId: String) -> NSPredicate {
+        return NSPredicate(format: "lessonId = %@", lessonId)
+    }
 }
 

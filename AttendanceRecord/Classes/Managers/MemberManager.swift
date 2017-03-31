@@ -35,6 +35,15 @@ internal final class MemberManager {
         let realm = try! Realm()
         try! realm.write {
             if let _ = realm.object(ofType: Member.self, forPrimaryKey: member.primaryKeyForRealm) {
+                LessonManager.shared.lessonMemberListDataFromRealm(predicate: LessonMember.predicate(memberId: member.memberId)).forEach { lessonMember in
+                    // メンバーに紐づく受講メンバーも削除
+                    realm.delete(lessonMember)
+                }
+                
+                AttendanceManager.shared.attendanceListDataFromRealm(predicate: Attendance.predicate(memberId: member.memberId)).forEach { attendance in
+                    // メンバーに紐づく出欠も削除
+                    realm.delete(attendance)
+                }
                 realm.delete(member)
             }
         }

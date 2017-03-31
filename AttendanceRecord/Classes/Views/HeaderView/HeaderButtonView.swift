@@ -27,7 +27,7 @@ internal final class HeaderButtonView: UIView {
     }
     
     @IBAction func buttonAction(_ sender: UIButton) {
-        buttonType.buttonAction?()
+        buttonType.buttonAction(targetView: headerButton)?()
     }
     
     func updateButton(enabled: Bool) {

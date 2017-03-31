@@ -33,7 +33,7 @@
 // サイドメニュー
 "SideMenu.HeaderLabel.MenuList" = "%@メニュー";
 "SideMenu.Label.AttendanceMemberList" = "受講者一覧";
-"SideMenu.Label.AttendanceTable" = "出席表";
+"SideMenu.Label.AttendanceTable" = "出席一覧";
 "SideMenu.Label.BackNumber" = "バックナンバー";
 "SideMenu.Label.Setting" = "設定";
 "SideMenu.Label.LessonList" = "開催講義";
@@ -49,6 +49,8 @@
 "Header.Button.Label.UserRegist" = "登録";
 "Header.Title.Label.EventList" = "イベント";
 "Header.Button.Label.Reception" = "受付";
+"Header.Button.Label.Request" = "申請";
+"Header.Button.Label.Selection" = "選択";
 "Header.Title.Label.Settings" = "設定";
 
 // モード

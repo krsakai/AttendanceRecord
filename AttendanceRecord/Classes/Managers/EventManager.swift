@@ -21,13 +21,13 @@ internal final class EventManager {
         let realm = try! Realm()
         try! realm.write {
             for event in eventList {
-                realm.add(event, update: true)
-                
-                let lessonMemberList = LessonManager.shared.lessonMemberListDataFromRealm(predicate: Lesson.predicate(lessonId: event.lessonId))
-                lessonMemberList.forEach { lessonMember in
+                LessonManager.shared.lessonMemberListDataFromRealm(predicate: LessonMember.predicate(lessonId: event.lessonId)).forEach { lessonMember in
                     let attendance = Attendance(lessonId: event.lessonId, eventId: event.eventId, memberId: lessonMember.memberId, attendanceStatus: .noEntry)
-                    realm.add(attendance, update: false)
+                    // 紐づく出欠も登録
+                    realm.add(attendance, update: true)
                 }
+                
+                realm.add(event, update: true)
             }
         }
     }
@@ -37,6 +37,11 @@ internal final class EventManager {
         let realm = try! Realm()
         try! realm.write {
             if let _ = realm.object(ofType: Event.self, forPrimaryKey: event.eventId) {
+                AttendanceManager.shared.attendanceListDataFromRealm(predicate: Attendance.predicate(lessonId: event.lessonId, eventId: event.lessonId)).forEach { attendance in
+                    // 紐づく出欠も削除
+                    realm.delete(attendance)
+                }
+                
                 realm.delete(event)
             }
         }
@@ -66,7 +71,4 @@ internal final class EventManager {
         let eventList: [Event] = Mapper<Event>().mapArray(JSONArray: eventListJson)!
         saveEventListToRealm(eventList)
     }
-    
-    
 }
-

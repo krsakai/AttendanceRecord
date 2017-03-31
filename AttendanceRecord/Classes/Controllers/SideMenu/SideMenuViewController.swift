@@ -60,7 +60,7 @@ extension SideMenuViewController: UITableViewDataSource {
             switch self {
             case .memberList: return ListViewController.instantiate(type: .member(nil))
             case .lessonList: return ListViewController.instantiate(type: .lesson(nil))
-            case .attendanceTable: return CommonWebViewController.instantiate(requestType: .attendanceList)
+            case .attendanceTable: return ListViewController.instantiate(type: .attendance(nil))
             case .backNumber: return CommonWebViewController.instantiate(requestType: .backNumber)
             case .setting: return SettingViewController.instantiate()
             }
@@ -87,7 +87,7 @@ extension SideMenuViewController: UITableViewDataSource {
     var menuItems: [[SideMenuItem]] {
         switch mode {
         case .member: return [[.lessonList]]
-        case .organizer: return [[.lessonList,.memberList]]
+        case .organizer: return [[.lessonList,.memberList, .attendanceTable]]
         }
         
     }

@@ -27,6 +27,10 @@ internal class EventListTableCell: SWTableViewCell {
         cell.eventDateLabel.text = event.eventDate.stringToDisplayedFormat
         cell.event = event
         
+        guard DeviceModel.mode == .organizer else {
+            return cell
+        }
+        
         let utilityButtons = NSMutableArray()
         utilityButtons.sw_addUtilityButton(with: AttendanceRecordColor.Cell.red, title: "削除")
         cell.rightUtilityButtons = utilityButtons as [AnyObject]

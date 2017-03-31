@@ -10,6 +10,7 @@ import UIKit
 import SWTableViewCell
 import RealmSwift
 import ObjectMapper
+import Popover
 
 protocol DisplayModel {
     var id: String { get }
@@ -25,6 +26,7 @@ internal enum ListType: HeaderButtonModel {
     case lesson(DisplayModel?)
     case event(DisplayModel?)
     case member(DisplayModel?)
+    case attendance(DisplayModel?)
     
     var headerTitle: String {
         switch (self, DeviceModel.mode) {
@@ -32,6 +34,7 @@ internal enum ListType: HeaderButtonModel {
         case (.lesson, .member): return R.string.localizable.sideMenuLabelAttendanceLessonList()
         case (.event(let model), _): return model?.titleName ?? R.string.localizable.headerTitleLabelEventList()
         case (.member(let model), _): return model?.titleName ?? R.string.localizable.sideMenuLabelAttendanceMemberList()
+        case (.attendance, _): return R.string.localizable.sideMenuLabelAttendanceTable()
         default: return ""
         }
     }
@@ -41,6 +44,7 @@ internal enum ListType: HeaderButtonModel {
         case .lesson: return .lesson
         case .event: return .event
         case .member: return .member
+        case .attendance: return .lesson
         }
     }
     
@@ -49,6 +53,7 @@ internal enum ListType: HeaderButtonModel {
         case .lesson: return ActionKyes.lessonAdd
         case .event: return ActionKyes.eventAdd
         case .member: return ActionKyes.memberAdd
+        case .attendance: return ""
         }
     }
     
@@ -57,14 +62,16 @@ internal enum ListType: HeaderButtonModel {
         case .lesson(let model): return model
         case .event(let model): return model
         case .member(let model): return model
+        case .attendance(let model): return model
         }
     }
     
     func cell(owner: SWTableViewCellDelegate, model: Object) -> UITableViewCell {
         switch self {
-        case .lesson: return LessonTableViewCell.instantiate(owner, lesson: model as! Lesson)
+        case .lesson: return LessonTableViewCell.instantiate(owner, lesson: model as! Lesson, listType: self)
         case .event: return EventListTableCell.instantiate(owner, event: model as! Event)
         case .member: return MemberListTableCell.instantiate(owner, member: model as! Member)
+        case .attendance: return LessonTableViewCell.instantiate(owner, lesson: model as! Lesson, listType: self)
         }
     }
     
@@ -76,6 +83,7 @@ internal enum ListType: HeaderButtonModel {
             return LessonManager.shared.lessonMemberListDataFromRealm(predicate: LessonMember.predicate(memberId: sourceViewModel?.id ?? ""))
         case (.event, _): return EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(lessonId: sourceViewModel?.id ?? ""))
         case (.member, _): return MemberManager.shared.memberListDataFromRealm()
+        case (.attendance, _): return LessonManager.shared.lessonListDataFromRealm()
         default: return [Object()]
         }
     }
@@ -89,6 +97,7 @@ internal enum ListType: HeaderButtonModel {
         case (.event, .member):
             return nil
         case (.member, _): return nil
+        case (.attendance, _): return CommonWebViewController.instantiate(requestType: .attendanceList, lesson: sourceViewModel as? Lesson)
         }
     }
 }
@@ -101,6 +110,19 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
     @IBOutlet fileprivate weak var tableView: UITableView!
     
     fileprivate var type: ListType = .lesson(nil)
+    
+    fileprivate lazy var popover: Popover = {
+        let popover = Popover(options: self.popoverOptions)
+        return Popover(options: self.popoverOptions)
+    }()
+    
+    fileprivate var popoverOptions: [PopoverOption] = [
+        .cornerRadius(0),
+        .type(.down),
+        .blackOverlayColor(UIColor(white: 0.0, alpha: 0.3)),
+        PopoverOption.animationOut(0),
+        .color(DeviceModel.themeColor.color)
+    ]
     
     // MARK: - Initializer
     
@@ -132,19 +154,43 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
             return [[.sideMenu],
                     [.add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
         case (.lesson, .member):
-            return [[.sideMenu],[]]
+            return [[.sideMenu],
+                    [.request(HeaderModel() {
+                        MemberEntryCentralManager.shared.searchMember()
+                    })]]
         case (.event(let model), .organizer):
             return [[.back],
-                    [.memberReception(HeaderModel() {
+                   [.selection(HeaderModel(selectionAction: { targetView in
+                    // メンバー選択
+                    let selection = PopoverItem(title: "メンバー選択") { _ in
+                        self.popover.dismiss()
+                    }
+                    
+                    // メンバー登録
+                    let entry = PopoverItem(title: "メンバー登録") { _ in
+                        self.popover.dismiss()
+                        let viewController = EntryViewController.instantiate(entryModel: EntryModel(entryType: .member, displayModel: model))
+                        UIApplication.topViewController()?.present(viewController, animated: true, completion: nil)
+                    }
+                    
+                    // メンバー受付
+                    let reception = PopoverItem(title: "メンバー受付") { _ in
+                        self.popover.dismiss()
                         MemberEntryCentralManager.shared.searchMember()
-                    }),
+                    }
+                    
+                    let selectionView = SelectionView.instantiate(owner: self, items: [selection, entry, reception])
+                    self.popover.show(selectionView, fromView: targetView)
+                    })),
                      .add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
         case (.event, .member):
             return [[.back],[]]
-        case (.member(let model), _):
+        case (.member, .organizer):
             return [[.sideMenu],
-                    [.add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
-        default: return [[],[]]
+                    [.reception(HeaderModel() {
+                        MemberEntryCentralManager.shared.searchMember()
+                    })]]
+        default: return [[.sideMenu],[]]
         }
     }
 }
@@ -201,6 +247,7 @@ extension ListViewController: SWTableViewCellDelegate {
             case .lesson: LessonManager.shared.removeLessonToRealm(entity as! Lesson)
             case .event: EventManager.shared.removeEventToRealm(entity as! Event)
             case .member: MemberManager.shared.removeMemberToRealm(entity as! Member)
+            case .attendance: ()
             }
         }
         

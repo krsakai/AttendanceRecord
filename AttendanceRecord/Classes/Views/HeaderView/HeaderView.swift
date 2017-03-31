@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import PopoverSwift
 
 internal protocol HeaderButtonModel {
     var headerTitle: String  { get }
@@ -79,26 +80,19 @@ extension HeaderViewDisplayable {
 internal final class HeaderView: UIView {
     
     typealias Action = (() -> Void)?
+    typealias SelectionAction = ((UIView) -> Void)?
     
     /// ボタン種別
     enum ButtonType {
-        case sideMenu                         // サイドメニュー
-        case close(HeaderModel?)              // 閉じる
-        case back                             // 戻る
-        case add(HeaderModel?)                // 追加
-        case regist(HeaderModel?)             // 登録
-        case delete(HeaderModel?)             // 削除
-        case memberReception(HeaderModel?)    // メンバー受付
-        case attendaceReception(HeaderModel?) // 出欠受付
-
-        
-        // 左側のボタンか
-        var isLeft: Bool {
-            switch self {
-            case .sideMenu, .close, .back: return true
-            case .add, .regist, .delete, .memberReception, .attendaceReception: return false
-            }
-        }
+        case sideMenu                               // サイドメニュー
+        case close(HeaderModel?)                    // 閉じる
+        case back                                   // 戻る
+        case add(HeaderModel?)                      // 追加
+        case regist(HeaderModel?)                   // 登録
+        case delete(HeaderModel?)                   // 削除
+        case reception(HeaderModel?)                // 受付
+        case request(HeaderModel?)                  // リクエスト
+        case selection(HeaderModel?)                // 選択
         
         var image: UIImage? {
             switch self {
@@ -123,14 +117,17 @@ internal final class HeaderView: UIView {
             case .add   : return R.string.localizable.commonLabelPlus()
             case .delete: return R.string.localizable.commonLabelMinus()
             case .regist: return R.string.localizable.headerButtonLabelUserRegist()
-            case .memberReception, .attendaceReception: return R.string.localizable.headerButtonLabelReception()
+            case .reception: return R.string.localizable.headerButtonLabelReception()
+            case .request: return R.string.localizable.headerButtonLabelRequest()
+            case .selection: return  R.string.localizable.headerButtonLabelSelection()
             default: return nil
             }
         }
         
         var titleFont: UIFont {
             switch self {
-            case .regist, .memberReception, .attendaceReception: return AttendanceRecordFont.HeaderButton.regist
+            case .regist, .reception, .request, .selection:
+                return AttendanceRecordFont.HeaderButton.regist
             default: return AttendanceRecordFont.HeaderButton.add
             }
         }
@@ -147,12 +144,11 @@ internal final class HeaderView: UIView {
             case .add:          return "Add"
             case .regist:       return "Regist"
             case .delete:       return "Delete"
-            case .attendaceReception: return "AttendaceReception"
-            case .memberReception: return "MemberReception"
+            default: return ""
             }
         }
         
-        var buttonAction: (() -> Void)? {
+        func buttonAction(targetView: UIView) -> (() -> Void)? {
             switch self {
             case .sideMenu:
                 return { _ in
@@ -188,12 +184,18 @@ internal final class HeaderView: UIView {
                     model?.action?()
                     UIApplication.topViewController()?.dismiss(animated: true, completion: nil)
                 }
-            case .memberReception(let model):
+            case .reception(let model):
                 return { _ in
                     model?.action?()
                 }
-            default:
-                return nil
+            case .request(let model):
+                return { _ in
+                    model?.action?()
+                }
+            case .selection(let model):
+                return { _ in
+                    model?.selectionAction?(targetView)
+                }
             }
         }
     }
