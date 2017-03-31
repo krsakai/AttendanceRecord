@@ -37,7 +37,7 @@ internal final class EventManager {
         let realm = try! Realm()
         try! realm.write {
             if let _ = realm.object(ofType: Event.self, forPrimaryKey: event.eventId) {
-                AttendanceManager.shared.attendanceListDataFromRealm(predicate: Attendance.predicate(lessonId: event.lessonId, eventId: event.lessonId)).forEach { attendance in
+                AttendanceManager.shared.attendanceListDataFromRealm(predicate: Attendance.predicate(lessonId: event.lessonId, eventId: event.eventId)).forEach { attendance in
                     // 紐づく出欠も削除
                     realm.delete(attendance)
                 }

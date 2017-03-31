@@ -164,6 +164,8 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
                     // メンバー選択
                     let selection = PopoverItem(title: "メンバー選択") { _ in
                         self.popover.dismiss()
+                        let viewController = MemberSelectViewController.instantiate(lesson: LessonManager.shared.lessonListDataFromRealm(predicate: Lesson.predicate(lessonId: model?.id ?? "")).first ?? Lesson())
+                        self.present(viewController, animated: true, completion: nil)
                     }
                     
                     // メンバー登録

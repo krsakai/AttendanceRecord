@@ -8,7 +8,6 @@
 
 import UIKit
 import SnapKit
-import PopoverSwift
 
 internal protocol HeaderButtonModel {
     var headerTitle: String  { get }

@@ -78,13 +78,15 @@ internal final class LessonManager {
         let realm = try! Realm()
         try! realm.write {
             for lessonMember in lessonMemberList {
-                let eventList = EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(lessonId: lessonMember.lessonId))
-                eventList.forEach { event in
-                    let attendance = Attendance(lessonId: lessonMember.lessonId, eventId: event.eventId, memberId: lessonMember.memberId, attendanceStatus: .noEntry)
-                    // レッスンに紐づくイベントの出欠も登録
-                    realm.add(attendance, update: false)
+                if realm.object(ofType: LessonMember.self, forPrimaryKey: lessonMember.primaryKeyForRealm) == nil {
+                    let eventList = EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(lessonId: lessonMember.lessonId))
+                    eventList.forEach { event in
+                        let attendance = Attendance(lessonId: lessonMember.lessonId, eventId: event.eventId, memberId: lessonMember.memberId, attendanceStatus: .noEntry)
+                        // レッスンに紐づくイベントの出欠も登録
+                        realm.add(attendance, update: true)
+                    }
+                    realm.add(lessonMember, update: true)
                 }
-                realm.add(lessonMember, update: true)
             }
         }
     }

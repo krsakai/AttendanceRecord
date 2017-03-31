@@ -22,21 +22,21 @@ internal class MemberListTableCell: SWTableViewCell {
         return member as Object
     }
     
-    static func instantiate(_ owner: SWTableViewCellDelegate, member: Member) -> MemberListTableCell {
+    static func instantiate(_ owner: AnyObject, member: Member) -> MemberListTableCell {
         let cell = R.nib.memberListTableCell.firstView(owner: owner, options: nil)!
         cell.nameJpLabel.text = member.nameJp
         cell.nameKanaLabel.text = member.nameKana
         cell.emailLabel.text = member.email
         cell.member = member
         
-        guard DeviceModel.mode == .organizer else {
+        guard DeviceModel.mode == .organizer, owner is SWTableViewCellDelegate else {
             return cell
         }
         
         let utilityButtons = NSMutableArray()
         utilityButtons.sw_addUtilityButton(with: AttendanceRecordColor.Cell.red, title: "削除")
         cell.rightUtilityButtons = utilityButtons as [AnyObject]
-        cell.delegate = owner
+        cell.delegate = owner as! SWTableViewCellDelegate
         return cell
     }
 }

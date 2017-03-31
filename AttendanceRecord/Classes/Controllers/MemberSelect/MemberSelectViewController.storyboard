@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Member Select View Controller-->
+        <scene sceneID="SDD-Uu-z0A">
+            <objects>
+                <viewController storyboardIdentifier="MemberSelectViewController" id="sdS-09-VBW" customClass="MemberSelectViewController" customModule="AttendanceRecord" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EHF-Xe-SKh"/>
+                        <viewControllerLayoutGuide type="bottom" id="mk7-gR-Ky5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lew-hr-aOk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYh-e6-kvT" customClass="HeaderView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="hfH-Nm-wjh"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SzH-4g-cXa">
+                                <rect key="frame" x="0.0" y="71" width="375" height="571"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="sdS-09-VBW" id="AoD-4P-OAG"/>
+                                    <outlet property="delegate" destination="sdS-09-VBW" id="wWE-oj-sIf"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqg-Ql-vOa" customClass="FooterView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="642" width="375" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="fH8-Xw-M7a"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jYh-e6-kvT" firstAttribute="top" secondItem="Lew-hr-aOk" secondAttribute="top" id="Eeh-nC-7GI"/>
+                            <constraint firstItem="jYh-e6-kvT" firstAttribute="leading" secondItem="Lew-hr-aOk" secondAttribute="leading" id="GiM-4s-wX4"/>
+                            <constraint firstAttribute="trailing" secondItem="jYh-e6-kvT" secondAttribute="trailing" id="Nxl-QD-5VW"/>
+                            <constraint firstItem="mk7-gR-Ky5" firstAttribute="top" secondItem="oqg-Ql-vOa" secondAttribute="bottom" id="ciL-Wr-rVc"/>
+                            <constraint firstItem="oqg-Ql-vOa" firstAttribute="leading" secondItem="Lew-hr-aOk" secondAttribute="leading" id="cqD-rD-B1q"/>
+                            <constraint firstItem="oqg-Ql-vOa" firstAttribute="top" secondItem="SzH-4g-cXa" secondAttribute="bottom" id="dbF-F0-zDv"/>
+                            <constraint firstAttribute="trailing" secondItem="oqg-Ql-vOa" secondAttribute="trailing" id="kpN-3P-IgR"/>
+                            <constraint firstAttribute="trailing" secondItem="SzH-4g-cXa" secondAttribute="trailing" id="vvv-lv-I1K"/>
+                            <constraint firstItem="SzH-4g-cXa" firstAttribute="leading" secondItem="Lew-hr-aOk" secondAttribute="leading" id="wHA-VC-khV"/>
+                            <constraint firstItem="SzH-4g-cXa" firstAttribute="top" secondItem="jYh-e6-kvT" secondAttribute="bottom" id="yc1-ew-Wak"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="headerView" destination="jYh-e6-kvT" id="TQX-PO-nSF"/>
+                        <outlet property="tableView" destination="SzH-4g-cXa" id="beK-BD-G4G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lD4-Uo-yYs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-306.39999999999998" y="180.35982008995504"/>
+        </scene>
+    </scenes>
+</document>

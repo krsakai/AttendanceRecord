@@ -92,6 +92,8 @@
 		C863C9921E61854700FD75F1 /* DrawerController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C863C9911E61854700FD75F1 /* DrawerController.framework */; };
 		C863C9971E62198D00FD75F1 /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C863C9961E62198D00FD75F1 /* FooterView.xib */; };
 		C863C99B1E621CBE00FD75F1 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C863C99A1E621CBE00FD75F1 /* FooterView.swift */; };
+		C868334C1E8E0C5400162D91 /* MemberSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868334B1E8E0C5400162D91 /* MemberSelectViewController.swift */; };
+		C868334E1E8E0C6700162D91 /* MemberSelectViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C868334D1E8E0C6700162D91 /* MemberSelectViewController.storyboard */; };
 		C86F61731E88DC5A00C829A0 /* EntryTrial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F61721E88DC5A00C829A0 /* EntryTrial.swift */; };
 		C86F61751E88E8D300C829A0 /* EasyTipView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C86F61741E88E8D300C829A0 /* EasyTipView.framework */; };
 		C8D14FAE1E6AB0C600FEB634 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D14FAD1E6AB0C600FEB634 /* LocationManager.swift */; };
@@ -204,6 +206,8 @@
 		C863C9911E61854700FD75F1 /* DrawerController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DrawerController.framework; path = Carthage/Build/iOS/DrawerController.framework; sourceTree = "<group>"; };
 		C863C9961E62198D00FD75F1 /* FooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
 		C863C99A1E621CBE00FD75F1 /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		C868334B1E8E0C5400162D91 /* MemberSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSelectViewController.swift; sourceTree = "<group>"; };
+		C868334D1E8E0C6700162D91 /* MemberSelectViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MemberSelectViewController.storyboard; sourceTree = "<group>"; };
 		C86F61721E88DC5A00C829A0 /* EntryTrial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryTrial.swift; sourceTree = "<group>"; };
 		C86F61741E88E8D300C829A0 /* EasyTipView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyTipView.framework; path = Carthage/Build/iOS/EasyTipView.framework; sourceTree = "<group>"; };
 		C8D14FAD1E6AB0C600FEB634 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -476,6 +480,7 @@
 				C857086B1E8C3C4F00B21DE4 /* CommonWeb */,
 				C85708681E8C3C4F00B21DE4 /* AttendaceList */,
 				C85708651E8C3C4F00B21DE4 /* Alert */,
+				C868334A1E8E0C3600162D91 /* MemberSelect */,
 				C863C91E1E608FA200FD75F1 /* Main.storyboard */,
 			);
 			path = Controllers;
@@ -611,6 +616,15 @@
 			path = FooterView;
 			sourceTree = "<group>";
 		};
+		C868334A1E8E0C3600162D91 /* MemberSelect */ = {
+			isa = PBXGroup;
+			children = (
+				C868334B1E8E0C5400162D91 /* MemberSelectViewController.swift */,
+				C868334D1E8E0C6700162D91 /* MemberSelectViewController.storyboard */,
+			);
+			path = MemberSelect;
+			sourceTree = "<group>";
+		};
 		C8FEA7081E73331000503ED5 /* InputView */ = {
 			isa = PBXGroup;
 			children = (
@@ -742,6 +756,7 @@
 				C85708751E8C3C4F00B21DE4 /* CommonWebViewController.storyboard in Resources */,
 				C857CC781E71C2FA007A3E35 /* LessonList.plist in Resources */,
 				C85708891E8C3F1600B21DE4 /* SelectionView.xib in Resources */,
+				C868334E1E8E0C6700162D91 /* MemberSelectViewController.storyboard in Resources */,
 				C806968F1E648A5300978338 /* EventList.plist in Resources */,
 				C863C9811E616CD800FD75F1 /* HeaderView.xib in Resources */,
 				C857083A1E8A42D200B21DE4 /* SettingViewController.storyboard in Resources */,
@@ -862,6 +877,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C868334C1E8E0C5400162D91 /* MemberSelectViewController.swift in Sources */,
 				C85708721E8C3C4F00B21DE4 /* LoadingController.swift in Sources */,
 				C85708321E89BAFD00B21DE4 /* CGFloat.swift in Sources */,
 				C85708711E8C3C4F00B21DE4 /* AlertController.swift in Sources */,

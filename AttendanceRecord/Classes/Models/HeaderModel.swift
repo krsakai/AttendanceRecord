@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import PopoverSwift
-
 internal struct HeaderModel {
     
     let action: HeaderView.Action
