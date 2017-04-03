@@ -25,5 +25,7 @@ internal struct AttendanceRecordColor {
         static let red     = UIColor(hex6: 0xc70067)
         
         static let blue    = UIColor(hex6: 0x043c78)
+        
+        static let water   = UIColor(hex6: 0x0068B7)
     }
 }

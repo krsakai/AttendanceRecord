@@ -41,6 +41,8 @@ internal final class ModeView: UIView {
         contentView.modeButton.setTitle(mode.buttonText, for: .normal)
         contentView.modeButton.setTitle(mode.buttonText, for: .highlighted)
         contentView.modeButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        contentView.modeButton.setTitleColor(DeviceModel.themeColor.color, for: .normal)
+        contentView.modeButton.setTitleColor(DeviceModel.themeColor.color, for: .highlighted)
         return contentView
     }
     

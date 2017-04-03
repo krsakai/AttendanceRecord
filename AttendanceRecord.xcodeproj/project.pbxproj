@@ -108,6 +108,8 @@
 		C896738F1E90F61300D67069 /* MemberSearchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C896738E1E90F61300D67069 /* MemberSearchViewCell.swift */; };
 		C89673911E90F62200D67069 /* MemberSearchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C89673901E90F62200D67069 /* MemberSearchViewCell.xib */; };
 		C89673931E910F7C00D67069 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89673921E910F7C00D67069 /* Array.swift */; };
+		C89673951E929ABA00D67069 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89673941E929ABA00D67069 /* SplashViewController.swift */; };
+		C896739B1E92C1B800D67069 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C896739A1E92C1B800D67069 /* Settings.bundle */; };
 		C8D14FAE1E6AB0C600FEB634 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D14FAD1E6AB0C600FEB634 /* LocationManager.swift */; };
 		C8FEA7011E71CD6100503ED5 /* HeaderButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8FEA7001E71CD6100503ED5 /* HeaderButtonView.xib */; };
 		C8FEA7031E71CDF900503ED5 /* HeaderButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FEA7021E71CDF900503ED5 /* HeaderButtonView.swift */; };
@@ -234,6 +236,8 @@
 		C896738E1E90F61300D67069 /* MemberSearchViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSearchViewCell.swift; sourceTree = "<group>"; };
 		C89673901E90F62200D67069 /* MemberSearchViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberSearchViewCell.xib; sourceTree = "<group>"; };
 		C89673921E910F7C00D67069 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		C89673941E929ABA00D67069 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		C896739A1E92C1B800D67069 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		C8D14FAD1E6AB0C600FEB634 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C8FEA7001E71CD6100503ED5 /* HeaderButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderButtonView.xib; sourceTree = "<group>"; };
 		C8FEA7021E71CDF900503ED5 /* HeaderButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderButtonView.swift; sourceTree = "<group>"; };
@@ -473,6 +477,7 @@
 				C863C91A1E608FA200FD75F1 /* Classes */,
 				C863C98C1E6175AC00FD75F1 /* Resources */,
 				C863C9461E608FA200FD75F1 /* Supporting Files */,
+				C896739A1E92C1B800D67069 /* Settings.bundle */,
 			);
 			path = AttendanceRecord;
 			sourceTree = "<group>";
@@ -498,6 +503,7 @@
 				C80696B41E65DEC700978338 /* ViewModel */,
 				C863C93A1E608FA200FD75F1 /* Models */,
 				C863C93D1E608FA200FD75F1 /* Views */,
+				C89673941E929ABA00D67069 /* SplashViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -835,6 +841,7 @@
 				C85708771E8C3C4F00B21DE4 /* ListViewController.storyboard in Resources */,
 				C863C96F1E608FA200FD75F1 /* Assets.xcassets in Resources */,
 				C863C94D1E608FA200FD75F1 /* Main.storyboard in Resources */,
+				C896739B1E92C1B800D67069 /* Settings.bundle in Resources */,
 				C857CC711E719EA9007A3E35 /* LessonTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -997,6 +1004,7 @@
 				C851AF9D1E630D4000D9039E /* MemberListTableCell.swift in Sources */,
 				C863C9661E608FA200FD75F1 /* DeviceModel.swift in Sources */,
 				C80696B61E65DF0200978338 /* MemberAttendaceViewModel.swift in Sources */,
+				C89673951E929ABA00D67069 /* SplashViewController.swift in Sources */,
 				C85C3AE11E8FCBAF00C8B468 /* CentralManager.swift in Sources */,
 				C85599A41E755D75000C7C49 /* UnderLineView.swift in Sources */,
 				C85708741E8C3C4F00B21DE4 /* MemberAttendanceViewController.swift in Sources */,
@@ -1160,6 +1168,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: KUNIYA SAKAI (5R2LS4A9QF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: KUNIYA SAKAI (5R2LS4A9QF)";
 				DEVELOPMENT_TEAM = 5R2LS4A9QF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1170,6 +1180,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kudoukun.AttendanceRecord;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5e0dc231-3b94-452c-ae72-806a531cca4a";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};

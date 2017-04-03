@@ -18,12 +18,46 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="ZpC-BT-gpE" kind="relationship" relationship="rootViewController" id="qpf-7A-Bkb"/>
+                        <segue destination="2Hb-rY-3AW" kind="relationship" relationship="rootViewController" id="j8j-JB-Y2R"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LEK-bg-4B4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-68" y="137"/>
+        </scene>
+        <!--Splash View Controller-->
+        <scene sceneID="318-Dy-fs4">
+            <objects>
+                <viewController storyboardIdentifier="SplashViewController" id="2Hb-rY-3AW" customClass="SplashViewController" customModule="AttendanceRecord" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mf5-zF-24d"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ffk-vr-4Oo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RgV-40-cS2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出席簿アプリ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vp4-rl-maI">
+                                <rect key="frame" x="106.5" y="318.5" width="162" height="30.5"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="27"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.40784313725490196" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Vp4-rl-maI" firstAttribute="centerX" secondItem="RgV-40-cS2" secondAttribute="centerX" id="b3N-Zq-al9"/>
+                            <constraint firstItem="Vp4-rl-maI" firstAttribute="centerY" secondItem="RgV-40-cS2" secondAttribute="centerY" id="ujN-k6-neJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="hoJ-Om-gxT"/>
+                    <connections>
+                        <outlet property="titleLabel" destination="Vp4-rl-maI" id="vkE-e6-2ro"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OyS-Ae-tB8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="798" y="136"/>
         </scene>
         <!--Mode Select View Controller-->
         <scene sceneID="gIb-c2-j0b">
@@ -77,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m6A-A1-bVy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="748" y="135.38230884557723"/>
+            <point key="canvasLocation" x="1524" y="136"/>
         </scene>
     </scenes>
 </document>

@@ -10,11 +10,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ModeChangeCell" selectionStyle="default" indentationWidth="10" rowHeight="133" id="AF1-Xr-IFU" customClass="ModeChangeCell" customModule="AttendanceRecord" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ModeChangeCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="ModeChangeCell" rowHeight="133" id="AF1-Xr-IFU" customClass="ModeChangeCell" customModule="AttendanceRecord" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="442" height="133"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AF1-Xr-IFU" id="FLP-TF-ABr">
-                <rect key="frame" x="0.0" y="0.0" width="442" height="132.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="442" height="132"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1J-QU-Dc1" customClass="HSegmentControl" customModule="HSegmentControl">

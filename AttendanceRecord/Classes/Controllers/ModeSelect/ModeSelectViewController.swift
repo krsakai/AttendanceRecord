@@ -19,7 +19,7 @@ internal final class ModeSelectViewController: UIViewController, HeaderViewDispl
     
     // MARK: - Initializer
     
-    static func instantiate(member: Member) -> ModeSelectViewController {
+    static func instantiate() -> ModeSelectViewController {
         let viewController = R.storyboard.main.modeSelectViewController()!
         return viewController
     }

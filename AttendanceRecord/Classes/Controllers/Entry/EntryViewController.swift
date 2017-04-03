@@ -78,6 +78,7 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
     
     fileprivate static let toolTipPreferences: EasyTipView.Preferences = {
         var preferences = EasyTipView.Preferences()
+        preferences.drawing.arrowPosition = .bottom
         preferences.drawing.backgroundColor = .black
         return preferences
     }()

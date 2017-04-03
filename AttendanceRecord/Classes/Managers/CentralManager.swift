@@ -106,7 +106,7 @@ extension CentralManager: CBCentralManagerDelegate {
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state != .poweredOn {
-            AlertController.showAlert(title: "Bluetoothの利用ができない状態です。再度お試しください")
+//            AlertController.showAlert(title: "Bluetoothの利用ができない状態です。再度お試しください")
         }
     }
     

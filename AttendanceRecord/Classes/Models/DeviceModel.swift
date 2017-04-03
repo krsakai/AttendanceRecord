@@ -15,12 +15,14 @@ internal enum ThemeColor: Int {
     case red    = 1
     case green  = 2
     case blue   = 3
+    case water  = 4
     
     var title: String {
         switch self {
         case .red:   return "赤"
         case .green: return "緑"
         case .blue:  return "青"
+        case .water: return "水色"
         }
     }
     
@@ -29,6 +31,7 @@ internal enum ThemeColor: Int {
         case .red: return AttendanceRecordColor.Common.red
         case .green: return AttendanceRecordColor.Common.green
         case .blue: return AttendanceRecordColor.Common.blue
+        case .water: return AttendanceRecordColor.Common.water
         }
     }
 }
