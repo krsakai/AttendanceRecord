@@ -95,6 +95,10 @@ extension Attendance {
         return NSPredicate(format: "lessonId = %@ AND eventId = %@", lessonId, eventId)
     }
     
+    static func predicate(lessonId: String, eventId: String, memberId: String) -> NSPredicate {
+        return NSPredicate(format: "lessonId = %@ AND eventId = %@ And memberId = %@", lessonId, eventId, memberId)
+    }
+    
     static func predicate(memberId: String) -> NSPredicate {
         return NSPredicate(format: "memberId = %@", memberId)
     }

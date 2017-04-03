@@ -16,9 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        _ = MemberEntryCentralManager.shared
+        _ = CentralManager.shared.centralManager
+        DeviceModel.removeKeychainAll()
         setupMasterData()
         window?.rootViewController = instantiateRootViewController
+        
+        let byte = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffffffffffffffffffffffffffffffffffff".characteristicData
+        let length = [UInt8](byte)
         
         return true
     }
@@ -150,3 +154,25 @@ internal protocol ScreenReloadable {
 extension ScreenReloadable where Self: UIViewController {
     func reloadScreen() {}
 }
+
+//extension Data {
+//    
+//    func test(sendData: Data, pinData: Data, count: Int) {
+//        var dataRange: ClosedRange<Int>
+//        var dataSize = pinData.count
+//        var dataSplitCount = dataSize/count;
+//        
+//        dataRange.length = count;
+//        dataRange.location = 0;
+//        var dataArray = [Int]()
+//        
+//        for i in 0..<dataSplitCount {
+//            dataArray.append(sendData.subdata(in: dataRange))
+//            dataRange.location += count
+//        }
+//        
+//        // 最後のデータは、レングスを調整してから処理を行う
+//        dataRange.length = dataSize%count
+//        dataArray.append(pinData.subdata(in: dataRange))
+//    }
+//}

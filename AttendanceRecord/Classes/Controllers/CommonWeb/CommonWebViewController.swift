@@ -30,7 +30,14 @@ internal final class CommonWebViewController: UIViewController, HeaderViewDispla
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupHeaderView(requestType.title, buttonTypes: requestType.buttonTypes)
+        setupHeaderView(requestType.title, buttonTypes: [[.back],[.send(HeaderModel() { _ in
+            if !MailSendViewController.isEnabledSendMail {
+                AlertController.showAlert(title: "メール機能が利用できません", message: "設定よりメールの設定をお確かめ下さい")
+                return
+            }
+            let viewController = MailSendViewController.instantiate(lesson: self.lesson!)
+            self.present(viewController, animated: true, completion: nil)
+        })]])
         webView.loadRequest(requestType: requestType, lesson: lesson ?? Lesson())
     }
 }
@@ -50,16 +57,9 @@ extension UIWebView {
             }
         }
         
-        var buttonTypes: [[HeaderView.ButtonType]] {
-            switch self {
-            case .attendanceList, .backNumber: return [[.back],[]]
-            case .none: return [[.close(nil)],[]]
-            }
-        }
-        
         func loadHtmlString(lesson: Lesson) -> String {
             switch self  {
-            case .attendanceList: return UIWebView.attendanceListString(lesson: lesson)
+            case .attendanceList: return LessonAttendanceModel.instantiate(lesson: lesson).htmlString
             case .backNumber: return ""
             case .none: return UIWebView.noneString
             }
@@ -88,44 +88,5 @@ extension UIWebView {
     // FIXME: せめてFactory作る
     private static var noneString: String {
         return "<html><body><div style=display:flex; alignItems:center;><p><span style=font-size : medium>To be implement</span></p></body></html>"
-    }
-    
-    private static func attendanceListString(lesson: Lesson) -> String {
-        
-        // イベント一覧取得
-        let eventList = EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(lessonId: lesson.lessonId))
-        
-        guard !eventList.isEmpty else {
-            return "1件もイベントが登録されていません"
-        }
-        
-        // HTML文字列
-        var htmlString = "<html><body><table border=1 cellspacing=0 cellpadding=0><tr bgcolor=#BCC8DB><td></td>"
-        
-        // イベント(横欄)追加
-        eventList.forEach { event in
-            htmlString.append("<td align=center valign=center> \(event.eventTitle) </td>")
-        }
-        
-        // 縦(メンバー名) + 出席追加
-        let lessonMemberList = LessonManager.shared.lessonMemberListDataFromRealm(predicate: LessonMember.predicate(lessonId: lesson.lessonId))
-        
-        htmlString.append("</tr>")
-        
-        _ = lessonMemberList.enumerated().map { (index, lessonMember) in
-            guard let member = (MemberManager.shared.memberListDataFromRealm(predicate: Member.predicate(memberId: lessonMember.memberId)).first) else {
-                return
-            }
-            let viewModels = AttendanceManager.shared.memberAttendanceViewModels(member: member, lesson: lesson)
-            let color = index % 2 == 0 ? "whitesmoke" : "#b0c4de"
-            htmlString.append("<tr bgcolor=\(color)><td align=center valign=center>\(member.nameJp)</td>")
-            viewModels.forEach { viewModel in
-                htmlString.append("<td align=center valign=center>\(viewModel.attendance.attendanceStatusRawValue)</td>")
-            }
-            htmlString.append("</tr>")
-        }
-        
-        htmlString.append("</body></table>")
-        return htmlString
     }
 }

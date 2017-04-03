@@ -11,6 +11,9 @@ import SWTableViewCell
 import RealmSwift
 import ObjectMapper
 import Popover
+import SnapKit
+
+// MARK: - Display Model Extension
 
 protocol DisplayModel {
     var id: String { get }
@@ -21,6 +24,8 @@ extension Object: DisplayModel {
     var id: String { return "" }
     var titleName: String { return "" }
 }
+
+// MARK: - List Type Enum
 
 internal enum ListType: HeaderButtonModel {
     case lesson(DisplayModel?)
@@ -102,12 +107,18 @@ internal enum ListType: HeaderButtonModel {
     }
 }
 
+// MARK: - ListViewController
+
 internal final class ListViewController: UIViewController, HeaderViewDisplayable {
+    
+    // MARK: - IBOutlet
     
     @IBOutlet weak var headerView: HeaderView!
     
     @IBOutlet fileprivate weak var footerView: FooterView!
     @IBOutlet fileprivate weak var tableView: UITableView!
+    
+    // MARK: - Properties
     
     fileprivate var type: ListType = .lesson(nil)
     
@@ -123,6 +134,56 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
         PopoverOption.animationOut(0),
         .color(DeviceModel.themeColor.color)
     ]
+    
+    private var headerButtons: [[HeaderView.ButtonType]] {
+        
+        switch (type, DeviceModel.mode) {
+        case (.lesson(let model), .organizer):
+            return [[.sideMenu],
+                    [.add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
+        case (.lesson, .member):
+            return [[.sideMenu],
+                    [.request(HeaderModel() {
+                        PeripheralManager.shared.start()
+                    })]]
+        case (.event(let model), .organizer):
+            return [[.back],
+                    [.selection(HeaderModel(selectionAction: { targetView in
+                        // メンバー選択
+                        let selection = PopoverItem(title: "メンバー選択") { _ in
+                            self.popover.dismiss()
+                            let viewController = MemberSelectViewController.instantiate(lesson: LessonManager.shared.lessonListDataFromRealm(predicate: Lesson.predicate(lessonId: model?.id ?? "")).first ?? Lesson())
+                            self.present(viewController, animated: true, completion: nil)
+                        }
+                        
+                        // メンバー登録
+                        let entry = PopoverItem(title: "メンバー登録") { _ in
+                            self.popover.dismiss()
+                            let viewController = EntryViewController.instantiate(entryModel: EntryModel(entryType: .member, displayModel: model))
+                            UIApplication.topViewController()?.present(viewController, animated: true, completion: nil)
+                        }
+                        
+                        // メンバー受付
+                        let reception = PopoverItem(title: "メンバー受付") { _ in
+                            self.popover.dismiss()
+                            let viewController = MemberSearchViewController.instantiate()
+                            self.present(viewController, animated: true, completion: nil)
+                        }
+                        
+                        let selectionView = SelectionView.instantiate(owner: self, items: [selection, entry, reception])
+                        self.popover.show(selectionView, fromView: targetView)
+                    })),
+                     .add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
+        case (.event, .member):
+            return [[.back],[]]
+        case (.member, .organizer):
+            return [[.sideMenu],
+                    [.reception(HeaderModel() {
+//                        CentralManager.shared.search()
+                    })]]
+        default: return [[.sideMenu],[]]
+        }
+    }
     
     // MARK: - Initializer
     
@@ -146,56 +207,9 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
         super.viewWillAppear(true)
         tableView.reloadData()
     }
-    
-    private var headerButtons: [[HeaderView.ButtonType]] {
-        
-        switch (type, DeviceModel.mode) {
-        case (.lesson(let model), .organizer):
-            return [[.sideMenu],
-                    [.add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
-        case (.lesson, .member):
-            return [[.sideMenu],
-                    [.request(HeaderModel() {
-                        MemberEntryCentralManager.shared.searchMember()
-                    })]]
-        case (.event(let model), .organizer):
-            return [[.back],
-                   [.selection(HeaderModel(selectionAction: { targetView in
-                    // メンバー選択
-                    let selection = PopoverItem(title: "メンバー選択") { _ in
-                        self.popover.dismiss()
-                        let viewController = MemberSelectViewController.instantiate(lesson: LessonManager.shared.lessonListDataFromRealm(predicate: Lesson.predicate(lessonId: model?.id ?? "")).first ?? Lesson())
-                        self.present(viewController, animated: true, completion: nil)
-                    }
-                    
-                    // メンバー登録
-                    let entry = PopoverItem(title: "メンバー登録") { _ in
-                        self.popover.dismiss()
-                        let viewController = EntryViewController.instantiate(entryModel: EntryModel(entryType: .member, displayModel: model))
-                        UIApplication.topViewController()?.present(viewController, animated: true, completion: nil)
-                    }
-                    
-                    // メンバー受付
-                    let reception = PopoverItem(title: "メンバー受付") { _ in
-                        self.popover.dismiss()
-                        MemberEntryCentralManager.shared.searchMember()
-                    }
-                    
-                    let selectionView = SelectionView.instantiate(owner: self, items: [selection, entry, reception])
-                    self.popover.show(selectionView, fromView: targetView)
-                    })),
-                     .add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
-        case (.event, .member):
-            return [[.back],[]]
-        case (.member, .organizer):
-            return [[.sideMenu],
-                    [.reception(HeaderModel() {
-                        MemberEntryCentralManager.shared.searchMember()
-                    })]]
-        default: return [[.sideMenu],[]]
-        }
-    }
 }
+
+// MARK: - UITableViewDataSource
 
 extension ListViewController: UITableViewDataSource {
     
@@ -204,8 +218,6 @@ extension ListViewController: UITableViewDataSource {
     fileprivate var list: [Object] {
         return type.list(sourceViewModel: type.displayModel)
     }
-    
-    // MARK: - UITableView DataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return list.count
@@ -224,9 +236,9 @@ extension ListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
+
 extension ListViewController: UITableViewDelegate {
-    
-    // MARK: - UITableView Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -236,6 +248,8 @@ extension ListViewController: UITableViewDelegate {
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
+
+// MARK: - SWTableViewCellDelegate
 
 extension ListViewController: SWTableViewCellDelegate {
     
@@ -261,6 +275,8 @@ extension ListViewController: SWTableViewCellDelegate {
     }
 }
 
+// MARK: - ScreenReloadable
+
 extension ListViewController: ScreenReloadable {
     func reloadScreen() {
         // Xibからビュー生成前に呼ばれる対策
@@ -270,3 +286,10 @@ extension ListViewController: ScreenReloadable {
         tableView.reloadData()
     }
 }
+
+extension ListViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
+}
+

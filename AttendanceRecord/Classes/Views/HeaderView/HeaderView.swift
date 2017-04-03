@@ -92,6 +92,7 @@ internal final class HeaderView: UIView {
         case reception(HeaderModel?)                // 受付
         case request(HeaderModel?)                  // リクエスト
         case selection(HeaderModel?)                // 選択
+        case send(HeaderModel?)                     // 送る
         
         var image: UIImage? {
             switch self {
@@ -119,13 +120,14 @@ internal final class HeaderView: UIView {
             case .reception: return R.string.localizable.headerButtonLabelReception()
             case .request: return R.string.localizable.headerButtonLabelRequest()
             case .selection: return  R.string.localizable.headerButtonLabelSelection()
+            case .send: return R.string.localizable.headerButtonLabelSend()
             default: return nil
             }
         }
         
         var titleFont: UIFont {
             switch self {
-            case .regist, .reception, .request, .selection:
+            case .regist, .reception, .request, .selection, .send:
                 return AttendanceRecordFont.HeaderButton.regist
             default: return AttendanceRecordFont.HeaderButton.add
             }
@@ -194,6 +196,10 @@ internal final class HeaderView: UIView {
             case .selection(let model):
                 return { _ in
                     model?.selectionAction?(targetView)
+                }
+            case .send(let model):
+                return { _ in
+                    model?.action?()
                 }
             }
         }

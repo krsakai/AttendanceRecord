@@ -53,6 +53,7 @@
 "Header.Button.Label.Selection" = "選択";
 "Header.Title.Label.Settings" = "設定";
 "Header.Title.Label.MemberSelect" = "メンバー選択";
+"Header.Button.Label.Send" = "送信";
 
 // モード
 "Mode.Title.Label.ModeSelect" = "モード選択";

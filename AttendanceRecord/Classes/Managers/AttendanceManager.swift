@@ -64,20 +64,4 @@ internal final class AttendanceManager {
         }
         return viewModels
     }
-    
-    /// 個人出欠一覧ビューのモデルを取得
-    func memberAttendanceViewModels(member: Member?, lesson: Lesson?) -> [AttendanceViewModel] {
-        guard let member = member, let lesson = lesson else {
-            return [AttendanceViewModel]()
-        }
-        let attendanceList = attendanceListDataFromRealm(predicate: Attendance.predicate(lessonId: lesson.lessonId, memberId: member.memberId))
-        var viewModels = [AttendanceViewModel]()
-        attendanceList.forEach { attendance in
-            let event = EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(eventId: attendance.eventId)).first ?? Event()
-            viewModels.append(AttendanceViewModel(event: event, member: member, attendance: attendance))
-        }
-        return viewModels.sorted { viewModelX, viewModelY in
-            return viewModelX.event.eventDate < viewModelY.event.eventDate
-        }
-    }
 }
