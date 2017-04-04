@@ -40,7 +40,8 @@ internal class MemberListTableCell: SWTableViewCell {
         }
         
         guard owner is SWTableViewCellDelegate else {
-            cell.checkbox = CTCheckbox(frame: CGRect(x: cell.leftView.frame.size.width/2 - 25, y: cell.leftView.frame.size.height/2 - 25, width: 50, height: 50))
+            cell.checkbox = CTCheckbox(frame: CGRect(x: cell.leftView.frame.size.width/2 - 25, y: cell.frame.size.height/2 - 35, width: 50, height: 50))
+            cell.checkbox.checkboxSideLength = 30
             cell.checkbox.addTarget(cell, action: #selector(MemberListTableCell.changeCheckbox), for: .valueChanged)
             cell.checkbox.setColor(DeviceModel.themeColor.color, for: .normal)
             cell.checkbox.setColor(DeviceModel.themeColor.color, for: .highlighted)
