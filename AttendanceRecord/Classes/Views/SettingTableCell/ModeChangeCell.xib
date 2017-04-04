@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1J-QU-Dc1" customClass="HSegmentControl" customModule="HSegmentControl">
-                        <rect key="frame" x="0.0" y="0.0" width="442" height="132.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="442" height="133"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <action selector="valueChangedWithSegmentControl:" destination="AF1-Xr-IFU" eventType="valueChanged" id="OIB-6i-kLw"/>

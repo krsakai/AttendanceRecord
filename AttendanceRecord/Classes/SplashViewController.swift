@@ -26,19 +26,10 @@ internal final class SplashViewController: UIViewController {
             self.titleLabel.changeScale(duration: 0.3, scale: CGPoint(x: 1.3, y: 1.3), completion: fulfill)
         }.success { _ in
             return Task<Void, Void, Void> { _, fulfill,_, _ in
-                self.titleLabel.changeScale(duration: 0.3, scale: CGPoint(x: 0.8, y:0.8), completion: fulfill)
+                self.titleLabel.changeScale(duration: 0.3, scale: CGPoint(x: 1.0, y:1.0), completion: fulfill)
             }
-        }.success { _ in
-            return Task<Void, Void, Void> { _, fulfill,_, _ in
-                self.titleLabel.changeScale(duration: 0.3, scale: CGPoint(x: 1.2, y:1.2), completion: fulfill)
-            }
-        }.success { _ in
-            return Task<Void, Void, Void> { _, fulfill,_, _ in
-                self.titleLabel.changeScale(duration: 0.3, scale: CGPoint(x: 1, y:1), completion: fulfill)
-                }
-        }.success { _ in
-            let viewController = ModeSelectViewController.instantiate()
-            self.navigationController?.pushViewController(viewController, animated: false)
+        }.success {
+            AppDelegate.sideMenu?.changeContentViewController()
         }
     }
 }

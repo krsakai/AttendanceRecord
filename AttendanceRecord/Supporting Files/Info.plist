@@ -28,6 +28,8 @@
 	<string>ペリフェラル許可</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>OK</string>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

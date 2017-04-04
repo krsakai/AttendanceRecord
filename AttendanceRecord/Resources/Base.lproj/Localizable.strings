@@ -24,6 +24,8 @@
 "Common.Label.Tomorrow"             = "明日";
 "Common.label.TheDayAfterTomorrow"  = "明後日";
 
+"Common.Label.AppStore" = "AppStoreへ";
+
 "Common.Label.AttendanceInput" = "出欠入力";
 "Alert.Title.MemberRegistComfirm" = "登録";
 "Alert.Message.Add" = "入力した内容で\n登録してもよろしいですか？";
@@ -60,12 +62,19 @@
 "Mode.Button.Label.Member" = "受講者";
 "Mode.Button.Label.Organizer" = "開催者";
 "Mode.Title.Label.ThemeSelect" = "テーマ色選択";
+"Mode.Title.Label.MemberSetting" = "受講者登録設定";
 "Mode.Alert.Title.NoEntry" = "メンバー未登録";
 "Mode.Alert.Message.NoEntry" = "メンバー未登録です。登録画面よりメンバー登録を行ってください";
+"Mode.Alert.Title.Unimplemented" = "機能未実装";
+"Mode.Alert.Message.Unimplemented" = "このバージョンでの受講者モードは未実装です。最新版のアプリを確認してください";
 
 // ローディング
 "Loading.Title.Label.MemberSearch" = "メンバー受付中";
 "Loading.SubTitle.Label.TapCancel" = "画面タップで検索中断";
+
+// 設定
+"Setting.Label.Member.Name" = "ふりがな登録";
+"Setting.Label.Member.Email" = "メールアドレス登録";
 
 // 入力画面
 "InputView.Button.Toolbar.Today" = "今日";

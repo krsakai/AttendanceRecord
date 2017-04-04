@@ -63,6 +63,8 @@ internal final class DeviceModel {
         case serviceUUID             = "ServiceUUID"
         case characteristicUUID      = "CharacteristicUUID"
         case themeColor              = "ThemeColor"
+        case isRequireMemberName     = "IsRequireMemberName"
+        case isRequireMemberEmail    = "IsRequireMemberEmail"
     }
     
     static var isFirstReadMasterData: Bool {
@@ -76,7 +78,8 @@ internal final class DeviceModel {
     
     static var mode: Mode {
         get {
-            return Mode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.mode.rawValue)) ??  Mode.member
+            return Mode.organizer
+//            return Mode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.mode.rawValue)) ??  Mode.member
         }
         set {
             UserDefaults.standard.set(newValue.rawValue, forKey: UserDefaultsKey.mode.rawValue)
@@ -89,6 +92,24 @@ internal final class DeviceModel {
         }
         set {
             UserDefaults.standard.set(newValue.rawValue, forKey: UserDefaultsKey.themeColor.rawValue)
+        }
+    }
+    
+    static var isRequireMemberName: Bool {
+        get {
+            return  UserDefaults.standard.bool(forKey: UserDefaultsKey.isRequireMemberName.rawValue)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.isRequireMemberName.rawValue)
+        }
+    }
+    
+    static var isRequireEmail: Bool {
+        get {
+            return  UserDefaults.standard.bool(forKey: UserDefaultsKey.isRequireMemberEmail.rawValue)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.isRequireMemberEmail.rawValue)
         }
     }
     

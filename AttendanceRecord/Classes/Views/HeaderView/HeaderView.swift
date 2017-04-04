@@ -161,7 +161,7 @@ internal final class HeaderView: UIView {
                 }
             case .delete(let model):
                 return { _ in
-                    AlertController.showAlert(title: R.string.localizable.alertTitleDeleteComfirm(), message: R.string.localizable.alertMessageDelete(model?.displayInfo ?? ""), ok: { _ in
+                    AlertController.showAlert(title: R.string.localizable.alertTitleDeleteComfirm(), message: R.string.localizable.alertMessageDelete(model?.displayInfo ?? ""), positiveAction: { _ in
                         model?.action?()
                         _ = AppDelegate.navigation?.popViewController(animated: true)
                     })
@@ -169,7 +169,7 @@ internal final class HeaderView: UIView {
             case .regist(let model):
                 return { _ in
                     AlertController.showAlert(title: R.string.localizable.alertTitleMemberRegistComfirm(),
-                                              message: R.string.localizable.alertMessageAdd(), ok: {
+                                              message: R.string.localizable.alertMessageAdd(), positiveAction: {
                         model?.action?()
                         UIApplication.topViewController()?.dismiss(animated: true, completion: nil)
                     })

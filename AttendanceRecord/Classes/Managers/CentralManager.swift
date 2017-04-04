@@ -86,7 +86,7 @@ internal final class CentralManager: NSObject {
     private var addSuccessAction: SuccessHandler {
         return { peripheral, member in
             self.centralManager.cancelPeripheralConnection(peripheral)
-            AlertController.showAlert(title: "接続に成功", message: "\(member.nameJp)さんを検出しました", ok: { _ in
+            AlertController.showAlert(title: "接続に成功", message: "\(member.nameJp)さんを検出しました", positiveAction: { _ in
                 self.connectResultDelegate?.success(member: member, peripheral: peripheral, type: self.communicationType!)
             })
         }
@@ -95,7 +95,7 @@ internal final class CentralManager: NSObject {
     private var addCancelAction: FailureHandler {
         return { peripheral, errorString in
             self.centralManager.cancelPeripheralConnection(peripheral)
-            AlertController.showAlert(title: "接続に失敗", message: "\(errorString)\nこの端末を一覧から削除してもよろしいですか？", ok: { _ in
+            AlertController.showAlert(title: "接続に失敗", message: "\(errorString)\nこの端末を一覧から削除してもよろしいですか？", positiveAction: { _ in
                 self.connectResultDelegate?.failure(peripheralList: [peripheral])
             })
         }

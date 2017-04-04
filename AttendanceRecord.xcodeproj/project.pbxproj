@@ -110,6 +110,8 @@
 		C89673931E910F7C00D67069 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89673921E910F7C00D67069 /* Array.swift */; };
 		C89673951E929ABA00D67069 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89673941E929ABA00D67069 /* SplashViewController.swift */; };
 		C896739B1E92C1B800D67069 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C896739A1E92C1B800D67069 /* Settings.bundle */; };
+		C896739D1E93E30900D67069 /* MemberSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C896739C1E93E30900D67069 /* MemberSettingCell.swift */; };
+		C896739F1E93E31700D67069 /* MemberSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C896739E1E93E31700D67069 /* MemberSettingCell.xib */; };
 		C8D14FAE1E6AB0C600FEB634 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D14FAD1E6AB0C600FEB634 /* LocationManager.swift */; };
 		C8FEA7011E71CD6100503ED5 /* HeaderButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8FEA7001E71CD6100503ED5 /* HeaderButtonView.xib */; };
 		C8FEA7031E71CDF900503ED5 /* HeaderButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FEA7021E71CDF900503ED5 /* HeaderButtonView.swift */; };
@@ -238,6 +240,8 @@
 		C89673921E910F7C00D67069 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		C89673941E929ABA00D67069 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		C896739A1E92C1B800D67069 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		C896739C1E93E30900D67069 /* MemberSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSettingCell.swift; sourceTree = "<group>"; };
+		C896739E1E93E31700D67069 /* MemberSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberSettingCell.xib; sourceTree = "<group>"; };
 		C8D14FAD1E6AB0C600FEB634 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C8FEA7001E71CD6100503ED5 /* HeaderButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderButtonView.xib; sourceTree = "<group>"; };
 		C8FEA7021E71CDF900503ED5 /* HeaderButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderButtonView.swift; sourceTree = "<group>"; };
@@ -357,6 +361,8 @@
 				C85708411E8A4C8500B21DE4 /* ModeChangeCell.xib */,
 				C85708431E8A4CB800B21DE4 /* ThemeColorSelectCell.swift */,
 				C85708451E8A4CCD00B21DE4 /* ThemeColorSelectCell.xib */,
+				C896739C1E93E30900D67069 /* MemberSettingCell.swift */,
+				C896739E1E93E31700D67069 /* MemberSettingCell.xib */,
 			);
 			path = SettingTableCell;
 			sourceTree = "<group>";
@@ -824,6 +830,7 @@
 				C857CC781E71C2FA007A3E35 /* LessonList.plist in Resources */,
 				C85708891E8C3F1600B21DE4 /* SelectionView.xib in Resources */,
 				C868334E1E8E0C6700162D91 /* MemberSelectViewController.storyboard in Resources */,
+				C896739F1E93E31700D67069 /* MemberSettingCell.xib in Resources */,
 				C806968F1E648A5300978338 /* EventList.plist in Resources */,
 				C863C9811E616CD800FD75F1 /* HeaderView.xib in Resources */,
 				C857083A1E8A42D200B21DE4 /* SettingViewController.storyboard in Resources */,
@@ -992,6 +999,7 @@
 				C8FEA7141E73E86D00503ED5 /* ActionKeys.swift in Sources */,
 				C857CC6A1E718B70007A3E35 /* Lesson.swift in Sources */,
 				C80696BB1E65E0A200978338 /* MemberAttendanceViewCell.swift in Sources */,
+				C896739D1E93E30900D67069 /* MemberSettingCell.swift in Sources */,
 				C8FEA7101E73340200503ED5 /* InputView.swift in Sources */,
 				C82876071E883300004B4CC9 /* HeaderModel.swift in Sources */,
 				C851AF9A1E6300F900D9039E /* Member.swift in Sources */,

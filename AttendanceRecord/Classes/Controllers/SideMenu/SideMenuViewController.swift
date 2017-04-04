@@ -13,7 +13,7 @@ internal final class SideMenuViewController: UIViewController, ModeVariety {
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var topLabel: UILabel!
     
-    var mode: Mode = .member
+    var mode: Mode = .organizer
     
     // MARK: - Initializer
     

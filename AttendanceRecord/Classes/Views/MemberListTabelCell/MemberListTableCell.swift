@@ -7,16 +7,22 @@
 //
 
 import UIKit
+import SnapKit
+import CTCheckbox
 import RealmSwift
 import SWTableViewCell
 
 internal class MemberListTableCell: SWTableViewCell {
     
+    @IBOutlet private weak var leftView: UIView!
+
     @IBOutlet private weak var nameJpLabel: UILabel!
     @IBOutlet private weak var nameKanaLabel: UILabel!
     @IBOutlet private weak var emailLabel: UILabel!
     
-    private var member: Member!
+    var checkbox: CTCheckbox!
+    
+    var member: Member!
     
     override var entity: Object? {
         return member as Object
@@ -29,7 +35,17 @@ internal class MemberListTableCell: SWTableViewCell {
         cell.emailLabel.text = member.email
         cell.member = member
         
-        guard DeviceModel.mode == .organizer, owner is SWTableViewCellDelegate else {
+        guard DeviceModel.mode == .organizer else {
+            return cell
+        }
+        
+        guard owner is SWTableViewCellDelegate else {
+            cell.checkbox = CTCheckbox(frame: CGRect(x: cell.leftView.frame.size.width/2 - 25, y: cell.leftView.frame.size.height/2 - 25, width: 50, height: 50))
+            cell.checkbox.addTarget(cell, action: #selector(MemberListTableCell.changeCheckbox), for: .valueChanged)
+            cell.checkbox.setColor(DeviceModel.themeColor.color, for: .normal)
+            cell.checkbox.setColor(DeviceModel.themeColor.color, for: .highlighted)
+            cell.addSubview(cell.checkbox)
+            cell.checkbox.layoutIfNeeded()
             return cell
         }
         
@@ -38,5 +54,9 @@ internal class MemberListTableCell: SWTableViewCell {
         cell.rightUtilityButtons = utilityButtons as [AnyObject]
         cell.delegate = owner as! SWTableViewCellDelegate
         return cell
+    }
+    
+    func changeCheckbox(checkbox: CTCheckbox) {
+        
     }
 }

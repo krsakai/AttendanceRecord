@@ -22,7 +22,20 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q5s-CR-aeC">
                                 <rect key="frame" x="0.0" y="0.0" width="119" height="104"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWV-09-0nk">
+                                        <rect key="frame" x="118" y="0.0" width="1" height="104"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1" id="Ycv-0p-YyP"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="CWV-09-0nk" firstAttribute="top" secondItem="q5s-CR-aeC" secondAttribute="top" id="FT3-x6-YDP"/>
+                                    <constraint firstAttribute="trailing" secondItem="CWV-09-0nk" secondAttribute="trailing" id="mKd-RQ-dY6"/>
+                                    <constraint firstAttribute="bottom" secondItem="CWV-09-0nk" secondAttribute="bottom" id="wtj-nq-6t5"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1cu-oB-gUI" userLabel="Member Info View">
                                 <rect key="frame" x="119" y="0.0" width="250" height="104"/>
@@ -58,6 +71,12 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="q5s-CR-aeC" firstAttribute="top" secondItem="rHl-Ra-6RM" secondAttribute="top" id="60e-2o-jt9"/>
+                            <constraint firstItem="1cu-oB-gUI" firstAttribute="leading" secondItem="q5s-CR-aeC" secondAttribute="trailing" id="IXZ-8t-Hah"/>
+                            <constraint firstAttribute="bottom" secondItem="q5s-CR-aeC" secondAttribute="bottom" id="j7H-wq-pEb"/>
+                            <constraint firstItem="q5s-CR-aeC" firstAttribute="leading" secondItem="rHl-Ra-6RM" secondAttribute="leading" id="lSa-KJ-6Wb"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
@@ -67,8 +86,10 @@
                     <constraint firstAttribute="bottom" secondItem="rHl-Ra-6RM" secondAttribute="bottom" id="jUG-zn-BxW"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="emailLabel" destination="IBc-fp-zVX" id="W3w-G5-8w7"/>
+                <outlet property="leftView" destination="q5s-CR-aeC" id="hFc-e0-MOc"/>
                 <outlet property="nameJpLabel" destination="sHi-3N-tPO" id="kIy-5A-eqx"/>
                 <outlet property="nameKanaLabel" destination="5Ax-pn-oBt" id="WKp-en-vip"/>
             </connections>

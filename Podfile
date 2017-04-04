@@ -6,8 +6,9 @@ pod 'Alamofire'
 pod 'RealmSwift'
 pod 'R.swift'
 pod 'SwiftCop'
-pod 'HSegmentControl'
+pod 'HSegmentControl', :git => 'https://github.com/krsakai/HSegmentControl.git'
 
 target 'AttendanceRecord' do
+   pod 'CTCheckbox', '~> 0.0.5'
    pod 'SWTableViewCell', '~> 0.3.7'
 end

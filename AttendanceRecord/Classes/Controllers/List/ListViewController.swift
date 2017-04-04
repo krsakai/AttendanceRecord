@@ -164,13 +164,13 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
                         }
                         
                         // メンバー受付
-                        let reception = PopoverItem(title: "メンバー受付") { _ in
-                            self.popover.dismiss()
-                            let viewController = MemberSearchViewController.instantiate()
-                            self.present(viewController, animated: true, completion: nil)
-                        }
+//                        let reception = PopoverItem(title: "メンバー受付") { _ in
+//                            self.popover.dismiss()
+//                            let viewController = MemberSearchViewController.instantiate()
+//                            self.present(viewController, animated: true, completion: nil)
+//                        }
                         
-                        let selectionView = SelectionView.instantiate(owner: self, items: [selection, entry, reception])
+                        let selectionView = SelectionView.instantiate(owner: self, items: [selection, entry])
                         self.popover.show(selectionView, fromView: targetView)
                     })),
                      .add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
@@ -178,9 +178,7 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
             return [[.back],[]]
         case (.member, .organizer):
             return [[.sideMenu],
-                    [.reception(HeaderModel() {
-//                        CentralManager.shared.search()
-                    })]]
+                    [.add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: nil)))]]
         default: return [[.sideMenu],[]]
         }
     }
@@ -268,7 +266,8 @@ extension ListViewController: SWTableViewCellDelegate {
         }
         
         AlertController.showAlert(title: R.string.localizable.alertTitleDeleteComfirm(),
-                                  message: R.string.localizable.alertMessageDelete(entity.titleName), ok: { _ in
+                                  message: R.string.localizable.alertMessageDelete(entity.titleName),
+                                  positiveAction: { _ in
             action()
             self.tableView.reloadData()
         })

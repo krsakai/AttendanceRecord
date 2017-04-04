@@ -27,7 +27,14 @@ internal final class MemberSelectViewController: UIViewController, HeaderViewDis
     static func instantiate(lesson: Lesson) -> MemberSelectViewController {
         let viewController = R.storyboard.memberSelectViewController.memberSelectViewController()!
         viewController.lesson = lesson
-        viewController.memberList = MemberManager.shared.memberListDataFromRealm()
+        viewController.memberList = MemberManager.shared.memberListDataFromRealm().filter { member in
+            let lessonMemberList = LessonManager.shared.lessonMemberListDataFromRealm(predicate: LessonMember.predicate(lessonId: lesson.lessonId))
+            var check: Bool = true
+            lessonMemberList.forEach { lessonMember in
+                if lessonMember.memberId == member.memberId { check = false }
+            }
+            return check
+        }
         return viewController
     }
     

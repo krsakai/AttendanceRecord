@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.3.0)
+  - CTCheckbox (0.0.5)
   - HSegmentControl (2.1.0)
   - R.swift (3.2.0):
     - R.swift.Library (~> 3.0.2)
@@ -14,15 +15,26 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - HSegmentControl
+  - CTCheckbox (~> 0.0.5)
+  - HSegmentControl (from `https://github.com/krsakai/HSegmentControl.git`)
   - R.swift
   - RealmSwift
   - SwiftCop
   - SWTableViewCell (~> 0.3.7)
 
+EXTERNAL SOURCES:
+  HSegmentControl:
+    :git: https://github.com/krsakai/HSegmentControl.git
+
+CHECKOUT OPTIONS:
+  HSegmentControl:
+    :commit: 533d7190248b4aebe10e3985c5fe36161004de4d
+    :git: https://github.com/krsakai/HSegmentControl.git
+
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
-  HSegmentControl: a97413afadbcbd4d45f66987c7e2226af3dd103d
+  CTCheckbox: fec0e51c635ad555effd230a1fa186105010a382
+  HSegmentControl: ac85fec1df6edea62894873441ed8e5f2d8957cd
   R.swift: 207a372a2b5977caef440c696a368009460641d1
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
   Realm: e08d60b0048ccccd3949c8c28a92c4db5712d7e9
@@ -30,6 +42,6 @@ SPEC CHECKSUMS:
   SwiftCop: 5ae17ee59ea702b662072495588ace8540571bef
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
 
-PODFILE CHECKSUM: 4e30283e78a71e3cee9425910389f5107d6eb48b
+PODFILE CHECKSUM: cb291ff1499bf2445c71975064d0bf9131e9059d
 
 COCOAPODS: 1.2.0

@@ -35,37 +35,57 @@ internal class ModeChangeCell: UITableViewCell {
     @IBAction func valueChanged(segmentControl: HSegmentControl) {
         
         guard self.modeList[segmentControl.selectedIndex] == .member else {
-            DeviceModel.mode = self.modeList[segmentControl.selectedIndex]
-            AppDelegate.reloadScreen()
-            return
-        }
-        
-        guard DeviceModel.currentMember == nil else {
-            DeviceModel.mode = self.modeList[segmentControl.selectedIndex]
-            AppDelegate.reloadScreen()
             return
         }
         
         ModeSelectTask {  _, fulfill, reject, _ in
-            AlertController.showAlert(title: R.string.localizable.modeAlertTitleNoEntry(),
-                                        message: R.string.localizable.modeAlertMessageNoEntry(),
-                                        enableCancel: true, ok: { fulfill() }, cancel: { reject() })
-        }.success { _ in
-            return ModeSelectTask {  _, fulfill, reject, _ in
-                let viewController = EntryViewController.instantiate(entryModel: EntryModel(entryType: .member, entryCompletion: { member in
-                    DeviceModel.setCurrentMember(member: member as! Member)
-                    fulfill()
+            AlertController.showAlert(title: R.string.localizable.modeAlertTitleUnimplemented(),
+                                      message: R.string.localizable.modeAlertMessageUnimplemented(),
+                                      enableCancel: true, positiveLabel: R.string.localizable.commonLabelAppStore(),
+                                      positiveAction: { fulfill() }, negativeAction: { reject() })
+            }.success { _ in
+                return ModeSelectTask {  _, fulfill, reject, _ in
+                    let viewController = EntryViewController.instantiate(entryModel: EntryModel(entryType: .member, entryCompletion: { member in
+                        DeviceModel.setCurrentMember(member: member as! Member)
+                        fulfill()
                 }, entryReject: { _ in
                     reject()
                 }))
-                UIApplication.topViewController()?.present(viewController, animated: true)
-            }
-        }.success { _ in
-            DeviceModel.mode = self.modeList[segmentControl.selectedIndex]
-            AppDelegate.reloadScreen()
-        }.failure { _ in
-            self.segmentControl.selectedIndex = 0
+                    UIApplication.topViewController()?.present(viewController, animated: true)
+                }
+            }.success { _ in
+                DeviceModel.mode = self.modeList[segmentControl.selectedIndex]
+                AppDelegate.reloadScreen()
+            }.failure { _ in
+                self.segmentControl.selectedIndex = 0
         }
+        
+//        guard DeviceModel.currentMember == nil else {
+//            DeviceModel.mode = self.modeList[segmentControl.selectedIndex]
+//            AppDelegate.reloadScreen()
+//            return
+//        }
+//        
+//        ModeSelectTask {  _, fulfill, reject, _ in
+//            AlertController.showAlert(title: R.string.localizable.modeAlertTitleNoEntry(),
+//                                        message: R.string.localizable.modeAlertMessageNoEntry(),
+//                                        enableCancel: true, ok: { fulfill() }, cancel: { reject() })
+//        }.success { _ in
+//            return ModeSelectTask {  _, fulfill, reject, _ in
+//                let viewController = EntryViewController.instantiate(entryModel: EntryModel(entryType: .member, entryCompletion: { member in
+//                    DeviceModel.setCurrentMember(member: member as! Member)
+//                    fulfill()
+//                }, entryReject: { _ in
+//                    reject()
+//                }))
+//                UIApplication.topViewController()?.present(viewController, animated: true)
+//            }
+//        }.success { _ in
+//            DeviceModel.mode = self.modeList[segmentControl.selectedIndex]
+//            AppDelegate.reloadScreen()
+//        }.failure { _ in
+//            self.segmentControl.selectedIndex = 0
+//        }
     }
 }
 

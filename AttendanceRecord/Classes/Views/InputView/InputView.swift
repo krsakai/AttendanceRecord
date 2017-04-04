@@ -91,6 +91,7 @@ internal final class InputView: UIView {
         inputView.datePicker.addTarget(inputView, action: #selector(InputView.changedDate), for: UIControlEvents.valueChanged)
         inputView.datePicker.datePickerMode = UIDatePickerMode.dateAndTime
         inputView.datePicker.minuteInterval = 15
+        inputView.datePicker.date = Calendar(identifier: .gregorian).startOfDay(for: Date()).addingTimeInterval(19 * 60 * 60)
         inputView.textField.inputView = inputView.datePicker
         inputView.toolBar = UIToolbar()
         inputView.toolBar.tintColor = UIColor.darkGray

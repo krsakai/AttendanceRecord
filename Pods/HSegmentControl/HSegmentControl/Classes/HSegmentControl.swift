@@ -303,28 +303,20 @@ open class HSegmentControl: UIControl {
     
     // MARK: - Animation
     func select(atIndex nextIndex: Int, previousIndex preIndex: Int){
-        UIView.animate(withDuration: 0.1, animations: {
-            if preIndex < self.numberOfSegments{
-                for label in self.segmentTitleLabels{
-                    label.textColor = self.unselectedTitleColor
-                    label.font = self.unselectedTitleFont ?? self.defaultFont
-                }
+        if preIndex < self.numberOfSegments{
+            for label in self.segmentTitleLabels{
+                label.textColor = self.unselectedTitleColor
+                label.font = self.unselectedTitleFont ?? self.defaultFont
             }
-        }, completion: { (completed) in
-            UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.6, options: .curveEaseOut, animations: {
-                self.setTotalXConstraint()
-                self.setIndicatorXConstraint()
-                self.addConstraint(self.selectedSegmentXContraint)
-                self.layoutIfNeeded()
-            }){ (completed) in
-                UIView.animate(withDuration: 0.1, animations: {
-                    if nextIndex < self.numberOfSegments{
-                        self.segmentTitleLabels[nextIndex].textColor = self.selectedTitleColor
-                        self.segmentTitleLabels[nextIndex].font = self.selectedTitleFont ?? self.defaultFont
-                    }
-                })
-            }
-        }) 
+        }
+        self.setTotalXConstraint()
+        self.setIndicatorXConstraint()
+        self.addConstraint(self.selectedSegmentXContraint)
+        self.layoutIfNeeded()
+        if nextIndex < self.numberOfSegments{
+            self.segmentTitleLabels[nextIndex].textColor = self.selectedTitleColor
+            self.segmentTitleLabels[nextIndex].font = self.selectedTitleFont ?? self.defaultFont
+        }
     }
     
     // MARK: - Set x position constraints
