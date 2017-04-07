@@ -65,6 +65,7 @@ internal final class DeviceModel {
         case themeColor              = "ThemeColor"
         case isRequireMemberName     = "IsRequireMemberName"
         case isRequireMemberEmail    = "IsRequireMemberEmail"
+        case mailAddress             = "MailAddress"
     }
     
     static var isFirstReadMasterData: Bool {
@@ -110,6 +111,15 @@ internal final class DeviceModel {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.isRequireMemberEmail.rawValue)
+        }
+    }
+    
+    static var mailAddress: String {
+        get {
+            return  UserDefaults.standard.string(forKey: UserDefaultsKey.mailAddress.rawValue) ?? ""
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.mailAddress.rawValue)
         }
     }
     

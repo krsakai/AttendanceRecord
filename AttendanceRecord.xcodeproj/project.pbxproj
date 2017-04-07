@@ -21,6 +21,10 @@
 		C80696BB1E65E0A200978338 /* MemberAttendanceViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80696BA1E65E0A200978338 /* MemberAttendanceViewCell.swift */; };
 		C82876051E8830EE004B4CC9 /* EntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82876041E8830EE004B4CC9 /* EntryModel.swift */; };
 		C82876071E883300004B4CC9 /* HeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82876061E883300004B4CC9 /* HeaderModel.swift */; };
+		C84627831E96F8DC00A535F5 /* FileImportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84627821E96F8DC00A535F5 /* FileImportCell.swift */; };
+		C84627851E96F8F100A535F5 /* FileImportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C84627841E96F8F100A535F5 /* FileImportCell.xib */; };
+		C84627881E96FE3000A535F5 /* FileManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84627871E96FE3000A535F5 /* FileManagementViewController.swift */; };
+		C846278A1E96FE4400A535F5 /* FileManagementViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C84627891E96FE4400A535F5 /* FileManagementViewController.storyboard */; };
 		C8508BDE1E745C8D00BCF12A /* EntryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8508BDC1E745C8D00BCF12A /* EntryViewController.storyboard */; };
 		C8508BDF1E745C8D00BCF12A /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8508BDD1E745C8D00BCF12A /* EntryViewController.swift */; };
 		C851AF841E62ACA300D9039E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C851AF821E62ACA300D9039E /* Localizable.strings */; };
@@ -112,6 +116,8 @@
 		C896739B1E92C1B800D67069 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C896739A1E92C1B800D67069 /* Settings.bundle */; };
 		C896739D1E93E30900D67069 /* MemberSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C896739C1E93E30900D67069 /* MemberSettingCell.swift */; };
 		C896739F1E93E31700D67069 /* MemberSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C896739E1E93E31700D67069 /* MemberSettingCell.xib */; };
+		C89673A11E95539200D67069 /* MailSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89673A01E95539200D67069 /* MailSettingCell.swift */; };
+		C89673A31E9553A200D67069 /* MailSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C89673A21E9553A200D67069 /* MailSettingCell.xib */; };
 		C8D14FAE1E6AB0C600FEB634 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D14FAD1E6AB0C600FEB634 /* LocationManager.swift */; };
 		C8FEA7011E71CD6100503ED5 /* HeaderButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8FEA7001E71CD6100503ED5 /* HeaderButtonView.xib */; };
 		C8FEA7031E71CDF900503ED5 /* HeaderButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FEA7021E71CDF900503ED5 /* HeaderButtonView.swift */; };
@@ -146,6 +152,10 @@
 		C80696BA1E65E0A200978338 /* MemberAttendanceViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberAttendanceViewCell.swift; sourceTree = "<group>"; };
 		C82876041E8830EE004B4CC9 /* EntryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryModel.swift; sourceTree = "<group>"; };
 		C82876061E883300004B4CC9 /* HeaderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderModel.swift; sourceTree = "<group>"; };
+		C84627821E96F8DC00A535F5 /* FileImportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileImportCell.swift; sourceTree = "<group>"; };
+		C84627841E96F8F100A535F5 /* FileImportCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileImportCell.xib; sourceTree = "<group>"; };
+		C84627871E96FE3000A535F5 /* FileManagementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagementViewController.swift; sourceTree = "<group>"; };
+		C84627891E96FE4400A535F5 /* FileManagementViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FileManagementViewController.storyboard; sourceTree = "<group>"; };
 		C8508BDC1E745C8D00BCF12A /* EntryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EntryViewController.storyboard; sourceTree = "<group>"; };
 		C8508BDD1E745C8D00BCF12A /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		C851AF831E62ACA300D9039E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -242,6 +252,8 @@
 		C896739A1E92C1B800D67069 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		C896739C1E93E30900D67069 /* MemberSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSettingCell.swift; sourceTree = "<group>"; };
 		C896739E1E93E31700D67069 /* MemberSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberSettingCell.xib; sourceTree = "<group>"; };
+		C89673A01E95539200D67069 /* MailSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailSettingCell.swift; sourceTree = "<group>"; };
+		C89673A21E9553A200D67069 /* MailSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MailSettingCell.xib; sourceTree = "<group>"; };
 		C8D14FAD1E6AB0C600FEB634 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C8FEA7001E71CD6100503ED5 /* HeaderButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderButtonView.xib; sourceTree = "<group>"; };
 		C8FEA7021E71CDF900503ED5 /* HeaderButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderButtonView.swift; sourceTree = "<group>"; };
@@ -309,6 +321,15 @@
 			name = MemberAttendanceView;
 			sourceTree = "<group>";
 		};
+		C84627861E96FE1900A535F5 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				C84627871E96FE3000A535F5 /* FileManagementViewController.swift */,
+				C84627891E96FE4400A535F5 /* FileManagementViewController.storyboard */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
 		C8508BDB1E745C8D00BCF12A /* Entry */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +384,10 @@
 				C85708451E8A4CCD00B21DE4 /* ThemeColorSelectCell.xib */,
 				C896739C1E93E30900D67069 /* MemberSettingCell.swift */,
 				C896739E1E93E31700D67069 /* MemberSettingCell.xib */,
+				C89673A01E95539200D67069 /* MailSettingCell.swift */,
+				C89673A21E9553A200D67069 /* MailSettingCell.xib */,
+				C84627821E96F8DC00A535F5 /* FileImportCell.swift */,
+				C84627841E96F8F100A535F5 /* FileImportCell.xib */,
 			);
 			path = SettingTableCell;
 			sourceTree = "<group>";
@@ -517,6 +542,7 @@
 		C863C91C1E608FA200FD75F1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C84627861E96FE1900A535F5 /* File */,
 				C89673861E90D37700D67069 /* MemberSearchList */,
 				C85C3ACA1E8EC8B400C8B468 /* MailSend */,
 				C857086E1E8C3C4F00B21DE4 /* List */,
@@ -822,6 +848,7 @@
 				C851AF9F1E630D5300D9039E /* MemberListTableCell.xib in Resources */,
 				C85599A61E755E0C000C7C49 /* UnderLineView.xib in Resources */,
 				C8FEA7011E71CD6100503ED5 /* HeaderButtonView.xib in Resources */,
+				C84627851E96F8F100A535F5 /* FileImportCell.xib in Resources */,
 				C85708461E8A4CCD00B21DE4 /* ThemeColorSelectCell.xib in Resources */,
 				C8508BDE1E745C8D00BCF12A /* EntryViewController.storyboard in Resources */,
 				C85599A81E771A98000C7C49 /* MemberList.plist in Resources */,
@@ -836,6 +863,7 @@
 				C857083A1E8A42D200B21DE4 /* SettingViewController.storyboard in Resources */,
 				C80696B91E65E08900978338 /* MemberAttendanceViewCell.xib in Resources */,
 				C89673911E90F62200D67069 /* MemberSearchViewCell.xib in Resources */,
+				C89673A31E9553A200D67069 /* MailSettingCell.xib in Resources */,
 				C8FEA70E1E7333EF00503ED5 /* InputView.xib in Resources */,
 				C89673891E90D37700D67069 /* MemberSearchViewController.storyboard in Resources */,
 				C863C9701E608FA200FD75F1 /* LaunchScreen.storyboard in Resources */,
@@ -843,6 +871,7 @@
 				C857CC511E7066E9007A3E35 /* ModeView.xib in Resources */,
 				C85708731E8C3C4F00B21DE4 /* MemberAttendanceViewController.storyboard in Resources */,
 				C851AF891E62AFB300D9039E /* SideMemuTableCell.xib in Resources */,
+				C846278A1E96FE4400A535F5 /* FileManagementViewController.storyboard in Resources */,
 				C851AF841E62ACA300D9039E /* Localizable.strings in Resources */,
 				C857CC631E717EA9007A3E35 /* EventListTableCell.xib in Resources */,
 				C85708771E8C3C4F00B21DE4 /* ListViewController.storyboard in Resources */,
@@ -971,8 +1000,10 @@
 				C85708401E8A4C6100B21DE4 /* ModeChangeCell.swift in Sources */,
 				C806968D1E6482B900978338 /* Event.swift in Sources */,
 				C85C3ADC1E8FB5D600C8B468 /* PeripheralDeviceManager.swift in Sources */,
+				C89673A11E95539200D67069 /* MailSettingCell.swift in Sources */,
 				C85C3AD01E8ED36C00C8B468 /* LessonAttendanceModel.swift in Sources */,
 				C82876051E8830EE004B4CC9 /* EntryModel.swift in Sources */,
+				C84627831E96F8DC00A535F5 /* FileImportCell.swift in Sources */,
 				C85708761E8C3C4F00B21DE4 /* CommonWebViewController.swift in Sources */,
 				C863C98A1E616FDB00FD75F1 /* SideMenuViewController.swift in Sources */,
 				C85708441E8A4CB800B21DE4 /* ThemeColorSelectCell.swift in Sources */,
@@ -1001,6 +1032,7 @@
 				C80696BB1E65E0A200978338 /* MemberAttendanceViewCell.swift in Sources */,
 				C896739D1E93E30900D67069 /* MemberSettingCell.swift in Sources */,
 				C8FEA7101E73340200503ED5 /* InputView.swift in Sources */,
+				C84627881E96FE3000A535F5 /* FileManagementViewController.swift in Sources */,
 				C82876071E883300004B4CC9 /* HeaderModel.swift in Sources */,
 				C851AF9A1E6300F900D9039E /* Member.swift in Sources */,
 				C86F61731E88DC5A00C829A0 /* EntryTrial.swift in Sources */,

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--File Management View Controller-->
+        <scene sceneID="teW-So-iqJ">
+            <objects>
+                <viewController storyboardIdentifier="FileManagementViewController" id="tjp-BE-Fks" customClass="FileManagementViewController" customModule="AttendanceRecord" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nU7-dZ-Pqd"/>
+                        <viewControllerLayoutGuide type="bottom" id="fVY-On-6DM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WNP-Ws-8UL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Iw-Gv-31h" customClass="HeaderView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="En2-G5-coZ"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nV2-dF-2g8" customClass="FooterView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="642" width="375" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="zvN-he-9cu"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="60" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="gou-me-OgH">
+                                <rect key="frame" x="0.0" y="71" width="375" height="571"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="tjp-BE-Fks" id="hbm-qF-Nml"/>
+                                    <outlet property="delegate" destination="tjp-BE-Fks" id="HWC-vG-cX2"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gou-me-OgH" secondAttribute="trailing" id="1Lt-O3-9O0"/>
+                            <constraint firstItem="gou-me-OgH" firstAttribute="leading" secondItem="WNP-Ws-8UL" secondAttribute="leading" id="89g-yx-b6M"/>
+                            <constraint firstAttribute="trailing" secondItem="nV2-dF-2g8" secondAttribute="trailing" id="8c7-sI-mQL"/>
+                            <constraint firstItem="nV2-dF-2g8" firstAttribute="top" secondItem="gou-me-OgH" secondAttribute="bottom" id="Jqb-Mf-wON"/>
+                            <constraint firstItem="nV2-dF-2g8" firstAttribute="leading" secondItem="WNP-Ws-8UL" secondAttribute="leading" id="VHQ-gc-wcY"/>
+                            <constraint firstAttribute="trailing" secondItem="0Iw-Gv-31h" secondAttribute="trailing" id="WC5-kd-r95"/>
+                            <constraint firstItem="0Iw-Gv-31h" firstAttribute="top" secondItem="WNP-Ws-8UL" secondAttribute="top" id="btS-dm-SVT"/>
+                            <constraint firstItem="gou-me-OgH" firstAttribute="top" secondItem="0Iw-Gv-31h" secondAttribute="bottom" id="cVk-w7-48y"/>
+                            <constraint firstItem="fVY-On-6DM" firstAttribute="top" secondItem="nV2-dF-2g8" secondAttribute="bottom" id="dDV-Tr-4qQ"/>
+                            <constraint firstItem="0Iw-Gv-31h" firstAttribute="leading" secondItem="WNP-Ws-8UL" secondAttribute="leading" id="uQp-8t-MSw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="headerView" destination="0Iw-Gv-31h" id="fXv-ON-mWM"/>
+                        <outlet property="tableView" destination="gou-me-OgH" id="OKM-Us-Rbf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wWA-hh-Nh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116" y="115.59220389805098"/>
+        </scene>
+    </scenes>
+</document>

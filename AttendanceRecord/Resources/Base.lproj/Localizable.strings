@@ -27,6 +27,7 @@
 "Common.Label.AppStore" = "AppStoreへ";
 
 "Common.Label.AttendanceInput" = "出欠入力";
+"Common.Label.BulkInput" = "一括入力";
 "Alert.Title.MemberRegistComfirm" = "登録";
 "Alert.Message.Add" = "入力した内容で\n登録してもよろしいですか？";
 "Alert.Title.DeleteComfirm" = "削除";
@@ -46,6 +47,10 @@
 "Entry.HeaderLabel.Event" = "イベント登録";
 "Entry.HeaderLabel.Member" = "メンバー登録";
 
+// メンバー選択
+"MemberSelection.Alert.Title.MemberRegister" = "メンバー登録";
+"MemberSelection.Alert.Message.MemberRegister" = "%@ に選択されたメンバーを追加してよろしいですか？";
+
 
 // ヘッダー
 "Header.Button.Label.UserRegist" = "登録";
@@ -56,6 +61,7 @@
 "Header.Title.Label.Settings" = "設定";
 "Header.Title.Label.MemberSelect" = "メンバー選択";
 "Header.Button.Label.Send" = "送信";
+"Header.Button.Label.Buld" = "一括";
 
 // モード
 "Mode.Title.Label.ModeSelect" = "モード選択";
@@ -73,6 +79,7 @@
 "Loading.SubTitle.Label.TapCancel" = "画面タップで検索中断";
 
 // 設定
+"Setting.Label.Email.Address" = "メール宛先";
 "Setting.Label.Member.Name" = "ふりがな登録";
 "Setting.Label.Member.Email" = "メールアドレス登録";
 

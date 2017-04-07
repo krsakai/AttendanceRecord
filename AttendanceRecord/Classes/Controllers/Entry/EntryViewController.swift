@@ -68,9 +68,15 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
             return [InputView.instantiate(owner: self, inputType: .eventTitle),
                     InputView.instantiate(owner: self, inputType: .eventDate)]
         case .member:
-            return [InputView.instantiate(owner: self, inputType: .memberNameKana),
-                    InputView.instantiate(owner: self, inputType: .memberNameJp),
-                    InputView.instantiate(owner: self, inputType: .memberEmail)]
+            var inputViews = [InputView]()
+            if DeviceModel.isRequireMemberName {
+                inputViews.append(InputView.instantiate(owner: self, inputType: .memberNameKana))
+            }
+            inputViews.append(InputView.instantiate(owner: self, inputType: .memberNameJp))
+            if DeviceModel.isRequireEmail {
+                inputViews.append(InputView.instantiate(owner: self, inputType: .memberEmail))
+            }
+            return inputViews
         }
     }()
     
@@ -111,10 +117,10 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
                 }]
         case .member:
             return [ActionKyes.memberEntryCompletion: {
-                let kana = self.inputViews.filter { $0.inputType == .memberNameKana }.first!
-                let jp = self.inputViews.filter { $0.inputType == .memberNameJp }.first!
-                let email = self.inputViews.filter { $0.inputType == .memberEmail }.first!
-                let member = Member(nameJp: jp.inputString, nameKana: kana.inputString, email: email.inputString)
+                let kana = self.inputViews.filter { $0.inputType == .memberNameKana }.first
+                let jp = self.inputViews.filter { $0.inputType == .memberNameJp }.first
+                let email = self.inputViews.filter { $0.inputType == .memberEmail }.first
+                let member = Member(nameJp: jp?.inputString ?? "", nameKana: kana?.inputString ?? "", email: email?.inputString ?? "")
                 MemberManager.shared.saveMemberListToRealm([member])
                 guard let lessonId = self.sourceViewModel?.id, lessonId != "" else {
                     self.entryCompletion?(member) ?? {}()

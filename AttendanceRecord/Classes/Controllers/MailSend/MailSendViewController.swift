@@ -16,7 +16,7 @@ internal class MailSendViewController: MFMailComposeViewController, MFMailCompos
     static func instantiate(lesson: Lesson) -> MailSendViewController {
         let viewController = MailSendViewController()
         let dataModel = LessonAttendanceModel.instantiate(lesson: lesson)
-        viewController.setToRecipients([DeviceModel.memberEmail])
+        viewController.setToRecipients([DeviceModel.mailAddress])
         viewController.setSubject(lesson.lessonTitle)
         viewController.setMessageBody(dataModel.htmlString, isHTML: true)
         viewController.mailComposeDelegate = viewController

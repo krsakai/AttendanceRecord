@@ -36,7 +36,7 @@ internal final class MemberAttendanceViewCell: UITableViewCell {
     
     @IBAction func didTap(attendanceButton: UIButton) {
         let alert = UIAlertController(title: R.string.localizable.commonLabelAttendanceInput(),
-                                      message: viewModel.event.eventTitle,
+                                      message: viewModel.member.nameJp,
                                       preferredStyle: .actionSheet)
         
         

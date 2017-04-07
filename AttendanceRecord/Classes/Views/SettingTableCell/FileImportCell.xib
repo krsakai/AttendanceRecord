@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FileImportCell" rowHeight="87" id="1jf-Cb-F2l" customClass="FileImportCell" customModule="AttendanceRecord" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1jf-Cb-F2l" id="qMS-ES-6uE">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="86.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2m-HY-DLA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="86.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <state key="normal" title="ファイル取り込み"/>
+                        <connections>
+                            <action selector="tappedButton:" destination="1jf-Cb-F2l" eventType="touchUpInside" id="gqk-ZC-ci0"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="b2m-HY-DLA" secondAttribute="trailing" id="2Ur-Bt-wQ2"/>
+                    <constraint firstAttribute="bottom" secondItem="b2m-HY-DLA" secondAttribute="bottom" id="8vN-9U-jiY"/>
+                    <constraint firstItem="b2m-HY-DLA" firstAttribute="leading" secondItem="qMS-ES-6uE" secondAttribute="leading" id="D4f-TA-8Uv"/>
+                    <constraint firstItem="b2m-HY-DLA" firstAttribute="top" secondItem="qMS-ES-6uE" secondAttribute="top" id="NCO-r7-1HU"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="importButton" destination="b2m-HY-DLA" id="dox-Nf-O3P"/>
+            </connections>
+            <point key="canvasLocation" x="-220.5" y="13.5"/>
+        </tableViewCell>
+    </objects>
+</document>

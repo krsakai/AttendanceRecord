@@ -12,6 +12,10 @@ import CTCheckbox
 import RealmSwift
 import SWTableViewCell
 
+internal protocol CheckBoxDelegate {
+    func changeCheckbox(checkbox: CTCheckbox)
+}
+
 internal class MemberListTableCell: SWTableViewCell {
     
     @IBOutlet private weak var leftView: UIView!
@@ -19,6 +23,8 @@ internal class MemberListTableCell: SWTableViewCell {
     @IBOutlet private weak var nameJpLabel: UILabel!
     @IBOutlet private weak var nameKanaLabel: UILabel!
     @IBOutlet private weak var emailLabel: UILabel!
+    
+    private var checkboxDelegate: CheckBoxDelegate?
     
     var checkbox: CTCheckbox!
     
@@ -30,6 +36,7 @@ internal class MemberListTableCell: SWTableViewCell {
     
     static func instantiate(_ owner: AnyObject, member: Member) -> MemberListTableCell {
         let cell = R.nib.memberListTableCell.firstView(owner: owner, options: nil)!
+        cell.checkboxDelegate = owner as? CheckBoxDelegate
         cell.nameJpLabel.text = member.nameJp
         cell.nameKanaLabel.text = member.nameKana
         cell.emailLabel.text = member.email
@@ -58,6 +65,6 @@ internal class MemberListTableCell: SWTableViewCell {
     }
     
     func changeCheckbox(checkbox: CTCheckbox) {
-        
+        checkboxDelegate?.changeCheckbox(checkbox: checkbox)
     }
 }

@@ -30,7 +30,47 @@ internal final class MemberAttendanceViewController: UIViewController, HeaderVie
         super.viewDidLoad()
         tableView.separatorColor = DeviceModel.themeColor.color
         setupHeaderView(event.eventTitle, buttonTypes:
-            [[.back],[]]
+            [[.back],[.bulk(HeaderModel() {
+                let alert = UIAlertController(title: R.string.localizable.commonLabelAttendanceInput(),
+                                              message: R.string.localizable.commonLabelBulkInput(),
+                                              preferredStyle: .actionSheet)
+                
+                
+                let attendAction = UIAlertAction(title: AttendanceStatus.attend.rawValue, style: UIAlertActionStyle.default) { _ in
+                    let attendanceList = self.viewModels.map { viewModel -> Attendance in
+                        let attendance = viewModel.attendance.clone
+                        attendance.attendanceStatusRawValue = AttendanceStatus.attend.rawValue
+                        return attendance
+                    }
+                    AttendanceManager.shared.saveAttendanceListToRealm(attendanceList)
+                    self.tableView.reloadData()
+                }
+                let absencAction = UIAlertAction(title: AttendanceStatus.absence.rawValue,  style: UIAlertActionStyle.default) { _ in
+                    let attendanceList = self.viewModels.map { viewModel -> Attendance in
+                        let attendance = viewModel.attendance.clone
+                        attendance.attendanceStatusRawValue = AttendanceStatus.absence.rawValue
+                        return attendance
+                    }
+                    AttendanceManager.shared.saveAttendanceListToRealm(attendanceList)
+                    self.tableView.reloadData()
+                }
+                let noEntryAction = UIAlertAction(title: AttendanceStatus.noEntry.rawValue,  style: UIAlertActionStyle.default) { _ in
+                    let attendanceList = self.viewModels.map { viewModel -> Attendance in
+                        let attendance = viewModel.attendance.clone
+                        attendance.attendanceStatusRawValue = AttendanceStatus.noEntry.rawValue
+                        return attendance
+                    }
+                    AttendanceManager.shared.saveAttendanceListToRealm(attendanceList)
+                    self.tableView.reloadData()
+                }
+                let cancelAction = UIAlertAction(title: R.string.localizable.commonLabelCancel(),
+                                                 style: UIAlertActionStyle.cancel)
+                alert.addAction(attendAction)
+                alert.addAction(absencAction)
+                alert.addAction(noEntryAction)
+                alert.addAction(cancelAction)
+                AppDelegate.navigation?.present(alert, animated: true, completion: nil)
+            })]]
         )
     }
 }

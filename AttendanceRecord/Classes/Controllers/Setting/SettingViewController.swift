@@ -12,12 +12,16 @@ internal enum Setting {
     case mode
     case themeColor
     case member(MemberSettingType)
+    case mailAddress
+    case fileimport
     
     var title: String {
         switch self {
         case .mode: return R.string.localizable.modeTitleLabelModeSelect()
         case .themeColor: return R.string.localizable.modeTitleLabelThemeSelect()
         case .member: return R.string.localizable.modeTitleLabelMemberSetting()
+        case .mailAddress: return R.string.localizable.settingLabelEmailAddress()
+        case .fileimport: return "データ管理"
         }
     }
     
@@ -26,6 +30,8 @@ internal enum Setting {
         case .mode: return ModeChangeCell.instantiate(owner)
         case .themeColor: return ThemeColorSelectCell.instantiate(owner)
         case .member(let type): return MemberSettingCell.instantiate(owner, type: type)
+        case .mailAddress: return MailSettingCell.instantiate(owner: owner)
+        case .fileimport: return FileImportCell.instantiate(owner: owner)
         }
     }
 }
@@ -37,7 +43,7 @@ internal final class SettingViewController: UIViewController, HeaderViewDisplaya
     @IBOutlet fileprivate weak var tableView: UITableView!
     
     fileprivate var settingList: [[Setting]] {
-        return [[.mode], [.themeColor], [.member(.nameJp),.member(.email)]]
+        return [ [.member(.nameJp),.member(.email)], [.mailAddress], [.themeColor], [.mode], [.fileimport]]
     }
     
     // MARK: - Initializer
@@ -54,6 +60,11 @@ internal final class SettingViewController: UIViewController, HeaderViewDisplaya
         setupHeaderView(R.string.localizable.headerTitleLabelSettings(),
                         buttonTypes: [[.close(nil)],[]])
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+
 }
 
 extension SettingViewController: UITableViewDataSource {

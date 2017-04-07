@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CTCheckbox
 
 internal final class MemberSelectViewController: UIViewController, HeaderViewDisplayable {
     
@@ -41,11 +42,37 @@ internal final class MemberSelectViewController: UIViewController, HeaderViewDis
     // MARK: View Life Cycle
     override func viewDidLoad() {
          super.viewDidLoad()
-        setupHeaderView(R.string.localizable.headerTitleLabelMemberSelect(), buttonTypes: [[.close(nil)],[]])
+        setupHeaderView(R.string.localizable.headerTitleLabelMemberSelect(), buttonTypes: [[.close(nil)], [.selection(HeaderModel() {
+            AlertController.showAlert(title: R.string.localizable.memberSelectionAlertTitleMemberRegister(),
+                                      message: R.string.localizable.memberSelectionAlertMessageMemberRegister(self.lesson.lessonTitle),
+                                      enableCancel: true, positiveAction: {
+                let selectCellList = self.cells.filter { $0.checkbox.checked }
+                let lessonMemberList = selectCellList.map { LessonMember(lessonId: self.lesson.lessonId, memberId: $0.member.memberId) }
+                LessonManager.shared.saveLessonMemberListToRealm(lessonMemberList)
+                UIApplication.topViewController()?.dismiss(animated: true, completion: nil)
+            })
+        })]])
+        updateHeaderButton()
     }
     
     // MARK: Private Method
     
+    fileprivate var cells: [MemberListTableCell] {
+        guard self.tableView.numberOfRows(inSection: 0) > 0 else {
+            return [MemberListTableCell]()
+        }
+        return (0...self.tableView.numberOfRows(inSection: 0) - 1 ).map { row in
+            self.tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! MemberListTableCell
+        }
+    }
+    
+    fileprivate func updateHeaderButton() {
+        guard let _ = (cells.filter { $0.checkbox.checked }.first) else {
+            refreshHeaderView(enabled: false, buttonTypes: [[],[.selection(nil)]])
+            return
+        }
+        refreshHeaderView(enabled: true, buttonTypes: [[],[.selection(nil)]])
+    }
 }
 
 extension MemberSelectViewController: UITableViewDataSource {
@@ -61,10 +88,8 @@ extension MemberSelectViewController: UITableViewDataSource {
     }
 }
 
-extension MemberSelectViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        LessonManager.shared.saveLessonMemberListToRealm([LessonMember(lessonId: lesson.lessonId, memberId: memberList[indexPath.row].memberId)])
-        dismiss(animated: true, completion: nil)
+extension MemberSelectViewController: CheckBoxDelegate {
+    func changeCheckbox(checkbox: CTCheckbox) {
+        updateHeaderButton()
     }
 }
