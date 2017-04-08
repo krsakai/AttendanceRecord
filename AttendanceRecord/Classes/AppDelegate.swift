@@ -14,42 +14,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        _ = CentralManager.shared.centralManager
         setupMasterData()
         window?.rootViewController = instantiateRootViewController
         
         return true
     }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        
-    }
 }
 
 extension AppDelegate {
-    /// マスターデータをRealmに保存
+    
     fileprivate func setupMasterData() {
         if !DeviceModel.isFirstReadMasterData {
-            MemberManager.shared.saveDefaultMemberList()
-            EventManager.shared.saveDefaultEventList()
-            LessonManager.shared.saveDefaultlessonList()
+            let eventListData = FilesManager.list(fileName: FilePath.FileName.event, fileType: FilePath.FileType.csv, resourceType: .bundle)
+            let memberListData = FilesManager.list(fileName: FilePath.FileName.member, fileType: FilePath.FileType.csv, resourceType: .bundle)
+            
+            guard let eventList = eventListData , let memberList = memberListData else {
+                NSLog("ファイルがありません")
+                return
+            }
+            
+            FilesManager.save(fileName: FilePath.sampleFileEvent, dataList: eventList)
+            FilesManager.save(fileName: FilePath.sampleFileMember, dataList: memberList)
         }
     }
 }
@@ -150,25 +136,3 @@ internal protocol ScreenReloadable {
 extension ScreenReloadable where Self: UIViewController {
     func reloadScreen() {}
 }
-
-//extension Data {
-//    
-//    func test(sendData: Data, pinData: Data, count: Int) {
-//        var dataRange: ClosedRange<Int>
-//        var dataSize = pinData.count
-//        var dataSplitCount = dataSize/count;
-//        
-//        dataRange.length = count;
-//        dataRange.location = 0;
-//        var dataArray = [Int]()
-//        
-//        for i in 0..<dataSplitCount {
-//            dataArray.append(sendData.subdata(in: dataRange))
-//            dataRange.location += count
-//        }
-//        
-//        // 最後のデータは、レングスを調整してから処理を行う
-//        dataRange.length = dataSize%count
-//        dataArray.append(pinData.subdata(in: dataRange))
-//    }
-//}

@@ -46,8 +46,8 @@ internal final class MemberSelectViewController: UIViewController, HeaderViewDis
             AlertController.showAlert(title: R.string.localizable.memberSelectionAlertTitleMemberRegister(),
                                       message: R.string.localizable.memberSelectionAlertMessageMemberRegister(self.lesson.lessonTitle),
                                       enableCancel: true, positiveAction: {
-                let selectCellList = self.cells.filter { $0.checkbox.checked }
-                let lessonMemberList = selectCellList.map { LessonMember(lessonId: self.lesson.lessonId, memberId: $0.member.memberId) }
+                let checkedMemberList = self.checked.map { self.memberList[$0] }
+                let lessonMemberList = checkedMemberList.map { LessonMember(lessonId: self.lesson.lessonId, memberId: $0.memberId) }
                 LessonManager.shared.saveLessonMemberListToRealm(lessonMemberList)
                 UIApplication.topViewController()?.dismiss(animated: true, completion: nil)
             })
@@ -57,21 +57,14 @@ internal final class MemberSelectViewController: UIViewController, HeaderViewDis
     
     // MARK: Private Method
     
-    fileprivate var cells: [MemberListTableCell] {
-        guard self.tableView.numberOfRows(inSection: 0) > 0 else {
-            return [MemberListTableCell]()
-        }
-        return (0...self.tableView.numberOfRows(inSection: 0) - 1 ).map { row in
-            self.tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! MemberListTableCell
-        }
-    }
+    fileprivate var checked = [Int]()
     
     fileprivate func updateHeaderButton() {
-        guard let _ = (cells.filter { $0.checkbox.checked }.first) else {
+        if checked.count == 0 {
             refreshHeaderView(enabled: false, buttonTypes: [[],[.selection(nil)]])
-            return
+        } else {
+            refreshHeaderView(enabled: true, buttonTypes: [[],[.selection(nil)]])
         }
-        refreshHeaderView(enabled: true, buttonTypes: [[],[.selection(nil)]])
     }
 }
 
@@ -84,12 +77,18 @@ extension MemberSelectViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return MemberListTableCell.instantiate(self, member: memberList[indexPath.row])
+        let checked = self.checked.index(of: indexPath.row) != nil ? true : false
+        return MemberListTableCell.instantiate(self, member: memberList[indexPath.row], index: indexPath.row, checked: checked)
     }
 }
 
 extension MemberSelectViewController: CheckBoxDelegate {
-    func changeCheckbox(checkbox: CTCheckbox) {
+    func changeCheckbox(checkbox: CTCheckbox, index: Int) {
+        if checkbox.checked {
+            checked.append(index)
+        } else {
+            checked.remove(at: checked.index(of: index)!)
+        }
         updateHeaderButton()
     }
 }

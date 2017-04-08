@@ -174,8 +174,8 @@ extension CentralManager: CBPeripheralDelegate {
         }
         
         let member = MemberManager.shared.memberListDataFromRealm().first!.clone
-        let memberData = Mapper().toJSONString(member)?.characteristicData
-        peripheral.writeValue("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffffffffffffffffffffffffffffffffffff".characteristicData, for: characteristic, type: CBCharacteristicWriteType.withResponse)
+        _ = Mapper().toJSONString(member)?.characteristicData
+        peripheral.writeValue("a".characteristicData, for: characteristic, type: CBCharacteristicWriteType.withResponse)
     }
     
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {

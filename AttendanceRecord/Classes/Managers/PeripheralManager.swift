@@ -65,9 +65,7 @@ extension PeripheralManager:  CBPeripheralManagerDelegate {
         if request.characteristic.uuid.isEqual(characteristic.uuid) {
             
             // CBMutableCharacteristicのvalueをCBATTRequestのvalueにセット
-            let member = DeviceModel.currentMember // member?.toJSONString()?.characteristicData
-            let byte = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffffffffffffffffffffffffffffffffffff".characteristicData
-            let length = [UInt8](byte)
+            request.value = "a".characteristicData
             
             // リクエストに応答
             peripheralManager.respond(to: request, withResult: .success)

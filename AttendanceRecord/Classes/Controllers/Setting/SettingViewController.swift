@@ -21,7 +21,7 @@ internal enum Setting {
         case .themeColor: return R.string.localizable.modeTitleLabelThemeSelect()
         case .member: return R.string.localizable.modeTitleLabelMemberSetting()
         case .mailAddress: return R.string.localizable.settingLabelEmailAddress()
-        case .fileimport: return "データ管理"
+        case .fileimport: return R.string.localizable.settingLabelDataDataManagement()
         }
     }
     

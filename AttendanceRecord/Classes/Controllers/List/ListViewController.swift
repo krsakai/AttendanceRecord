@@ -150,25 +150,18 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
             return [[.back],
                     [.selection(HeaderModel(selectionAction: { targetView in
                         // メンバー選択
-                        let selection = PopoverItem(title: "メンバー選択") { _ in
+                        let selection = PopoverItem(title: R.string.localizable.headerTitleLabelMemberSelect()) { _ in
                             self.popover.dismiss()
                             let viewController = MemberSelectViewController.instantiate(lesson: LessonManager.shared.lessonListDataFromRealm(predicate: Lesson.predicate(lessonId: model?.id ?? "")).first ?? Lesson())
                             self.present(viewController, animated: true, completion: nil)
                         }
                         
                         // メンバー登録
-                        let entry = PopoverItem(title: "メンバー登録") { _ in
+                        let entry = PopoverItem(title: R.string.localizable.memberSelectionAlertTitleMemberRegister()) { _ in
                             self.popover.dismiss()
                             let viewController = EntryViewController.instantiate(entryModel: EntryModel(entryType: .member, displayModel: model))
                             UIApplication.topViewController()?.present(viewController, animated: true, completion: nil)
                         }
-                        
-                        // メンバー受付
-//                        let reception = PopoverItem(title: "メンバー受付") { _ in
-//                            self.popover.dismiss()
-//                            let viewController = MemberSearchViewController.instantiate()
-//                            self.present(viewController, animated: true, completion: nil)
-//                        }
                         
                         let selectionView = SelectionView.instantiate(owner: self, items: [selection, entry])
                         self.popover.show(selectionView, fromView: targetView)

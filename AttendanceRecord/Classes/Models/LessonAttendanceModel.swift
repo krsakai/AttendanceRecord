@@ -89,9 +89,13 @@ private extension Array where Element: Equatable {
     }
 }
 
-private extension String {
+extension String {
     
     var utf8StringData: Data {
         return self.data(using: String.Encoding.utf8, allowLossyConversion: false)!
+    }
+    
+    var shiftJISStringData: Data {
+        return self.data(using: String.Encoding.shiftJIS, allowLossyConversion: false)!
     }
 }

@@ -83,35 +83,6 @@ extension LocationManager: CLLocationManagerDelegate {
 
         if(beacons.count > 0){
             
-            // STEP7: 発見したBeaconの数だけLoopをまわす
-            beacons.forEach { beacon in
-                
-                _ = beacon.proximityUUID;
-                _ = beacon.minor
-                _ = beacon.major
-                
-                var proximity = ""
-                
-                switch (beacon.proximity) {
-                    
-                case CLProximity.unknown :
-                    proximity = "Unknown"
-                    break
-                    
-                case CLProximity.far:
-                    proximity = "Far"
-                    break
-                    
-                case CLProximity.near:
-                    proximity = "Near"
-                    break
-                    
-                case CLProximity.immediate:
-                    proximity = "Immediate"
-                    break
-                }
-                
-            }
         }
     }
     

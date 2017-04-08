@@ -18,6 +18,7 @@
 "Common.Label.YES"             = "はい";
 "Common.Label.NO"             = "いいえ";
 "Common.Label.Cancel"         = "キャンセル";
+"Common.Label.Error"          = "エラー";
 
 "Common.Label.Yesterday"            = "昨日";
 "Common.Label.Today"                = "今日";
@@ -74,6 +75,9 @@
 "Mode.Alert.Title.Unimplemented" = "機能未実装";
 "Mode.Alert.Message.Unimplemented" = "このバージョンでの受講者モードは未実装です。最新版のアプリを確認してください";
 
+// メンバー検索
+"MemberSearch.Title.Label.MemberSearch" = "メンバー検索";
+
 // ローディング
 "Loading.Title.Label.MemberSearch" = "メンバー受付中";
 "Loading.SubTitle.Label.TapCancel" = "画面タップで検索中断";
@@ -82,6 +86,19 @@
 "Setting.Label.Email.Address" = "メール宛先";
 "Setting.Label.Member.Name" = "ふりがな登録";
 "Setting.Label.Member.Email" = "メールアドレス登録";
+"Setting.Label.Data.DataManagement" = "データ管理";
+
+// メール
+"MailSend.Label.Subject.SendTemplate" = "テンプレートの送信";
+
+// ファイル取り込み
+"FileSetting.Header.Title.FileRead" = "ファイル取り込み";
+"FileSetting.Setting.Title.HowToUse" = "使い方";
+"FileSetting.Setting.Title.FileList" = "ファイル一覧";
+"FileSetting.Setting.Title.ReadFileSelect" = "読み込みファイル選択";
+"FileSetting.Setting.Title.TemplateSend" = "テンプレートファイルを送る";
+"FileSetting.Error.Title.ReadData" = "データ読み込み";
+"FileSetting.Error.Message.ReadData" = "%@件の%@のデータがあります。データを登録してもよろしいでしょうか？";
 
 // 入力画面
 "InputView.Button.Toolbar.Today" = "今日";

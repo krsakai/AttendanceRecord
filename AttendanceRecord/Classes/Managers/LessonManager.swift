@@ -108,5 +108,19 @@ internal final class LessonManager {
         }
         return Array(realm.objects(LessonMember.self).filter(predicate))
     }
+    
+    /// ファイルからレッスンとイベントを保存する
+    func importFileData(filePath: String) {
+        guard let dataList = FilesManager.list(fileName: filePath.deletingPathExtension, resourceType: .documents) else {
+            return
+        }
+        let lesson = Lesson(lessonTitle: dataList[0][1])
+        var eventList = [Event]()
+        for index in 2...dataList.indexCount {
+            eventList.append(Event(lessonId: lesson.lessonId, eventDate: dataList[index][2].dateFromFileFormat, eventTitle: dataList[index][1]))
+        }
+        saveLessonListToRealm([lesson])
+        EventManager.shared.saveEventListToRealm(eventList)
+    }
 }
 

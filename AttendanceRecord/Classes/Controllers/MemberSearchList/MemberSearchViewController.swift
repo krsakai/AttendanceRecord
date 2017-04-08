@@ -35,7 +35,7 @@ internal class MemberSearchViewController: UIViewController, HeaderViewDisplayab
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorColor = DeviceModel.themeColor.color
-        setupHeaderView("メンバー検索", buttonTypes: [[.close(HeaderModel() {
+        setupHeaderView(R.string.localizable.memberSearchTitleLabelMemberSearch(), buttonTypes: [[.close(HeaderModel() {
             CentralManager.shared.searchStop()
         })],[]])
         CentralManager.shared.searchStart(delegate: self)

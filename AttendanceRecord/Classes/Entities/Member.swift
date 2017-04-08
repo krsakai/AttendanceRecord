@@ -32,17 +32,15 @@ internal final class Member: Object, ClonableObject {
         }
     }
     
-    dynamic private(set) var primaryKeyForRealm = ""
     
     // MARK: - Override
     
     override static func primaryKey() -> String? {
-        return "primaryKeyForRealm"
+        return "memberId"
     }
     
     // プライマリーキーを更新
     fileprivate func updatePrimaryKey() {
-        primaryKeyForRealm = memberId
     }
 }
 

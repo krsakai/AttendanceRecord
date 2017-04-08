@@ -37,8 +37,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出席簿アプリ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vp4-rl-maI">
-                                <rect key="frame" x="106.5" y="318.5" width="162" height="30.5"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch" translatesAutoresizingMaskIntoConstraints="NO" id="7KN-fL-J39">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出席簿" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vp4-rl-maI">
+                                <rect key="frame" x="147" y="318.5" width="81" height="31"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="27"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -46,7 +49,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.40784313725490196" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="7KN-fL-J39" secondAttribute="bottom" id="D0o-JZ-KSs"/>
+                            <constraint firstItem="7KN-fL-J39" firstAttribute="leading" secondItem="RgV-40-cS2" secondAttribute="leading" id="EsB-Ni-brY"/>
                             <constraint firstItem="Vp4-rl-maI" firstAttribute="centerX" secondItem="RgV-40-cS2" secondAttribute="centerX" id="b3N-Zq-al9"/>
+                            <constraint firstAttribute="trailing" secondItem="7KN-fL-J39" secondAttribute="trailing" id="fsp-Il-7yY"/>
+                            <constraint firstItem="7KN-fL-J39" firstAttribute="top" secondItem="RgV-40-cS2" secondAttribute="top" id="jAx-2a-liu"/>
                             <constraint firstItem="Vp4-rl-maI" firstAttribute="centerY" secondItem="RgV-40-cS2" secondAttribute="centerY" id="ujN-k6-neJ"/>
                         </constraints>
                     </view>
@@ -114,4 +121,7 @@
             <point key="canvasLocation" x="1524" y="136"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Launch" width="320" height="568"/>
+    </resources>
 </document>

@@ -39,6 +39,8 @@ internal enum AttendaceRecordFormat: String {
     case displayedYearToDay = "yyyy年 M月d日"
     case displayedYearToMin = "yyyy年 M月d日 H時mm分"
     case displayMonthToDay   = "M月d日"
+    
+    case fileDataYearToMin = "yyyy/MM/dd/H:mm"
 }
 
 // MARK: NSDate／String 変換
@@ -57,6 +59,13 @@ internal extension String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ja_JP")
         dateFormatter.dateFormat = format.rawValue
+        return dateFormatter.date(from: self) ?? NSDateZero
+    }
+    /// 表示用文字からのNSDate変換
+    var dateFromFileFormat: Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+        dateFormatter.dateFormat = AttendaceRecordFormat.fileDataYearToMin.rawValue
         return dateFormatter.date(from: self) ?? NSDateZero
     }
 }

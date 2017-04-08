@@ -13,7 +13,7 @@ import RealmSwift
 import SWTableViewCell
 
 internal protocol CheckBoxDelegate {
-    func changeCheckbox(checkbox: CTCheckbox)
+    func changeCheckbox(checkbox: CTCheckbox, index: Int)
 }
 
 internal class MemberListTableCell: SWTableViewCell {
@@ -28,14 +28,17 @@ internal class MemberListTableCell: SWTableViewCell {
     
     var checkbox: CTCheckbox!
     
+    var index: Int!
+    
     var member: Member!
     
     override var entity: Object? {
         return member as Object
     }
     
-    static func instantiate(_ owner: AnyObject, member: Member) -> MemberListTableCell {
+    static func instantiate(_ owner: AnyObject, member: Member, index: Int = 0, checked: Bool = false) -> MemberListTableCell {
         let cell = R.nib.memberListTableCell.firstView(owner: owner, options: nil)!
+        cell.index = index
         cell.checkboxDelegate = owner as? CheckBoxDelegate
         cell.nameJpLabel.text = member.nameJp
         cell.nameKanaLabel.text = member.nameKana
@@ -49,6 +52,7 @@ internal class MemberListTableCell: SWTableViewCell {
         guard owner is SWTableViewCellDelegate else {
             cell.checkbox = CTCheckbox(frame: CGRect(x: cell.leftView.frame.size.width/2 - 25, y: cell.frame.size.height/2 - 35, width: 50, height: 50))
             cell.checkbox.checkboxSideLength = 30
+            cell.checkbox.checked = checked
             cell.checkbox.addTarget(cell, action: #selector(MemberListTableCell.changeCheckbox), for: .valueChanged)
             cell.checkbox.setColor(DeviceModel.themeColor.color, for: .normal)
             cell.checkbox.setColor(DeviceModel.themeColor.color, for: .highlighted)
@@ -65,6 +69,6 @@ internal class MemberListTableCell: SWTableViewCell {
     }
     
     func changeCheckbox(checkbox: CTCheckbox) {
-        checkboxDelegate?.changeCheckbox(checkbox: checkbox)
+        checkboxDelegate?.changeCheckbox(checkbox: checkbox, index: index)
     }
 }

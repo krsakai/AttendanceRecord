@@ -100,3 +100,27 @@ extension String {
         return ns.appendingPathExtension(str)
     }
 }
+
+extension String {
+    
+    static var encodingTypes: [String.Encoding] {
+        return [String.Encoding.shiftJIS ,String.Encoding.utf8]
+    }
+    
+    static func encodingFile(filePath: String, separator: String = "\n") -> [[String]]? {
+        var encodingString: String? = nil
+        for index in 0...encodingTypes.count {
+            if let _ = encodingString {
+                break
+            }
+            do {
+                encodingString = try String(contentsOfFile:filePath, encoding: encodingTypes[index])
+            } catch { }
+        }
+        var colspanList = encodingString?.replacingOccurrences(of: "\r", with: "").components(separatedBy: separator)
+        if colspanList?.last?.characters.count == 0 {
+            colspanList?.removeLast()
+        }
+        return colspanList?.map { $0.components(separatedBy: ",") }
+    }
+}

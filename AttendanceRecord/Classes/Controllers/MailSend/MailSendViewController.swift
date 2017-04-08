@@ -20,7 +20,24 @@ internal class MailSendViewController: MFMailComposeViewController, MFMailCompos
         viewController.setSubject(lesson.lessonTitle)
         viewController.setMessageBody(dataModel.htmlString, isHTML: true)
         viewController.mailComposeDelegate = viewController
-        viewController.addAttachmentData(dataModel.csvData, mimeType: "text/csv", fileName: "\(lesson.lessonTitle).csv")
+        viewController.addAttachmentData(dataModel.csvData, mimeType: FilePath.MineType.csv, fileName: "\(lesson.lessonTitle)\(FilePath.Extension.csv)")
+        return viewController
+    }
+    
+    static func instantiate() -> MailSendViewController {
+        let viewController = MailSendViewController()
+        viewController.setToRecipients([DeviceModel.mailAddress])
+        viewController.setSubject(R.string.localizable.mailSendLabelSubjectSendTemplate())
+        viewController.mailComposeDelegate = viewController
+        do {
+            let encodingString = try String(contentsOfFile:ResourceType.bundle.path(fileName: FilePath.templateMember) ?? "", encoding: String.Encoding.utf8)
+            viewController.addAttachmentData(encodingString.shiftJISStringData, mimeType: FilePath.MineType.csv, fileName: FilePath.templateMember + FilePath.Extension.csv)
+        } catch { }
+        do {
+            let encodingString = try String(contentsOfFile:ResourceType.bundle.path(fileName: FilePath.templateEvent) ?? "", encoding: String.Encoding.utf8)
+            viewController.addAttachmentData(encodingString.shiftJISStringData, mimeType: FilePath.MineType.csv, fileName: FilePath.templateEvent + FilePath.Extension.csv)
+        } catch { }
+       
         return viewController
     }
     

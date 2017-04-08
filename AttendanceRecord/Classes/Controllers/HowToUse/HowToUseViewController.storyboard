@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--How To Use View Controller-->
+        <scene sceneID="d5o-Qt-fhk">
+            <objects>
+                <viewController storyboardIdentifier="HowToUseViewController" id="ZP7-ky-Tsd" customClass="HowToUseViewController" customModule="AttendanceRecord" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lw0-Ap-NOs"/>
+                        <viewControllerLayoutGuide type="bottom" id="dpT-w9-prU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qAx-UJ-3hb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUb-gC-Ske" customClass="HeaderView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="2dr-Gd-fM8"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CgK-dK-Wbg" customClass="FooterView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="675" width="375" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="9Ph-9G-gqB"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Al5-8W-PRM">
+                                <rect key="frame" x="0.0" y="71" width="375" height="604"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebz-Gb-YuV">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QLw-bU-wwp">
+                                                <rect key="frame" x="8" y="8" width="359" height="684"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <mutableString key="text">CSVファイルからデータを取り込む事ができます
+
+■ 手順
+① メンバーとイベントのテンプレートファイルをアプリからメールで送ります
+
+② テンプレートファイルのデータ入力欄に追加したいデータを入力し保存します
+
+③ 本アプリが入った端末をPCに接続します
+
+④ iTunesを立ち上げて接続した端末のアプリケーションを選択します
+
+⑤ 本アプリを選択して、ファイル共有の欄を確認します
+
+⑥ 作成したファイルを追加して同期します
+
+⑦ アプリを立ち上げて設定画面のデータ管理から追加したファイルを選択するとデータを取り込めます
+
+■ CSVファイルの作り方
+[ イベント.csv ] ()内が入力する箇所
+Lesson,(講義名)
+Event,タイトル,日付
+1,(イベント名),(日付：yyyy/MM/dd/HH:mm 形式)
+
+[ メンバー.csv ] ()内が入力する箇所
+Member,名前(フルネーム),ふりがな,メールアドレス
+1,(名前フルネーム),(ふりがな),(メールアドレス)</mutableString>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="QLw-bU-wwp" firstAttribute="top" secondItem="Ebz-Gb-YuV" secondAttribute="top" constant="8" id="9AO-8k-n4Y"/>
+                                            <constraint firstAttribute="bottom" secondItem="QLw-bU-wwp" secondAttribute="bottom" constant="8" id="Iqr-a1-A4r"/>
+                                            <constraint firstAttribute="height" constant="700" id="ccz-KW-4jJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="QLw-bU-wwp" secondAttribute="trailing" constant="8" id="qIE-zY-sgl"/>
+                                            <constraint firstItem="QLw-bU-wwp" firstAttribute="leading" secondItem="Ebz-Gb-YuV" secondAttribute="leading" constant="8" id="rmq-g8-qwa"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Ebz-Gb-YuV" secondAttribute="trailing" id="1Kk-0u-HIO"/>
+                                    <constraint firstItem="Ebz-Gb-YuV" firstAttribute="leading" secondItem="Al5-8W-PRM" secondAttribute="leading" id="Iid-4F-jZP"/>
+                                    <constraint firstItem="Ebz-Gb-YuV" firstAttribute="width" secondItem="Al5-8W-PRM" secondAttribute="width" id="Oen-x7-Aqd"/>
+                                    <constraint firstItem="Ebz-Gb-YuV" firstAttribute="top" secondItem="Al5-8W-PRM" secondAttribute="top" id="WM1-JO-LSO"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ebz-Gb-YuV" secondAttribute="bottom" id="fHp-YP-TCN"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Al5-8W-PRM" secondAttribute="trailing" id="6jd-uM-51B"/>
+                            <constraint firstItem="dpT-w9-prU" firstAttribute="top" secondItem="CgK-dK-Wbg" secondAttribute="bottom" id="BxI-Os-S3F"/>
+                            <constraint firstItem="XUb-gC-Ske" firstAttribute="top" secondItem="qAx-UJ-3hb" secondAttribute="top" id="Cbf-A8-5MN"/>
+                            <constraint firstItem="XUb-gC-Ske" firstAttribute="leading" secondItem="qAx-UJ-3hb" secondAttribute="leading" id="S5T-ZY-xE5"/>
+                            <constraint firstItem="CgK-dK-Wbg" firstAttribute="leading" secondItem="qAx-UJ-3hb" secondAttribute="leading" id="TNU-fU-0Ys"/>
+                            <constraint firstItem="Al5-8W-PRM" firstAttribute="leading" secondItem="qAx-UJ-3hb" secondAttribute="leading" id="TUu-sz-huX"/>
+                            <constraint firstItem="CgK-dK-Wbg" firstAttribute="top" secondItem="Al5-8W-PRM" secondAttribute="bottom" id="cxE-qQ-Cmc"/>
+                            <constraint firstItem="Al5-8W-PRM" firstAttribute="top" secondItem="XUb-gC-Ske" secondAttribute="bottom" id="hx5-Rl-61h"/>
+                            <constraint firstAttribute="trailing" secondItem="XUb-gC-Ske" secondAttribute="trailing" id="kTT-Xg-FQe"/>
+                            <constraint firstAttribute="trailing" secondItem="CgK-dK-Wbg" secondAttribute="trailing" id="waM-5O-3xK"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="700"/>
+                    <connections>
+                        <outlet property="headerView" destination="XUb-gC-Ske" id="g5K-bR-9e6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Alf-jD-65G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="133.59999999999999" y="102.54872563718142"/>
+        </scene>
+    </scenes>
+</document>

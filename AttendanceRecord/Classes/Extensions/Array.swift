@@ -37,4 +37,7 @@ extension Array {
         return self;
     }
     
+    var indexCount: Int {
+        return count - 1
+    }
 }

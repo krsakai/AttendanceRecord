@@ -12,6 +12,7 @@ import SwiftTask
 internal final class SplashViewController: UIViewController {
     
     // MARK: IBOutlet
+    
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     
     // MARK: Property

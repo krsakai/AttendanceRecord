@@ -45,13 +45,8 @@ internal class ModeChangeCell: UITableViewCell {
                                       positiveAction: { fulfill() }, negativeAction: { reject() })
             }.success { _ in
                 return ModeSelectTask {  _, fulfill, reject, _ in
-                    let viewController = EntryViewController.instantiate(entryModel: EntryModel(entryType: .member, entryCompletion: { member in
-                        DeviceModel.setCurrentMember(member: member as! Member)
-                        fulfill()
-                }, entryReject: { _ in
+                    UIApplication.shared.openURL(URL(string: FilePath.appStorePath + FilePath.appPath)!)
                     reject()
-                }))
-                    UIApplication.topViewController()?.present(viewController, animated: true)
                 }
             }.success { _ in
                 DeviceModel.mode = self.modeList[segmentControl.selectedIndex]
@@ -59,33 +54,6 @@ internal class ModeChangeCell: UITableViewCell {
             }.failure { _ in
                 self.segmentControl.selectedIndex = 0
         }
-        
-//        guard DeviceModel.currentMember == nil else {
-//            DeviceModel.mode = self.modeList[segmentControl.selectedIndex]
-//            AppDelegate.reloadScreen()
-//            return
-//        }
-//        
-//        ModeSelectTask {  _, fulfill, reject, _ in
-//            AlertController.showAlert(title: R.string.localizable.modeAlertTitleNoEntry(),
-//                                        message: R.string.localizable.modeAlertMessageNoEntry(),
-//                                        enableCancel: true, ok: { fulfill() }, cancel: { reject() })
-//        }.success { _ in
-//            return ModeSelectTask {  _, fulfill, reject, _ in
-//                let viewController = EntryViewController.instantiate(entryModel: EntryModel(entryType: .member, entryCompletion: { member in
-//                    DeviceModel.setCurrentMember(member: member as! Member)
-//                    fulfill()
-//                }, entryReject: { _ in
-//                    reject()
-//                }))
-//                UIApplication.topViewController()?.present(viewController, animated: true)
-//            }
-//        }.success { _ in
-//            DeviceModel.mode = self.modeList[segmentControl.selectedIndex]
-//            AppDelegate.reloadScreen()
-//        }.failure { _ in
-//            self.segmentControl.selectedIndex = 0
-//        }
     }
 }
 
