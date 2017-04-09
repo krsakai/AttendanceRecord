@@ -44,7 +44,7 @@
 "SideMenu.Label.AttendanceLessonList" = "受講講義";
 
 // 登録
-"Entry.HeaderLabel.Lesson" = "レッスン登録";
+"Entry.HeaderLabel.Lesson" = "講義登録";
 "Entry.HeaderLabel.Event" = "イベント登録";
 "Entry.HeaderLabel.Member" = "メンバー登録";
 
@@ -103,7 +103,7 @@
 // 入力画面
 "InputView.Button.Toolbar.Today" = "今日";
 "InpurtView.Button.Toolbar.Done" = "完了";
-"InputView.Label.Lesson.Title" = "レッスン名";
+"InputView.Label.Lesson.Title" = "講義名";
 "InputView.Label.Event.Title" = "イベント名";
 "InputView.Label.Event.Date" = "開催日";
 "InputView.Label.Member.NameKana" = "なまえ (かな)";
