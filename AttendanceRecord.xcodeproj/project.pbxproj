@@ -110,6 +110,7 @@
 		C86F61731E88DC5A00C829A0 /* EntryTrial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F61721E88DC5A00C829A0 /* EntryTrial.swift */; };
 		C86F61751E88E8D300C829A0 /* EasyTipView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C86F61741E88E8D300C829A0 /* EasyTipView.framework */; };
 		C8778F281E997BB900E336E7 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8778F271E997BB900E336E7 /* FilePath.swift */; };
+		C885804920231D220005089E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C885804820231D220005089E /* GoogleService-Info.plist */; };
 		C892F2051E995897009B852A /* template_event.csv in Resources */ = {isa = PBXBuildFile; fileRef = C892F2031E995897009B852A /* template_event.csv */; };
 		C892F2061E995897009B852A /* template_member.csv in Resources */ = {isa = PBXBuildFile; fileRef = C892F2041E995897009B852A /* template_member.csv */; };
 		C89673891E90D37700D67069 /* MemberSearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C89673871E90D37700D67069 /* MemberSearchViewController.storyboard */; };
@@ -123,6 +124,8 @@
 		C896739F1E93E31700D67069 /* MemberSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C896739E1E93E31700D67069 /* MemberSettingCell.xib */; };
 		C89673A11E95539200D67069 /* MailSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89673A01E95539200D67069 /* MailSettingCell.swift */; };
 		C89673A31E9553A200D67069 /* MailSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C89673A21E9553A200D67069 /* MailSettingCell.xib */; };
+		C8ABD7AB2023091000106AF5 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ABD7AA2023091000106AF5 /* MemoViewController.swift */; };
+		C8ABD7AD2023092900106AF5 /* MemoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8ABD7AC2023092900106AF5 /* MemoViewController.storyboard */; };
 		C8D14FAE1E6AB0C600FEB634 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D14FAD1E6AB0C600FEB634 /* LocationManager.swift */; };
 		C8FEA7011E71CD6100503ED5 /* HeaderButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8FEA7001E71CD6100503ED5 /* HeaderButtonView.xib */; };
 		C8FEA7031E71CDF900503ED5 /* HeaderButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FEA7021E71CDF900503ED5 /* HeaderButtonView.swift */; };
@@ -251,6 +254,7 @@
 		C86F61721E88DC5A00C829A0 /* EntryTrial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryTrial.swift; sourceTree = "<group>"; };
 		C86F61741E88E8D300C829A0 /* EasyTipView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyTipView.framework; path = Carthage/Build/iOS/EasyTipView.framework; sourceTree = "<group>"; };
 		C8778F271E997BB900E336E7 /* FilePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePath.swift; sourceTree = "<group>"; };
+		C885804820231D220005089E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C892F2031E995897009B852A /* template_event.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = template_event.csv; sourceTree = "<group>"; };
 		C892F2041E995897009B852A /* template_member.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = template_member.csv; sourceTree = "<group>"; };
 		C89673871E90D37700D67069 /* MemberSearchViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MemberSearchViewController.storyboard; sourceTree = "<group>"; };
@@ -264,6 +268,8 @@
 		C896739E1E93E31700D67069 /* MemberSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberSettingCell.xib; sourceTree = "<group>"; };
 		C89673A01E95539200D67069 /* MailSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailSettingCell.swift; sourceTree = "<group>"; };
 		C89673A21E9553A200D67069 /* MailSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MailSettingCell.xib; sourceTree = "<group>"; };
+		C8ABD7AA2023091000106AF5 /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
+		C8ABD7AC2023092900106AF5 /* MemoViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MemoViewController.storyboard; sourceTree = "<group>"; };
 		C8D14FAD1E6AB0C600FEB634 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C8FEA7001E71CD6100503ED5 /* HeaderButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderButtonView.xib; sourceTree = "<group>"; };
 		C8FEA7021E71CDF900503ED5 /* HeaderButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderButtonView.swift; sourceTree = "<group>"; };
@@ -561,6 +567,7 @@
 		C863C91C1E608FA200FD75F1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C8ABD7A9202308B900106AF5 /* Memo */,
 				C857086E1E8C3C4F00B21DE4 /* List */,
 				C8508BDB1E745C8D00BCF12A /* Entry */,
 				C863C9861E616FB100FD75F1 /* SideMenu */,
@@ -669,6 +676,7 @@
 		C863C9461E608FA200FD75F1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C885804820231D220005089E /* GoogleService-Info.plist */,
 				C863C9471E608FA200FD75F1 /* Assets.xcassets */,
 				C863C9481E608FA200FD75F1 /* LaunchScreen.storyboard */,
 				C863C94A1E608FA200FD75F1 /* Info.plist */,
@@ -744,6 +752,15 @@
 				C89673901E90F62200D67069 /* MemberSearchViewCell.xib */,
 			);
 			path = MemberSearchView;
+			sourceTree = "<group>";
+		};
+		C8ABD7A9202308B900106AF5 /* Memo */ = {
+			isa = PBXGroup;
+			children = (
+				C8ABD7AA2023091000106AF5 /* MemoViewController.swift */,
+				C8ABD7AC2023092900106AF5 /* MemoViewController.storyboard */,
+			);
+			path = Memo;
 			sourceTree = "<group>";
 		};
 		C8FEA7081E73331000503ED5 /* InputView */ = {
@@ -832,7 +849,7 @@
 					C863C8F61E608D0C00FD75F1 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 5R2LS4A9QF;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					C863C90A1E608D0C00FD75F1 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -866,6 +883,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C892F2061E995897009B852A /* template_member.csv in Resources */,
+				C8ABD7AD2023092900106AF5 /* MemoViewController.storyboard in Resources */,
 				C857088D1E8C3FA200B21DE4 /* SelectionViewCell.xib in Resources */,
 				C863C9971E62198D00FD75F1 /* FooterView.xib in Resources */,
 				C863C9711E608FA200FD75F1 /* Info.plist in Resources */,
@@ -903,6 +921,7 @@
 				C863C96F1E608FA200FD75F1 /* Assets.xcassets in Resources */,
 				C863C94D1E608FA200FD75F1 /* Main.storyboard in Resources */,
 				C896739B1E92C1B800D67069 /* Settings.bundle in Resources */,
+				C885804920231D220005089E /* GoogleService-Info.plist in Resources */,
 				C857CC711E719EA9007A3E35 /* LessonTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -938,9 +957,30 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AttendanceRecord/Pods-AttendanceRecord-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CTCheckbox/CTCheckbox.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/HSegmentControl/HSegmentControl.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SWTableViewCell/SWTableViewCell.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftCop/SwiftCop.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CTCheckbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HSegmentControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWTableViewCell.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCop.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -953,13 +993,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AttendanceRecord-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C863C97C1E60A70500FD75F1 /* Carthage  */ = {
@@ -1040,6 +1083,7 @@
 				C863C9901E61765F00FD75F1 /* R.generated.swift in Sources */,
 				C863C94B1E608FA200FD75F1 /* AppDelegate.swift in Sources */,
 				C8D14FAE1E6AB0C600FEB634 /* LocationManager.swift in Sources */,
+				C8ABD7AB2023091000106AF5 /* MemoViewController.swift in Sources */,
 				C85708381E8A42C000B21DE4 /* SettingViewController.swift in Sources */,
 				C84627941E98FA5000A535F5 /* FileManager.swift in Sources */,
 				C80696911E648E0300978338 /* Mappable.swift in Sources */,
@@ -1217,7 +1261,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5R2LS4A9QF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1227,6 +1274,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kudoukun.AttendanceRecords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1238,8 +1286,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: KUNIYA SAKAI (5R2LS4A9QF)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: KUNIYA SAKAI (5R2LS4A9QF)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5R2LS4A9QF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1250,8 +1299,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kudoukun.AttendanceRecords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5e0dc231-3b94-452c-ae72-806a531cca4a";
-				PROVISIONING_PROFILE_SPECIFIER = "attendance-record";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};

@@ -60,6 +60,8 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
     
     fileprivate var sourceViewModel: DisplayModel?
     
+    fileprivate var editMember: Member?
+    
     fileprivate lazy var inputViews: [InputView] = {
         switch self.entryType {
         case .lesson:
@@ -70,11 +72,11 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
         case .member:
             var inputViews = [InputView]()
             if DeviceModel.isRequireMemberName {
-                inputViews.append(InputView.instantiate(owner: self, inputType: .memberNameKana))
+                inputViews.append(InputView.instantiate(owner: self, inputType: .memberNameKana, defalut: self.editMember?.nameKana))
             }
-            inputViews.append(InputView.instantiate(owner: self, inputType: .memberNameJp))
+            inputViews.append(InputView.instantiate(owner: self, inputType: .memberNameJp, defalut: self.editMember?.nameJp))
             if DeviceModel.isRequireEmail {
-                inputViews.append(InputView.instantiate(owner: self, inputType: .memberEmail))
+                inputViews.append(InputView.instantiate(owner: self, inputType: .memberEmail, defalut: self.editMember?.email))
             }
             return inputViews
         }
@@ -120,7 +122,15 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
                 let kana = self.inputViews.filter { $0.inputType == .memberNameKana }.first
                 let jp = self.inputViews.filter { $0.inputType == .memberNameJp }.first
                 let email = self.inputViews.filter { $0.inputType == .memberEmail }.first
-                let member = Member(nameJp: jp?.inputString ?? "", nameKana: kana?.inputString ?? "", email: email?.inputString ?? "")
+                var member: Member
+                if let cloneMember = self.editMember?.clone {
+                    cloneMember.nameJp = jp?.inputString ?? ""
+                    cloneMember.nameKana = kana?.inputString ?? ""
+                    cloneMember.email = email?.inputString ?? ""
+                    member = cloneMember
+                } else {
+                    member = Member(nameJp: jp?.inputString ?? "", nameKana: kana?.inputString ?? "", email: email?.inputString ?? "")
+                }
                 MemberManager.shared.saveMemberListToRealm([member])
                 guard let lessonId = self.sourceViewModel?.id, lessonId != "" else {
                     self.entryCompletion?(member) ?? {}()
@@ -153,12 +163,13 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
     
     // MARK: - Initializer
     
-    static func instantiate(entryModel: EntryModel) -> EntryViewController {
+    static func instantiate(entryModel: EntryModel, member: Member? = nil) -> EntryViewController {
         let viewController = R.storyboard.entryViewController.entryViewController()!
         viewController.entryCompletion = entryModel.entryCompletion
         viewController.entryReject = entryModel.entryReject
         viewController.sourceViewModel = entryModel.displayModel
         viewController.entryType = entryModel.entryType
+        viewController.editMember = member
         return viewController
     }
     

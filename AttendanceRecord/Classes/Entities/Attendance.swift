@@ -11,6 +11,7 @@ import RealmSwift
 
 internal enum AttendanceStatus: String {
     case attend     = "◯"
+    case undfine    = "△"
     case absence    = "✕"
     case noEntry    = "ー"
 }
@@ -21,7 +22,13 @@ internal final class Attendance: Object, ClonableObject {
     dynamic fileprivate(set) var lessonId                   = ""
     dynamic fileprivate(set) var eventId                    = ""
     dynamic fileprivate(set) var memberId                   = ""
+    dynamic var reason                     = ""
     dynamic var attendanceStatusRawValue   = "-"
+    
+    var memberName: String {
+        let member = MemberManager.shared.memberListDataFromRealm(predicate: Member.predicate(memberId: memberId)).first!
+        return member.nameKana
+    }
     
     dynamic private(set) var primaryKeyForRealm = ""
     
@@ -79,6 +86,7 @@ extension Attendance {
         eventId                     = reference.eventId
         memberId                    = reference.memberId
         lessonId                    = reference.lessonId
+        reason                      = reference.reason
         attendanceStatusRawValue    = reference.attendanceStatusRawValue
         
         updatePrimaryKey()

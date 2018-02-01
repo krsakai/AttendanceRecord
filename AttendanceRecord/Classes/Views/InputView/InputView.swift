@@ -70,10 +70,11 @@ internal final class InputView: UIView {
     
     var inputType: InputType!
     
-    static func instantiate(owner: UITextFieldDelegate, inputType: InputType) -> InputView {
+    static func instantiate(owner: UITextFieldDelegate, inputType: InputType, defalut: String? = nil) -> InputView {
         let inputView = R.nib.inputView.firstView(owner: owner, options: nil)!
         inputView.titleLabel.adjustsFontSizeToFitWidth = true
         inputView.titleLabel.text = inputType.titleLabel
+        inputView.textField.text = defalut
         inputView.textField.delegate = owner
         inputView.textField.keyboardType = inputType.keyboardType
         inputView.textField.returnKeyType = inputType.returnKeyType

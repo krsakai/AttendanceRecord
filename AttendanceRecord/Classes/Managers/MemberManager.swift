@@ -51,7 +51,7 @@ internal final class MemberManager {
     
     /// メンバー一覧情報をRealmから取得
     func memberListDataFromRealm(predicate: NSPredicate? = nil, realm: Realm = try! Realm()) -> [Member] {
-        let sortParameters = [SortDescriptor(keyPath: "nameKana", ascending: false)]
+        let sortParameters = [SortDescriptor(keyPath: "nameKana", ascending: true)]
         guard let predicate = predicate else {
             return Array(realm.objects(Member.self).sorted(by: sortParameters))
         }

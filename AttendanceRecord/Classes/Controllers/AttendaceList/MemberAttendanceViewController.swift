@@ -73,6 +73,11 @@ internal final class MemberAttendanceViewController: UIViewController, HeaderVie
             })]]
         )
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.reloadData()
+    }
 }
 
 extension MemberAttendanceViewController: UITableViewDataSource {
@@ -110,6 +115,8 @@ extension MemberAttendanceViewController: UITableViewDelegate {
     // MARK: - UITableView Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+        let attendance = viewModels[indexPath.row].attendance
+        let viewController = MemoViewController.instantiate(attendance: attendance)
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

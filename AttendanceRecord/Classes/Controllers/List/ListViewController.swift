@@ -233,10 +233,22 @@ extension ListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let viewController = type.destination(sourceViewModel: list[indexPath.row]) else {
-            return
+        if let viewController = type.destination(sourceViewModel: list[indexPath.row]) {
+            navigationController?.pushViewController(viewController, animated: true)
         }
-        navigationController?.pushViewController(viewController, animated: true)
+        
+        if case .member = type {
+            let completion: EntryCompletion = { _ in
+                self.tableView.reloadData()
+            }
+            let object = list[indexPath.row]
+            if let member = MemberManager.shared.memberListDataFromRealm(predicate: Member.predicate(memberId: object.id)).first {
+                let entryModel = EntryModel(entryType: .member, displayModel: member, entryCompletion: completion)
+                let viewController = EntryViewController.instantiate(entryModel: entryModel, member: member)
+                navigationController?.present(viewController, animated: true, completion: nil)
+            }
+            
+        }
     }
 }
 

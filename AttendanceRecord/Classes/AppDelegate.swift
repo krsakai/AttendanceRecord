@@ -7,7 +7,10 @@
 //
 
 import UIKit
+import RealmSwift
 import DrawerController
+import GoogleMobileAds
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,10 +18,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        AppDelegate.migrate()
         setupMasterData()
         window?.rootViewController = instantiateRootViewController
-        
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-7419271952519725~6218919453")
+        FirebaseApp.configure()
         return true
+    }
+    
+    static func migrate() {
+        let config = Realm.Configuration(schemaVersion: 1,
+            migrationBlock: { migration, oldSchemaVersion in
+                if oldSchemaVersion < 1 {
+                    migration.enumerateObjects(ofType: Attendance.className()) { oldObject, newObject in
+                        newObject?["reason"] = ""
+                    }
+                }
+            }
+        )
+        Realm.Configuration.defaultConfiguration = config
     }
 }
 
