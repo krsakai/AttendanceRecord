@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 internal enum Setting {
     case mode
@@ -41,6 +42,8 @@ internal final class SettingViewController: UIViewController, HeaderViewDisplaya
     @IBOutlet weak var headerView: HeaderView!
     
     @IBOutlet fileprivate weak var tableView: UITableView!
+    @IBOutlet weak var bannerView: GADBannerView!
+    
     
     fileprivate var settingList: [[Setting]] {
         return [ [.member(.nameJp),.member(.email)], [.mailAddress], [.themeColor], [.mode], [.fileimport]]
@@ -59,12 +62,26 @@ internal final class SettingViewController: UIViewController, HeaderViewDisplaya
         super.viewDidLoad()
         setupHeaderView(R.string.localizable.headerTitleLabelSettings(),
                         buttonTypes: [[.close(nil)],[]])
+        bannerView.rootViewController = self
+        let request = GADRequest()
+        #if DEBUG
+            request.testDevices = [kGADSimulatorID]
+        #endif
+        bannerView.load(request)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        let request = GADRequest()
+        #if DEBUG
+            request.testDevices = [kGADSimulatorID]
+        #endif
+        bannerView.load(request)
+    }
 }
 
 extension SettingViewController: UITableViewDataSource {

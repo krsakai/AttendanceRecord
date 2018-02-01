@@ -38,8 +38,8 @@ internal final class AttendanceManager {
     
     /// 出欠一覧情報をRealmから取得
     func attendanceListDataFromRealm(predicate: NSPredicate, realm: Realm = try! Realm()) -> [Attendance] {
-        let sortParameters = [SortDescriptor(keyPath: "eventId", ascending: true)]
-        return Array(realm.objects(Attendance.self).filter(predicate).sorted(by: sortParameters))
+        let array = Array(realm.objects(Attendance.self).filter(predicate))
+        return array.sorted { $0.memberName < $1.memberName }
     }
     
     /// 出欠Realmを更新

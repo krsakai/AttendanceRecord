@@ -7,6 +7,8 @@ pod 'RealmSwift'
 pod 'R.swift'
 pod 'SwiftCop'
 pod 'HSegmentControl', :git => 'https://github.com/krsakai/HSegmentControl.git'
+pod 'Google-Mobile-Ads-SDK'
+pod 'Firebase/Core'
 
 target 'AttendanceRecord' do
    pod 'CTCheckbox', '~> 0.0.5'

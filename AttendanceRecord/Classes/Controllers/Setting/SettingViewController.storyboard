@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,26 +28,43 @@
                                     <constraint firstAttribute="height" constant="71" id="5Se-Jj-Bvp"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="n94-Kx-DII">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5JD-RN-NBI">
                                 <rect key="frame" x="0.0" y="71" width="375" height="596"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="DNh-yB-7p8" id="Xrs-Mf-01H"/>
-                                </connections>
-                            </tableView>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="n94-Kx-DII">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="546"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="DNh-yB-7p8" id="Xrs-Mf-01H"/>
+                                        </connections>
+                                    </tableView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sYz-tP-tYR" customClass="GADBannerView">
+                                        <rect key="frame" x="0.0" y="546" width="375" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="xu1-MQ-wjS"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoloadEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="adUnitID" value="ca-app-pub-7419271952519725/9515414053"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="n94-Kx-DII" secondAttribute="trailing" id="6Zk-WN-nyi"/>
+                            <constraint firstAttribute="trailing" secondItem="5JD-RN-NBI" secondAttribute="trailing" id="950-yN-HZY"/>
                             <constraint firstAttribute="trailing" secondItem="MpP-uV-9kh" secondAttribute="trailing" id="BWx-Og-mTi"/>
                             <constraint firstItem="MpP-uV-9kh" firstAttribute="top" secondItem="RL4-43-KZ7" secondAttribute="top" id="CEM-xh-p2r"/>
-                            <constraint firstItem="n94-Kx-DII" firstAttribute="leading" secondItem="RL4-43-KZ7" secondAttribute="leading" id="TLB-Df-iZ4"/>
+                            <constraint firstAttribute="bottom" secondItem="5JD-RN-NBI" secondAttribute="bottom" id="NNX-W0-kJx"/>
+                            <constraint firstItem="5JD-RN-NBI" firstAttribute="top" secondItem="MpP-uV-9kh" secondAttribute="bottom" id="WaQ-JD-6OR"/>
                             <constraint firstItem="MpP-uV-9kh" firstAttribute="leading" secondItem="RL4-43-KZ7" secondAttribute="leading" id="jcK-qO-kNr"/>
-                            <constraint firstItem="MBL-BK-AD9" firstAttribute="top" secondItem="n94-Kx-DII" secondAttribute="bottom" id="qlk-yt-VsI"/>
-                            <constraint firstItem="n94-Kx-DII" firstAttribute="top" secondItem="MpP-uV-9kh" secondAttribute="bottom" id="zGN-E5-Klq"/>
+                            <constraint firstItem="5JD-RN-NBI" firstAttribute="leading" secondItem="RL4-43-KZ7" secondAttribute="leading" id="p0t-nP-9VM"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bannerView" destination="sYz-tP-tYR" id="lsI-wd-rDP"/>
                         <outlet property="headerView" destination="MpP-uV-9kh" id="yWz-cQ-x1k"/>
                         <outlet property="tableView" destination="n94-Kx-DII" id="36m-tC-EMa"/>
                     </connections>

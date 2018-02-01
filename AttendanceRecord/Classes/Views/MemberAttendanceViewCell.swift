@@ -46,6 +46,13 @@ internal final class MemberAttendanceViewCell: UITableViewCell {
             AttendanceManager.shared.saveAttendanceListToRealm([attendance])
             self.completion?()
         }
+        
+        let undfineAction = UIAlertAction(title: AttendanceStatus.undfine.rawValue,  style: UIAlertActionStyle.default) { _ in
+            let attendance = self.viewModel.attendance.clone
+            attendance.attendanceStatusRawValue = AttendanceStatus.undfine.rawValue
+            AttendanceManager.shared.saveAttendanceListToRealm([attendance])
+            self.completion?()
+        }
         let absencAction = UIAlertAction(title: AttendanceStatus.absence.rawValue,  style: UIAlertActionStyle.default) { _ in
             let attendance = self.viewModel.attendance.clone
             attendance.attendanceStatusRawValue = AttendanceStatus.absence.rawValue
@@ -61,6 +68,7 @@ internal final class MemberAttendanceViewCell: UITableViewCell {
         let cancelAction = UIAlertAction(title: R.string.localizable.commonLabelCancel(),
                                          style: UIAlertActionStyle.cancel)
         alert.addAction(attendAction)
+        alert.addAction(undfineAction)
         alert.addAction(absencAction)
         alert.addAction(noEntryAction)
         alert.addAction(cancelAction)
