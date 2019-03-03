@@ -68,7 +68,7 @@ internal final class EventManager {
     func saveDefaultEventList() {
         let plistPath = Bundle.main.path(forResource: "EventList", ofType: "plist")!
         let eventListJson = NSArray(contentsOfFile: plistPath) as! [[String : Any]]
-        let eventList: [Event] = Mapper<Event>().mapArray(JSONArray: eventListJson)!
+        let eventList: [Event] = Mapper<Event>().mapArray(JSONArray: eventListJson)
         saveEventListToRealm(eventList)
     }
 }

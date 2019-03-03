@@ -66,7 +66,7 @@ internal final class LessonManager {
     func saveDefaultlessonList() {
         let plistPath = Bundle.main.path(forResource: "LessonList", ofType: "plist")!
         let lessonListJson = NSArray(contentsOfFile: plistPath) as! [[String : Any]]
-        let lessonList: [Lesson] = Mapper<Lesson>().mapArray(JSONArray: lessonListJson)!
+        let lessonList: [Lesson] = Mapper<Lesson>().mapArray(JSONArray: lessonListJson)
         saveLessonListToRealm(lessonList)
     }
     

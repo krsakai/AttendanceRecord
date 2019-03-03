@@ -806,7 +806,6 @@
 				C863C8F41E608D0C00FD75F1 /* Frameworks */,
 				C863C8F51E608D0C00FD75F1 /* Resources */,
 				740B725ED48AAC478FF6F281 /* [CP] Embed Pods Frameworks */,
-				4989F469F62916B77304C26C /* [CP] Copy Pods Resources */,
 				C863C97C1E60A70500FD75F1 /* Carthage  */,
 			);
 			buildRules = (
@@ -936,21 +935,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4989F469F62916B77304C26C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AttendanceRecord/Pods-AttendanceRecord-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		740B725ED48AAC478FF6F281 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

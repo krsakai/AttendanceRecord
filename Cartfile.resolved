@@ -1,4 +1,4 @@
-github "Hearst-DD/ObjectMapper" "2.2.5"
+github "Hearst-DD/ObjectMapper" "3.4.2"
 github "ReactKit/SwiftTask" "98f89883509d27229d60ff3f2ececdd82a46d674"
 github "SnapKit/SnapKit" "3.2.0"
 github "corin8823/Popover" "1.0.4"

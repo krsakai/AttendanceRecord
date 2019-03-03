@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.3.0)
+  - Alamofire (4.7.3)
   - CTCheckbox (0.0.5)
   - Firebase/Core (4.8.0):
     - FirebaseAnalytics (= 4.0.5)
@@ -7,15 +7,15 @@ PODS:
   - FirebaseAnalytics (4.0.5):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
   - FirebaseCore (4.0.13):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseInstanceID (2.0.8):
     - FirebaseCore (~> 4.0)
   - Google-Mobile-Ads-SDK (7.27.0)
   - GoogleToolboxForMac/Defines (2.1.3)
-  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
     - GoogleToolboxForMac/Defines (= 2.1.3)
   - HSegmentControl (2.1.0)
   - nanopb (0.3.8):
@@ -26,11 +26,11 @@ PODS:
   - R.swift (3.2.0):
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
-  - Realm (2.8.1):
-    - Realm/Headers (= 2.8.1)
-  - Realm/Headers (2.8.1)
-  - RealmSwift (2.8.1):
-    - Realm (= 2.8.1)
+  - Realm (3.12.0):
+    - Realm/Headers (= 3.12.0)
+  - Realm/Headers (3.12.0)
+  - RealmSwift (3.12.0):
+    - Realm (= 3.12.0)
   - SwiftCop (1.0.0)
   - SWTableViewCell (0.3.7)
 
@@ -45,6 +45,24 @@ DEPENDENCIES:
   - SwiftCop
   - SWTableViewCell (~> 0.3.7)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - CTCheckbox
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - Google-Mobile-Ads-SDK
+    - GoogleToolboxForMac
+    - nanopb
+    - R.swift
+    - R.swift.Library
+    - Realm
+    - RealmSwift
+    - SwiftCop
+    - SWTableViewCell
+
 EXTERNAL SOURCES:
   HSegmentControl:
     :git: https://github.com/krsakai/HSegmentControl.git
@@ -55,7 +73,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/krsakai/HSegmentControl.git
 
 SPEC CHECKSUMS:
-  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   CTCheckbox: fec0e51c635ad555effd230a1fa186105010a382
   Firebase: 710decbbc6d9d48530e9a5dba3209740c3532e05
   FirebaseAnalytics: 5b02a63ead2c3f0259cfc7f15e053e440587ecf8
@@ -67,11 +85,11 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   R.swift: 207a372a2b5977caef440c696a368009460641d1
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
-  Realm: 2627602ad6818451f0cb8c2a6e072f7f10a5f360
-  RealmSwift: 4764ca7657f2193c256fb032c0b123926f70dbcd
+  Realm: cdaef23c4ddb36ab1ddffed23f5a7f3332fc5585
+  RealmSwift: 5576324033f0aa5ef1e0a839a3da2281dff47a7f
   SwiftCop: 5ae17ee59ea702b662072495588ace8540571bef
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
 
 PODFILE CHECKSUM: 734e718fbd62c2e3610c1af8725da0e91db743b8
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3

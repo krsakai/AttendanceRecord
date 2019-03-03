@@ -70,7 +70,7 @@ internal final class MemberManager {
     func saveDefaultMemberList() {
         let plistPath = Bundle.main.path(forResource: "MemberList", ofType: "plist")!
         let memberListJson = NSArray(contentsOfFile: plistPath) as! [[String : Any]]
-        let memberList: [Member] = Mapper<Member>().mapArray(JSONArray: memberListJson)!
+        let memberList: [Member] = Mapper<Member>().mapArray(JSONArray: memberListJson)
         saveMemberListToRealm(memberList)
     }
     
