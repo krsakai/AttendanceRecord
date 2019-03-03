@@ -16,7 +16,7 @@ internal protocol CheckBoxDelegate {
     func changeCheckbox(checkbox: CTCheckbox, index: Int)
 }
 
-internal class MemberListTableCell: SWTableViewCell {
+internal class MemberListTableCell: SWTableViewCell, NibRegistrable {
     
     @IBOutlet private weak var leftView: UIView!
 
@@ -36,39 +36,37 @@ internal class MemberListTableCell: SWTableViewCell {
         return member as Object
     }
     
-    static func instantiate(_ owner: AnyObject, member: Member, index: Int = 0, checked: Bool = false) -> MemberListTableCell {
-        let cell = R.nib.memberListTableCell.firstView(owner: owner, options: nil)!
-        cell.index = index
-        cell.checkboxDelegate = owner as? CheckBoxDelegate
-        cell.nameJpLabel.text = member.nameJp
-        cell.nameKanaLabel.text = member.nameKana
-        cell.emailLabel.text = member.email
-        cell.member = member
+    func changeCheckbox(checkbox: CTCheckbox) {
+        checkboxDelegate?.changeCheckbox(checkbox: checkbox, index: index)
+    }
+    
+    func setup(_ owner: AnyObject, member: Member, index: Int = 0, checked: Bool = false) {
+        self.index = index
+        checkboxDelegate = owner as? CheckBoxDelegate
+        nameJpLabel.text = member.nameJp
+        nameKanaLabel.text = member.nameKana
+        emailLabel.text = member.email
+        self.member = member
         
         guard DeviceModel.mode == .organizer else {
-            return cell
+            return
         }
         
         guard owner is SWTableViewCellDelegate else {
-            cell.checkbox = CTCheckbox(frame: CGRect(x: cell.leftView.frame.size.width/2 - 25, y: cell.frame.size.height/2 - 35, width: 50, height: 50))
-            cell.checkbox.checkboxSideLength = 30
-            cell.checkbox.checked = checked
-            cell.checkbox.addTarget(cell, action: #selector(MemberListTableCell.changeCheckbox), for: .valueChanged)
-            cell.checkbox.setColor(DeviceModel.themeColor.color, for: .normal)
-            cell.checkbox.setColor(DeviceModel.themeColor.color, for: .highlighted)
-            cell.addSubview(cell.checkbox)
-            cell.checkbox.layoutIfNeeded()
-            return cell
+            checkbox = CTCheckbox(frame: CGRect(x: leftView.frame.size.width/2 - 25, y: frame.size.height/2 - 35, width: 50, height: 50))
+            checkbox.checkboxSideLength = 30
+            checkbox.checked = checked
+            checkbox.addTarget(self, action: #selector(MemberListTableCell.changeCheckbox), for: .valueChanged)
+            checkbox.setColor(DeviceModel.themeColor.color, for: .normal)
+            checkbox.setColor(DeviceModel.themeColor.color, for: .highlighted)
+            addSubview(checkbox)
+            checkbox.layoutIfNeeded()
+            return
         }
         
         let utilityButtons = NSMutableArray()
         utilityButtons.sw_addUtilityButton(with: AttendanceRecordColor.Cell.red, title: "削除")
-        cell.rightUtilityButtons = utilityButtons as [AnyObject]
-        cell.delegate = owner as! SWTableViewCellDelegate
-        return cell
-    }
-    
-    func changeCheckbox(checkbox: CTCheckbox) {
-        checkboxDelegate?.changeCheckbox(checkbox: checkbox, index: index)
+        rightUtilityButtons = utilityButtons as [AnyObject]
+        delegate = owner as! SWTableViewCellDelegate
     }
 }

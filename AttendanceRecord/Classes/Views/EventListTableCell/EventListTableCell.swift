@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import SWTableViewCell
 
-internal class EventListTableCell: SWTableViewCell {
+internal class EventListTableCell: SWTableViewCell, NibRegistrable {
     
     @IBOutlet private weak var eventTitleLabel: UILabel!
     @IBOutlet private weak var eventDateLabel: UILabel!
@@ -21,20 +21,18 @@ internal class EventListTableCell: SWTableViewCell {
         return event as Object
     }
     
-    static func instantiate(_ owner: SWTableViewCellDelegate, event: Event) -> EventListTableCell {
-        let cell = R.nib.eventListTableCell.firstView(owner: owner, options: nil)!
-        cell.eventTitleLabel.text = event.eventTitle
-        cell.eventDateLabel.text = event.eventDate.stringToDisplayedFormat
-        cell.event = event
+    func setup(_ owner: SWTableViewCellDelegate, event: Event) {
+        eventTitleLabel.text = event.eventTitle
+        eventDateLabel.text = event.eventDate.stringToDisplayedFormat
+        self.event = event
         
         guard DeviceModel.mode == .organizer else {
-            return cell
+            return
         }
         
         let utilityButtons = NSMutableArray()
         utilityButtons.sw_addUtilityButton(with: AttendanceRecordColor.Cell.red, title: "削除")
-        cell.rightUtilityButtons = utilityButtons as [AnyObject]
-        cell.delegate = owner
-        return cell
+        rightUtilityButtons = utilityButtons as [AnyObject]
+        delegate = owner
     }
 }

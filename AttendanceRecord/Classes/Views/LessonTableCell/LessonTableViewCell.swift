@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import SWTableViewCell
 
-internal final class LessonTableViewCell: SWTableViewCell {
+internal final class LessonTableViewCell: SWTableViewCell, NibRegistrable {
     
     @IBOutlet private weak var lessonTitleLabel: UILabel!
     
@@ -20,19 +20,17 @@ internal final class LessonTableViewCell: SWTableViewCell {
         return lesson as Object
     }
     
-    static func instantiate(_ owner: SWTableViewCellDelegate, lesson: Lesson, listType: ListType) -> LessonTableViewCell {
-        let cell = R.nib.lessonTableViewCell.firstView(owner: owner, options: nil)!
-        cell.lessonTitleLabel.text = lesson.lessonTitle
-        cell.lesson = lesson
+    func setup(_ owner: SWTableViewCellDelegate, lesson: Lesson, listType: ListType) {
+        lessonTitleLabel.text = lesson.lessonTitle
+        self.lesson = lesson
         
         if DeviceModel.mode == .member, case .attendance = listType {
-            return cell
+            return
         }
         
         let utilityButtons = NSMutableArray()
         utilityButtons.sw_addUtilityButton(with: AttendanceRecordColor.Cell.red, title: "削除")
-        cell.rightUtilityButtons = utilityButtons as [AnyObject]
-        cell.delegate = owner
-        return cell
+        rightUtilityButtons = utilityButtons as [AnyObject]
+        delegate = owner
     }
 }

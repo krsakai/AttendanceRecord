@@ -127,6 +127,7 @@
 		C8ABD7AB2023091000106AF5 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ABD7AA2023091000106AF5 /* MemoViewController.swift */; };
 		C8ABD7AD2023092900106AF5 /* MemoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8ABD7AC2023092900106AF5 /* MemoViewController.storyboard */; };
 		C8D14FAE1E6AB0C600FEB634 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D14FAD1E6AB0C600FEB634 /* LocationManager.swift */; };
+		C8F6B5BE202B660D00DA85A0 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F6B5BD202B660D00DA85A0 /* UITableView.swift */; };
 		C8FEA7011E71CD6100503ED5 /* HeaderButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8FEA7001E71CD6100503ED5 /* HeaderButtonView.xib */; };
 		C8FEA7031E71CDF900503ED5 /* HeaderButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FEA7021E71CDF900503ED5 /* HeaderButtonView.swift */; };
 		C8FEA70E1E7333EF00503ED5 /* InputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8FEA70D1E7333EF00503ED5 /* InputView.xib */; };
@@ -271,6 +272,7 @@
 		C8ABD7AA2023091000106AF5 /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		C8ABD7AC2023092900106AF5 /* MemoViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MemoViewController.storyboard; sourceTree = "<group>"; };
 		C8D14FAD1E6AB0C600FEB634 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		C8F6B5BD202B660D00DA85A0 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		C8FEA7001E71CD6100503ED5 /* HeaderButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderButtonView.xib; sourceTree = "<group>"; };
 		C8FEA7021E71CDF900503ED5 /* HeaderButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderButtonView.swift; sourceTree = "<group>"; };
 		C8FEA70D1E7333EF00503ED5 /* InputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputView.xib; sourceTree = "<group>"; };
@@ -620,6 +622,7 @@
 				C85708341E8A281900B21DE4 /* SWTableViewCell.swift */,
 				C85C3AD31E8EEDCB00C8B468 /* String.swift */,
 				C89673921E910F7C00D67069 /* Array.swift */,
+				C8F6B5BD202B660D00DA85A0 /* UITableView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -848,7 +851,7 @@
 					C863C8F61E608D0C00FD75F1 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 5R2LS4A9QF;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					C863C90A1E608D0C00FD75F1 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1044,6 +1047,7 @@
 				C85C3ACC1E8EC8C600C8B468 /* MailSendViewController.swift in Sources */,
 				C863C95C1E608FA200FD75F1 /* ClonableObject.swift in Sources */,
 				C863C99B1E621CBE00FD75F1 /* FooterView.swift in Sources */,
+				C8F6B5BE202B660D00DA85A0 /* UITableView.swift in Sources */,
 				C851AF981E62FF9D00D9039E /* MemberManager.swift in Sources */,
 				C851AF871E62AF9F00D9039E /* SideMenuTableCell.swift in Sources */,
 				C8508BDF1E745C8D00BCF12A /* EntryViewController.swift in Sources */,
@@ -1246,6 +1250,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5R2LS4A9QF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1256,6 +1262,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kudoukun.AttendanceRecords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1269,6 +1276,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5R2LS4A9QF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1280,6 +1288,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kudoukun.AttendanceRecords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
