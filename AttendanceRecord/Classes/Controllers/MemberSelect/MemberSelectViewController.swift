@@ -53,6 +53,7 @@ internal final class MemberSelectViewController: UIViewController, HeaderViewDis
             })
         })]])
         updateHeaderButton()
+        tableView.register(MemberListTableCell.self)
     }
     
     // MARK: Private Method
@@ -78,7 +79,9 @@ extension MemberSelectViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let checked = self.checked.index(of: indexPath.row) != nil ? true : false
-        return MemberListTableCell.instantiate(self, member: memberList[indexPath.row], index: indexPath.row, checked: checked)
+        let cell = tableView.dequeueReusableCell(for: indexPath) as MemberListTableCell
+        cell.setup(self, member: memberList[indexPath.row], index: indexPath.row, checked: checked)
+        return cell
     }
 }
 

@@ -71,15 +71,6 @@ internal enum ListType: HeaderButtonModel {
         }
     }
     
-    func cell(owner: SWTableViewCellDelegate, model: Object) -> UITableViewCell {
-        switch self {
-        case .lesson: return LessonTableViewCell.instantiate(owner, lesson: model as! Lesson, listType: self)
-        case .event: return EventListTableCell.instantiate(owner, event: model as! Event)
-        case .member: return MemberListTableCell.instantiate(owner, member: model as! Member)
-        case .attendance: return LessonTableViewCell.instantiate(owner, lesson: model as! Lesson, listType: self)
-        }
-    }
-    
     func list(sourceViewModel: DisplayModel? = nil) -> [Object] {
         switch (self, DeviceModel.mode) {
         case (.lesson, .organizer):
@@ -192,6 +183,12 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
         tableView.separatorColor = DeviceModel.themeColor.color
         
         setupHeaderView(type.headerTitle, buttonTypes: headerButtons)
+        
+        switch type {
+        case .lesson, .attendance: tableView.register(LessonTableViewCell.self)
+        case .event: tableView.register(EventListTableCell.self)
+        case .member: tableView.register(MemberListTableCell.self)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -223,7 +220,21 @@ extension ListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return type.cell(owner: self, model: list[indexPath.row])
+        
+        switch type {
+        case .lesson, .attendance:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as LessonTableViewCell
+            cell.setup(self, lesson: list[indexPath.row] as! Lesson, listType: type)
+            return cell
+        case .event:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as EventListTableCell
+            cell.setup(self, event:  list[indexPath.row] as! Event)
+            return cell
+        case .member:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as MemberListTableCell
+            cell.setup(self, member:  list[indexPath.row] as! Member)
+            return cell
+        }
     }
 }
 
