@@ -17,11 +17,14 @@ internal struct HeaderModel {
     
     let entryModel: EntryModel?
     
+    let editMode: Bool
+    
     init(displayInfo: String = "", entryModel: EntryModel? = nil,
-         selectionAction: HeaderView.SelectionAction = nil, action: HeaderView.Action = nil) {
+         selectionAction: HeaderView.SelectionAction = nil, editMode: Bool = false, action: HeaderView.Action = nil) {
         self.action = action
         self.selectionAction = selectionAction
         self.displayInfo = displayInfo
         self.entryModel = entryModel
+        self.editMode = editMode
     }
 }

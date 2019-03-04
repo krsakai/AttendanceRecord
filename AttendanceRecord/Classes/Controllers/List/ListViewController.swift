@@ -28,17 +28,19 @@ extension Object: DisplayModel {
 // MARK: - List Type Enum
 
 internal enum ListType: HeaderButtonModel {
+    case group(DisplayModel?)
     case lesson(DisplayModel?)
     case event(DisplayModel?)
-    case member(DisplayModel?)
+    case groupMember(DisplayModel?)
     case attendance(DisplayModel?)
     
     var headerTitle: String {
         switch (self, DeviceModel.mode) {
+        case (.group, .organizer): return "受講グループ"
         case (.lesson, .organizer): return R.string.localizable.sideMenuLabelLessonList()
         case (.lesson, .member): return R.string.localizable.sideMenuLabelAttendanceLessonList()
         case (.event(let model), _): return model?.titleName ?? R.string.localizable.headerTitleLabelEventList()
-        case (.member(let model), _): return model?.titleName ?? R.string.localizable.sideMenuLabelAttendanceMemberList()
+        case (.groupMember(let model), _): return model?.titleName ?? R.string.localizable.sideMenuLabelAttendanceMemberList()
         case (.attendance, _): return R.string.localizable.sideMenuLabelAttendanceTable()
         default: return ""
         }
@@ -46,39 +48,44 @@ internal enum ListType: HeaderButtonModel {
     
     var entryType: EntryType {
         switch self {
+        case .group: return .group
         case .lesson: return .lesson
         case .event: return .event
-        case .member: return .member
+        case .groupMember: return .groupMember
         case .attendance: return .lesson
         }
     }
     
     var actionKey: String {
         switch self {
+        case .group: return ActionKyes.groupAdd
         case .lesson: return ActionKyes.lessonAdd
         case .event: return ActionKyes.eventAdd
-        case .member: return ActionKyes.memberAdd
+        case .groupMember: return ActionKyes.memberAdd
         case .attendance: return ""
         }
     }
     
     var displayModel: DisplayModel? {
         switch self {
+        case .group(let model): return model
         case .lesson(let model): return model
         case .event(let model): return model
-        case .member(let model): return model
+        case .groupMember(let model): return model
         case .attendance(let model): return model
         }
     }
     
     func list(sourceViewModel: DisplayModel? = nil) -> [Object] {
         switch (self, DeviceModel.mode) {
+        case (.group, .organizer):
+            return GroupManager.shared.groupListDataFromRealm()
         case (.lesson, .organizer):
             return LessonManager.shared.lessonListDataFromRealm()
         case (.lesson, .member):
             return LessonManager.shared.lessonMemberListDataFromRealm(predicate: LessonMember.predicate(memberId: sourceViewModel?.id ?? ""))
         case (.event, _): return EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(lessonId: sourceViewModel?.id ?? ""))
-        case (.member, _): return MemberManager.shared.memberListDataFromRealm()
+        case (.groupMember, _): return MemberManager.shared.memberListDataFromRealm()
         case (.attendance, _): return LessonManager.shared.lessonListDataFromRealm()
         default: return [Object()]
         }
@@ -86,13 +93,15 @@ internal enum ListType: HeaderButtonModel {
     
     func destination(sourceViewModel: DisplayModel) -> UIViewController? {
         switch (self, DeviceModel.mode) {
+        case (.group, _):
+            return ListViewController.instantiate(type: .groupMember(sourceViewModel))
         case (.lesson, _):
             return ListViewController.instantiate(type: .event(sourceViewModel))
         case (.event, .organizer):
             return MemberAttendanceViewController.instantiate(event: sourceViewModel as! Event)
         case (.event, .member):
             return nil
-        case (.member, _): return nil
+        case (.groupMember, _): return nil
         case (.attendance, _): return CommonWebViewController.instantiate(requestType: .attendanceList, lesson: sourceViewModel as? Lesson)
         }
     }
@@ -129,6 +138,9 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
     private var headerButtons: [[HeaderView.ButtonType]] {
         
         switch (type, DeviceModel.mode) {
+        case (.group(let model), .organizer):
+            return [[.sideMenu],
+                    [.add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
         case (.lesson(let model), .organizer):
             return [[.sideMenu],
                     [.add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
@@ -146,23 +158,30 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
                             let viewController = MemberSelectViewController.instantiate(lesson: LessonManager.shared.lessonListDataFromRealm(predicate: Lesson.predicate(lessonId: model?.id ?? "")).first ?? Lesson())
                             self.present(viewController, animated: true, completion: nil)
                         }
+                    })),
+                     .add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
+        case (.event, .member):
+            return [[.back],[]]
+        case (.groupMember(let model), .organizer):
+            return [[.back],
+                    [.selection(HeaderModel(selectionAction: { targetView in
+                        // メンバー選択
+                        let selection = PopoverItem(title: R.string.localizable.headerTitleLabelMemberSelect()) { _ in
+                            self.popover.dismiss()
+                            let viewController = MemberSelectViewController.instantiate(lesson: LessonManager.shared.lessonListDataFromRealm(predicate: Lesson.predicate(lessonId: model?.id ?? "")).first ?? Lesson())
+                            self.present(viewController, animated: true, completion: nil)
+                        }
                         
                         // メンバー登録
                         let entry = PopoverItem(title: R.string.localizable.memberSelectionAlertTitleMemberRegister()) { _ in
                             self.popover.dismiss()
-                            let viewController = EntryViewController.instantiate(entryModel: EntryModel(entryType: .member, displayModel: model))
+                            let viewController = EntryViewController.instantiate(entryModel: EntryModel(entryType: .groupMember, displayModel: model))
                             UIApplication.topViewController()?.present(viewController, animated: true, completion: nil)
                         }
                         
                         let selectionView = SelectionView.instantiate(owner: self, items: [selection, entry])
                         self.popover.show(selectionView, fromView: targetView)
-                    })),
-                     .add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
-        case (.event, .member):
-            return [[.back],[]]
-        case (.member, .organizer):
-            return [[.sideMenu],
-                    [.add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: nil)))]]
+                    }))]]
         default: return [[.sideMenu],[]]
         }
     }
@@ -185,6 +204,7 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
         setupHeaderView(type.headerTitle, buttonTypes: headerButtons)
         
         switch type {
+        case .group: tableView.register(GroupTableViewCell.self)
         case .lesson, .attendance: tableView.register(LessonTableViewCell.self)
         case .event: tableView.register(EventListTableCell.self)
         case .member: tableView.register(MemberListTableCell.self)
@@ -222,6 +242,10 @@ extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch type {
+        case .group:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as GroupTableViewCell
+            cell.setup(self, group: list[indexPath.row] as! Group, listType: type)
+            return cell
         case .lesson, .attendance:
             let cell = tableView.dequeueReusableCell(for: indexPath) as LessonTableViewCell
             cell.setup(self, lesson: list[indexPath.row] as! Lesson, listType: type)
@@ -274,6 +298,7 @@ extension ListViewController: SWTableViewCellDelegate {
         
         let action = {
             switch self.type {
+            case .group: GroupManager.shared.removeGroupToRealm(entity as! Group)
             case .lesson: LessonManager.shared.removeLessonToRealm(entity as! Lesson)
             case .event: EventManager.shared.removeEventToRealm(entity as! Event)
             case .member: MemberManager.shared.removeMemberToRealm(entity as! Member)

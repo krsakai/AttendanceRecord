@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     static func migrate() {
-        let config = Realm.Configuration(schemaVersion: 1,
+        let config = Realm.Configuration(schemaVersion: 2,
             migrationBlock: { migration, oldSchemaVersion in
                 if oldSchemaVersion < 1 {
                     migration.enumerateObjects(ofType: Attendance.className()) { oldObject, newObject in

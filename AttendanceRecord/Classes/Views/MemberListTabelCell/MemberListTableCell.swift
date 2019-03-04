@@ -53,6 +53,9 @@ internal class MemberListTableCell: SWTableViewCell, NibRegistrable {
         }
         
         guard owner is SWTableViewCellDelegate else {
+            if let box = checkbox {
+                box.removeFromSuperview()
+            }
             checkbox = CTCheckbox(frame: CGRect(x: leftView.frame.size.width/2 - 25, y: frame.size.height/2 - 35, width: 50, height: 50))
             checkbox.checkboxSideLength = 30
             checkbox.checked = checked

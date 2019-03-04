@@ -51,11 +51,11 @@ internal final class AttendanceManager {
     }
     
     /// イベント毎出欠一覧ビューモデルを取得
-    func eventAttendanceViewModels(event: Event?) -> [AttendanceViewModel] {
+    func eventAttendanceViewModels(event: Event?, filterHidden: Bool = true) -> [AttendanceViewModel] {
         guard let event = event else {
             return [AttendanceViewModel]()
         }
-        let attendanceList = attendanceListDataFromRealm(predicate: Attendance.predicate(lessonId: event.lessonId, eventId: event.eventId))
+        let attendanceList = attendanceListDataFromRealm(predicate: Attendance.predicate(lessonId: event.lessonId, eventId: event.eventId, filterHidden: filterHidden))
         var viewModels = [AttendanceViewModel]()
         attendanceList.forEach { attendance in
             let event = EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(eventId: attendance.eventId)).first ?? Event()

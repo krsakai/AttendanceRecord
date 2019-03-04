@@ -110,7 +110,14 @@
 		C86F61731E88DC5A00C829A0 /* EntryTrial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F61721E88DC5A00C829A0 /* EntryTrial.swift */; };
 		C86F61751E88E8D300C829A0 /* EasyTipView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C86F61741E88E8D300C829A0 /* EasyTipView.framework */; };
 		C8778F281E997BB900E336E7 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8778F271E997BB900E336E7 /* FilePath.swift */; };
+		C8830A06222C692D0060664B /* GroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8830A05222C692D0060664B /* GroupManager.swift */; };
+		C8830A08222C695E0060664B /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8830A07222C695E0060664B /* Group.swift */; };
+		C8830A0A222C6B340060664B /* GroupMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8830A09222C6B340060664B /* GroupMember.swift */; };
+		C8830A0D222C739A0060664B /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8830A0C222C739A0060664B /* GroupTableViewCell.swift */; };
+		C8830A0F222C73AE0060664B /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8830A0E222C73AE0060664B /* GroupTableViewCell.xib */; };
 		C885804920231D220005089E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C885804820231D220005089E /* GoogleService-Info.plist */; };
+		C8881AB7222C64DA00C51483 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8881AB6222C64DA00C51483 /* GroupViewController.swift */; };
+		C8881AB9222C64EB00C51483 /* GroupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8881AB8222C64EB00C51483 /* GroupViewController.storyboard */; };
 		C892F2051E995897009B852A /* template_event.csv in Resources */ = {isa = PBXBuildFile; fileRef = C892F2031E995897009B852A /* template_event.csv */; };
 		C892F2061E995897009B852A /* template_member.csv in Resources */ = {isa = PBXBuildFile; fileRef = C892F2041E995897009B852A /* template_member.csv */; };
 		C89673891E90D37700D67069 /* MemberSearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C89673871E90D37700D67069 /* MemberSearchViewController.storyboard */; };
@@ -255,7 +262,14 @@
 		C86F61721E88DC5A00C829A0 /* EntryTrial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryTrial.swift; sourceTree = "<group>"; };
 		C86F61741E88E8D300C829A0 /* EasyTipView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyTipView.framework; path = Carthage/Build/iOS/EasyTipView.framework; sourceTree = "<group>"; };
 		C8778F271E997BB900E336E7 /* FilePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePath.swift; sourceTree = "<group>"; };
+		C8830A05222C692D0060664B /* GroupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupManager.swift; sourceTree = "<group>"; };
+		C8830A07222C695E0060664B /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		C8830A09222C6B340060664B /* GroupMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMember.swift; sourceTree = "<group>"; };
+		C8830A0C222C739A0060664B /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
+		C8830A0E222C73AE0060664B /* GroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
 		C885804820231D220005089E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C8881AB6222C64DA00C51483 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		C8881AB8222C64EB00C51483 /* GroupViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GroupViewController.storyboard; sourceTree = "<group>"; };
 		C892F2031E995897009B852A /* template_event.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = template_event.csv; sourceTree = "<group>"; };
 		C892F2041E995897009B852A /* template_member.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = template_member.csv; sourceTree = "<group>"; };
 		C89673871E90D37700D67069 /* MemberSearchViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MemberSearchViewController.storyboard; sourceTree = "<group>"; };
@@ -569,6 +583,7 @@
 		C863C91C1E608FA200FD75F1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C8881AB5222C64B800C51483 /* Group */,
 				C8ABD7A9202308B900106AF5 /* Memo */,
 				C857086E1E8C3C4F00B21DE4 /* List */,
 				C8508BDB1E745C8D00BCF12A /* Entry */,
@@ -597,6 +612,8 @@
 				C857CC691E718B70007A3E35 /* Lesson.swift */,
 				C8559A711E859E74000C7C49 /* LessonMember.swift */,
 				C85C3ADD1E8FB67F00C8B468 /* PeripheralDevice.swift */,
+				C8830A07222C695E0060664B /* Group.swift */,
+				C8830A09222C6B340060664B /* GroupMember.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -640,6 +657,7 @@
 				C857CC6B1E718C75007A3E35 /* LessonManager.swift */,
 				C85C3AD11E8ED46C00C8B468 /* LessonAttendanceManamger.swift */,
 				C84627931E98FA5000A535F5 /* FileManager.swift */,
+				C8830A05222C692D0060664B /* GroupManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -659,6 +677,7 @@
 		C863C93D1E608FA200FD75F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C8830A0B222C73860060664B /* GroupView */,
 				C896738D1E90F60200D67069 /* MemberSearchView */,
 				C85708851E8C3F1600B21DE4 /* SelectionView */,
 				C857083C1E8A4BEB00B21DE4 /* SettingTableCell */,
@@ -737,6 +756,25 @@
 				C868334D1E8E0C6700162D91 /* MemberSelectViewController.storyboard */,
 			);
 			path = MemberSelect;
+			sourceTree = "<group>";
+		};
+		C8830A0B222C73860060664B /* GroupView */ = {
+			isa = PBXGroup;
+			children = (
+				C8830A0C222C739A0060664B /* GroupTableViewCell.swift */,
+				C8830A0E222C73AE0060664B /* GroupTableViewCell.xib */,
+			);
+			name = GroupView;
+			path = AttendanceRecord/Classes/GroupView;
+			sourceTree = SOURCE_ROOT;
+		};
+		C8881AB5222C64B800C51483 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				C8881AB6222C64DA00C51483 /* GroupViewController.swift */,
+				C8881AB8222C64EB00C51483 /* GroupViewController.storyboard */,
+			);
+			path = Group;
 			sourceTree = "<group>";
 		};
 		C89673861E90D37700D67069 /* MemberSearchList */ = {
@@ -911,6 +949,7 @@
 				C8FEA70E1E7333EF00503ED5 /* InputView.xib in Resources */,
 				C89673891E90D37700D67069 /* MemberSearchViewController.storyboard in Resources */,
 				C863C9701E608FA200FD75F1 /* LaunchScreen.storyboard in Resources */,
+				C8881AB9222C64EB00C51483 /* GroupViewController.storyboard in Resources */,
 				C863C9881E616FC900FD75F1 /* SideMenuViewController.storyboard in Resources */,
 				C857CC511E7066E9007A3E35 /* ModeView.xib in Resources */,
 				C84627991E99467000A535F5 /* HowToUseViewController.storyboard in Resources */,
@@ -925,6 +964,7 @@
 				C896739B1E92C1B800D67069 /* Settings.bundle in Resources */,
 				C885804920231D220005089E /* GoogleService-Info.plist in Resources */,
 				C857CC711E719EA9007A3E35 /* LessonTableViewCell.xib in Resources */,
+				C8830A0F222C73AE0060664B /* GroupTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1038,6 +1078,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8881AB7222C64DA00C51483 /* GroupViewController.swift in Sources */,
 				C868334C1E8E0C5400162D91 /* MemberSelectViewController.swift in Sources */,
 				C85708721E8C3C4F00B21DE4 /* LoadingController.swift in Sources */,
 				C85708321E89BAFD00B21DE4 /* CGFloat.swift in Sources */,
@@ -1057,6 +1098,7 @@
 				C85708401E8A4C6100B21DE4 /* ModeChangeCell.swift in Sources */,
 				C806968D1E6482B900978338 /* Event.swift in Sources */,
 				C85C3ADC1E8FB5D600C8B468 /* PeripheralDeviceManager.swift in Sources */,
+				C8830A0A222C6B340060664B /* GroupMember.swift in Sources */,
 				C89673A11E95539200D67069 /* MailSettingCell.swift in Sources */,
 				C85C3AD01E8ED36C00C8B468 /* LessonAttendanceModel.swift in Sources */,
 				C82876051E8830EE004B4CC9 /* EntryModel.swift in Sources */,
@@ -1083,8 +1125,11 @@
 				C863C9831E616D3F00FD75F1 /* HeaderView.swift in Sources */,
 				C84627971E99465600A535F5 /* HowToUseViewController.swift in Sources */,
 				C89673931E910F7C00D67069 /* Array.swift in Sources */,
+				C8830A06222C692D0060664B /* GroupManager.swift in Sources */,
+				C8830A08222C695E0060664B /* Group.swift in Sources */,
 				C85708351E8A281900B21DE4 /* SWTableViewCell.swift in Sources */,
 				C863C95E1E608FA200FD75F1 /* NSDate.swift in Sources */,
+				C8830A0D222C739A0060664B /* GroupTableViewCell.swift in Sources */,
 				C85C3AD21E8ED46C00C8B468 /* LessonAttendanceManamger.swift in Sources */,
 				C80696931E64910100978338 /* EventManager.swift in Sources */,
 				C8FEA7141E73E86D00503ED5 /* ActionKeys.swift in Sources */,

@@ -11,28 +11,36 @@ import RealmSwift
 import EasyTipView
 
 internal enum EntryType: HeaderButtonModel {
+    case group
     case lesson
     case event
-    case member
+    case lessonMember
+    case groupMember
     
     var inputTypes: [InputType] {
         switch self {
+        case .group: return [.groupTitle]
         case .lesson: return [.lessonTitle]
         case .event:  return [.eventTitle, .eventDate]
-        case .member: return [.memberNameKana, .memberNameJp, .memberEmail]
+        case .lessonMember, .groupMember: return [.memberNameKana, .memberNameJp, .memberEmail]
         }
     }
     
     var headerTitle: String {
         switch self {
+        case .group: return "グループ登録"
         case .lesson: return R.string.localizable.entryHeaderLabelLesson()
         case .event:  return R.string.localizable.entryHeaderLabelEvent()
-        case .member: return R.string.localizable.entryHeaderLabelMember()
+        case .lessonMember, .groupMember: return R.string.localizable.entryHeaderLabelMember()
         }
     }
     
     func headerButtonItems(actions: [String: HeaderView.Action]? = nil) -> [[HeaderView.ButtonType]] {
         switch self {
+        case .group:
+            let entryCompletion = actions?[ActionKyes.groupEntryCompletion] ?? {}
+            let entryReject = actions?[ActionKyes.groupEntryReject] ?? {}
+            return [[.close(HeaderModel(action: entryReject))],[.regist(HeaderModel(action: entryCompletion))]]
         case .lesson:
             let entryCompletion = actions?[ActionKyes.lessonEntryCompletion] ?? {}
             let entryReject = actions?[ActionKyes.lessonEntryReject] ?? {}
@@ -41,7 +49,7 @@ internal enum EntryType: HeaderButtonModel {
             let entryCompletion = actions?[ActionKyes.eventEntryCompletion] ?? {}
             let entryReject = actions?[ActionKyes.eventEntryReject] ?? {}
             return [[.close(HeaderModel(action: entryReject))],[.regist(HeaderModel(action: entryCompletion))]]
-        case .member:
+        case .lessonMember, .groupMember:
             let entryCompletion = actions?[ActionKyes.memberEntryCompletion] ?? {}
             let entryReject = actions?[ActionKyes.memberEntryReject] ?? {}
             return [[.close(HeaderModel(action: entryReject))],[.regist(HeaderModel(action: entryCompletion))]]
@@ -64,12 +72,14 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
     
     fileprivate lazy var inputViews: [InputView] = {
         switch self.entryType {
+        case .group:
+            return [InputView.instantiate(owner: self, inputType: .groupTitle)]
         case .lesson:
             return [InputView.instantiate(owner: self, inputType: .lessonTitle)]
         case .event:
             return [InputView.instantiate(owner: self, inputType: .eventTitle),
                     InputView.instantiate(owner: self, inputType: .eventDate)]
-        case .member:
+        case .lessonMember, .groupMember:
             var inputViews = [InputView]()
             if DeviceModel.isRequireMemberName {
                 inputViews.append(InputView.instantiate(owner: self, inputType: .memberNameKana, defalut: self.editMember?.nameKana))
@@ -98,6 +108,15 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
     
     private var actions: [String: HeaderView.Action] {
         switch entryType {
+        case .group:
+            return [ActionKyes.groupEntryCompletion: {
+                let title = self.inputViews.filter { $0.inputType == .groupTitle }.first!
+                let group = Group(groupTitle: title.inputString)
+                GroupManager.shared.saveGroupListToRealm([group])
+                self.entryCompletion?(group) ?? {}()
+                }, ActionKyes.groupEntryReject: {
+                    self.entryReject?(nil)
+                }]
         case .lesson:
             return [ActionKyes.lessonEntryCompletion: {
                 let title = self.inputViews.filter { $0.inputType == .lessonTitle }.first!
@@ -117,7 +136,31 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
                 }, ActionKyes.eventEntryReject: {
                     self.entryReject?(nil)
                 }]
-        case .member:
+        case .groupMember:
+            return [ActionKyes.memberEntryCompletion: {
+                let kana = self.inputViews.filter { $0.inputType == .memberNameKana }.first
+                let jp = self.inputViews.filter { $0.inputType == .memberNameJp }.first
+                let email = self.inputViews.filter { $0.inputType == .memberEmail }.first
+                var member: Member
+                if let cloneMember = self.editMember?.clone {
+                    cloneMember.nameJp = jp?.inputString ?? ""
+                    cloneMember.nameKana = kana?.inputString ?? ""
+                    cloneMember.email = email?.inputString ?? ""
+                    member = cloneMember
+                } else {
+                    member = Member(nameJp: jp?.inputString ?? "", nameKana: kana?.inputString ?? "", email: email?.inputString ?? "")
+                }
+                MemberManager.shared.saveMemberListToRealm([member])
+                guard let groupId = self.sourceViewModel?.id, groupId != "" else {
+                    self.entryCompletion?(member) ?? {}()
+                    return
+                }
+                GroupManager.shared.saveGroupMemberListToRealm([GroupMember(groupId: groupId, memberId: member.memberId)])
+                self.entryCompletion?(member) ?? {}()
+                }, ActionKyes.memberEntryReject: {
+                    self.entryReject?(nil)
+                }]
+        case .lessonMember:
             return [ActionKyes.memberEntryCompletion: {
                 let kana = self.inputViews.filter { $0.inputType == .memberNameKana }.first
                 let jp = self.inputViews.filter { $0.inputType == .memberNameJp }.first

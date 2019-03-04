@@ -95,6 +95,7 @@ internal final class HeaderView: UIView {
         case send(HeaderModel?)                     // 送る
         case bulk(HeaderModel?)                     // 一括
         case scale(HeaderModel?)                    // 縮尺
+        case edit(HeaderModel?)                     // 編集
         
         var image: UIImage? {
             switch self {
@@ -125,13 +126,14 @@ internal final class HeaderView: UIView {
             case .send: return R.string.localizable.headerButtonLabelSend()
             case .bulk: return R.string.localizable.headerButtonLabelBuld()
             case .scale: return "縮尺"
+            case .edit: return "設定"
             default: return nil
             }
         }
         
         var titleFont: UIFont {
             switch self {
-            case .regist, .reception, .request, .selection, .send, .bulk, .scale:
+            case .regist, .reception, .request, .selection, .send, .bulk, .scale, .edit:
                 return AttendanceRecordFont.HeaderButton.regist
             default: return AttendanceRecordFont.HeaderButton.add
             }
@@ -212,6 +214,10 @@ internal final class HeaderView: UIView {
                     model?.action?()
                 }
             case .scale(let model):
+                return { _ in
+                    model?.action?()
+                }
+            case .edit(let model):
                 return { _ in
                     model?.action?()
                 }
