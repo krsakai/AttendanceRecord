@@ -9,6 +9,36 @@
 import UIKit
 import CTCheckbox
 
+internal enum SelectType {
+    case lessonMember
+    case addressMember
+    
+    var emptyMessage: String {
+        switch self {
+        case .lessonMember:
+            return "選択可能な受講者がいません\n受講者管理から受講者を追加して下さい"
+        case .addressMember:
+            return "連絡帳に選択可能な受講者がいません\n端末の連絡帳に受講者を追加して下さい"
+        }
+    }
+    
+    var alertTitle: String {
+        switch self {
+        case .lessonMember, .addressMember:
+            return R.string.localizable.memberSelectionAlertTitleMemberRegister()
+        }
+    }
+    
+    func alertMessage(extra: String) -> String {
+        switch self {
+        case .lessonMember:
+            return R.string.localizable.memberSelectionAlertMessageMemberRegister(extra)
+        case .addressMember:
+            return "選択されたメンバーを登録してもよろしいですか？"
+        }
+    }
+}
+
 internal final class MemberSelectViewController: UIViewController, HeaderViewDisplayable {
     
     // MARK: IBOutlet
@@ -17,13 +47,27 @@ internal final class MemberSelectViewController: UIViewController, HeaderViewDis
     
     @IBOutlet var headerView: HeaderView!
     
+    @IBOutlet fileprivate weak var emptyView: UIView!
+    
+    @IBOutlet fileprivate weak var emptyMessageLabel: UILabel!
+    
+    
     // MARK: Property
     
-    fileprivate var lesson: Lesson!
+    fileprivate var type = SelectType.lessonMember
+    
+    fileprivate var lesson = Lesson()
     
     fileprivate var memberList: [Member]!
     
     // MARK: Initilizer
+    
+    static func instantiate() -> MemberSelectViewController {
+        let viewController = R.storyboard.memberSelectViewController.memberSelectViewController()!
+        viewController.memberList = AddressManager.shared.selectableAddressList()
+        viewController.type = .addressMember
+        return viewController
+    }
     
     static func instantiate(lesson: Lesson) -> MemberSelectViewController {
         let viewController = R.storyboard.memberSelectViewController.memberSelectViewController()!
@@ -41,17 +85,25 @@ internal final class MemberSelectViewController: UIViewController, HeaderViewDis
     
     // MARK: View Life Cycle
     override func viewDidLoad() {
-         super.viewDidLoad()
+        super.viewDidLoad()
+        emptyMessageLabel.text = type.emptyMessage
+        emptyView.isHidden = !memberList.isEmpty
         setupHeaderView(R.string.localizable.headerTitleLabelMemberSelect(), buttonTypes: [[.close(nil)], [.selection(HeaderModel() {
-            AlertController.showAlert(title: R.string.localizable.memberSelectionAlertTitleMemberRegister(),
-                                      message: R.string.localizable.memberSelectionAlertMessageMemberRegister(self.lesson.lessonTitle),
-                                      enableCancel: true, positiveAction: {
-                let checkedMemberList = self.checked.map { self.memberList[$0] }
-                let lessonMemberList = checkedMemberList.map { LessonMember(lessonId: self.lesson.lessonId, memberId: $0.memberId) }
-                LessonManager.shared.saveLessonMemberListToRealm(lessonMemberList)
-                UIApplication.topViewController()?.dismiss(animated: true, completion: nil)
-            })
-        })]])
+            AlertController.showAlert(
+                title: self.type.alertTitle,
+                message: self.type.alertMessage(extra: self.lesson.lessonTitle),
+                enableCancel: true,
+                positiveAction: {
+                    let checkedMemberList = self.checked.map { self.memberList[$0] }
+                    if self.type == .lessonMember {
+                        let lessonMemberList = checkedMemberList.map { LessonMember(lessonId: self.lesson.lessonId, memberId: $0.memberId) }
+                        LessonManager.shared.saveLessonMemberListToRealm(lessonMemberList)
+                    } else {
+                        MemberManager.shared.saveMemberListToRealm(checkedMemberList)
+                    }
+                    UIApplication.topViewController()?.dismiss(animated: true, completion: nil)
+                })
+            })]])
         updateHeaderButton()
         tableView.register(MemberListTableCell.self)
     }

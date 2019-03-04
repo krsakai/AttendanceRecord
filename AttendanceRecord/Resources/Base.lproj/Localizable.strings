@@ -36,7 +36,7 @@
 
 // サイドメニュー
 "SideMenu.HeaderLabel.MenuList" = "%@メニュー";
-"SideMenu.Label.AttendanceMemberList" = "受講者一覧";
+"SideMenu.Label.AttendanceMemberList" = "受講者管理";
 "SideMenu.Label.AttendanceTable" = "出席一覧";
 "SideMenu.Label.BackNumber" = "バックナンバー";
 "SideMenu.Label.Setting" = "設定";

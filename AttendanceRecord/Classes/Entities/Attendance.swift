@@ -22,6 +22,7 @@ internal final class Attendance: Object, ClonableObject {
     dynamic fileprivate(set) var lessonId                   = ""
     dynamic fileprivate(set) var eventId                    = ""
     dynamic fileprivate(set) var memberId                   = ""
+    dynamic var isHidden                   = false
     dynamic var reason                     = ""
     dynamic var attendanceStatusRawValue   = "-"
     
@@ -99,12 +100,17 @@ extension Attendance {
         return NSPredicate(format: "lessonId = %@ AND memberId = %@", lessonId, memberId)
     }
     
-    static func predicate(lessonId: String, eventId: String) -> NSPredicate {
-        return NSPredicate(format: "lessonId = %@ AND eventId = %@", lessonId, eventId)
+    static func predicate(lessonId: String, eventId: String, filterHidden: Bool = false) -> NSPredicate {
+        if filterHidden {
+            return NSPredicate(format: "lessonId = %@ AND eventId = %@ AND isHidden = NO", lessonId, eventId)
+        } else {
+            return NSPredicate(format: "lessonId = %@ AND eventId = %@", lessonId, eventId)
+        }
+        
     }
     
     static func predicate(lessonId: String, eventId: String, memberId: String) -> NSPredicate {
-        return NSPredicate(format: "lessonId = %@ AND eventId = %@ And memberId = %@", lessonId, eventId, memberId)
+        return NSPredicate(format: "lessonId = %@ AND eventId = %@ And memberId = %@" , lessonId, eventId, memberId)
     }
     
     static func predicate(memberId: String) -> NSPredicate {

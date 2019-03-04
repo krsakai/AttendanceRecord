@@ -11,6 +11,7 @@ import SnapKit
 import SwiftCop
 
 internal enum InputType {
+    case groupTitle
     case lessonTitle
     case eventTitle
     case eventDate
@@ -20,6 +21,7 @@ internal enum InputType {
     
     var titleLabel: String {
         switch self {
+        case .groupTitle: return "グループ名"
         case .lessonTitle: return R.string.localizable.inputViewLabelLessonTitle()
         case .eventTitle: return R.string.localizable.inputViewLabelEventTitle()
         case .eventDate: return R.string.localizable.inputViewLabelEventDate()
@@ -34,7 +36,7 @@ internal enum InputType {
         case .memberEmail: return [.space, .lengthMin(1), .lengthMax(100), .email]
         case .memberNameJp: return [.space, .lengthMin(1), .lengthMax(20)]
         case .memberNameKana: return [.space, .lengthMin(1), .lengthMax(20), .hiragana]
-        case .lessonTitle, .eventTitle: return [.space, .lengthMin(1), .lengthMax(100)]
+        case .groupTitle, .lessonTitle, .eventTitle: return [.space, .lengthMin(1), .lengthMax(100)]
         case .eventDate: return [.format(format: "^([0-9]{4}[年][.* ].*[0-9][月].*[0-9][日][.* ].*[0-9][時].*[0-9][分])$", alert: AttendaceRecordFormat.displayedYearToMin.rawValue)]
         }
     }

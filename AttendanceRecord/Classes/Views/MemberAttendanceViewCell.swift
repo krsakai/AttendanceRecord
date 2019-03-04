@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SWTableViewCell
 
-internal final class MemberAttendanceViewCell: UITableViewCell {
+internal final class MemberAttendanceViewCell: SWTableViewCell {
     
     private var completion: (() -> Void)?
     
@@ -19,8 +20,9 @@ internal final class MemberAttendanceViewCell: UITableViewCell {
     
     private var viewModel: AttendanceViewModel!
     
-    static func instantiate(_ owner: AnyObject, viewModel: AttendanceViewModel,
-                            index: Int, completion: (() -> Void)? = nil) -> MemberAttendanceViewCell {
+    static func instantiate(_ owner: SWTableViewCellDelegate, viewModel: AttendanceViewModel,
+                            index: Int, editMode: Bool = false ,
+                            completion: (() -> Void)? = nil) -> MemberAttendanceViewCell {
         let cell = R.nib.memberAttendanceViewCell.firstView(owner: owner, options: nil)!
         cell.kanaNameLabel.text = viewModel.member.nameKana
         cell.jpNameLabel.text = viewModel.member.nameJp
@@ -31,6 +33,15 @@ internal final class MemberAttendanceViewCell: UITableViewCell {
         cell.attendanceButton.setTitleColor(DeviceModel.themeColor.color, for: .highlighted)
         cell.completion = completion
         cell.viewModel = viewModel
+        let utilityButtons = NSMutableArray()
+        utilityButtons.sw_addUtilityButton(with: DeviceModel.themeColor.color, title: "非表示")
+        cell.leftUtilityButtons = utilityButtons as [AnyObject]
+        cell.delegate = owner
+        if editMode {
+            cell.showLeftUtilityButtons(animated: false)
+        } else {
+            cell.hideUtilityButtons(animated: false)
+        }
         return cell
     }
     

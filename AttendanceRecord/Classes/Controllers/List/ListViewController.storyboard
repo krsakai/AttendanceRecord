@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,14 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emn-TV-x99" customClass="HeaderView" customModule="AttendanceRecord" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="71" id="wwm-es-drQ"/>
+                                    <constraint firstAttribute="height" constant="81" id="wwm-es-drQ"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="3Ex-6b-OUi">
-                                <rect key="frame" x="0.0" y="71" width="375" height="571"/>
+                                <rect key="frame" x="0.0" y="81" width="375" height="561"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.015686274510000001" green="0.23529411759999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -45,24 +45,46 @@
                                     <constraint firstAttribute="height" constant="25" id="iWV-mv-itV"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apj-jT-jwY" userLabel="Empty View">
+                                <rect key="frame" x="0.0" y="81" width="375" height="561"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="データを登録して下さい" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1q1-yP-61B" userLabel="Empty Message">
+                                        <rect key="frame" x="92" y="270.5" width="191" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="1q1-yP-61B" firstAttribute="centerX" secondItem="apj-jT-jwY" secondAttribute="centerX" id="Iug-Uw-2xT"/>
+                                    <constraint firstItem="1q1-yP-61B" firstAttribute="centerY" secondItem="apj-jT-jwY" secondAttribute="centerY" id="lZz-qu-jue"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="lPU-aR-VMC" firstAttribute="top" secondItem="apj-jT-jwY" secondAttribute="bottom" id="6qz-03-UBF"/>
                             <constraint firstAttribute="trailing" secondItem="3Ex-6b-OUi" secondAttribute="trailing" id="8NZ-MJ-NJf"/>
                             <constraint firstItem="3Ex-6b-OUi" firstAttribute="leading" secondItem="dBV-IG-Qe6" secondAttribute="leading" id="K2j-sD-f0e"/>
                             <constraint firstItem="emn-TV-x99" firstAttribute="top" secondItem="dBV-IG-Qe6" secondAttribute="top" id="Kiw-Ty-Fxp"/>
+                            <constraint firstItem="apj-jT-jwY" firstAttribute="top" secondItem="emn-TV-x99" secondAttribute="bottom" id="WGh-sv-xqq"/>
                             <constraint firstAttribute="trailing" secondItem="lPU-aR-VMC" secondAttribute="trailing" id="WvS-vE-NtY"/>
                             <constraint firstItem="emn-TV-x99" firstAttribute="leading" secondItem="dBV-IG-Qe6" secondAttribute="leading" id="Z3J-BH-0rp"/>
                             <constraint firstItem="3Ex-6b-OUi" firstAttribute="top" secondItem="emn-TV-x99" secondAttribute="bottom" id="epA-xl-GXJ"/>
                             <constraint firstItem="lPU-aR-VMC" firstAttribute="leading" secondItem="dBV-IG-Qe6" secondAttribute="leading" id="f6U-5x-FIu"/>
                             <constraint firstItem="lPU-aR-VMC" firstAttribute="top" secondItem="3Ex-6b-OUi" secondAttribute="bottom" id="gCY-C6-Oga"/>
                             <constraint firstAttribute="trailing" secondItem="emn-TV-x99" secondAttribute="trailing" id="hEQ-NK-71b"/>
+                            <constraint firstItem="apj-jT-jwY" firstAttribute="leading" secondItem="dBV-IG-Qe6" secondAttribute="leading" id="lAL-um-dfD"/>
+                            <constraint firstAttribute="trailing" secondItem="apj-jT-jwY" secondAttribute="trailing" id="pZY-f8-Bdh"/>
                             <constraint firstAttribute="bottom" secondItem="lPU-aR-VMC" secondAttribute="bottom" id="sEU-ZJ-wKN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kqb-An-grg"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="emptyMessageLabel" destination="1q1-yP-61B" id="Cpq-0V-Lhd"/>
+                        <outlet property="emptyView" destination="apj-jT-jwY" id="KMc-du-RTu"/>
                         <outlet property="footerView" destination="lPU-aR-VMC" id="Itu-hE-1Ox"/>
                         <outlet property="headerView" destination="emn-TV-x99" id="RsV-V0-UPu"/>
                         <outlet property="tableView" destination="3Ex-6b-OUi" id="SIS-Ug-ine"/>

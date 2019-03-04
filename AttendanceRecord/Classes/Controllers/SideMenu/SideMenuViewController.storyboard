@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -119,10 +119,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.28627450980392155" green="0.28627450980392155" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="5r8-rM-Y7J" secondAttribute="bottom" id="IWc-YI-OoD"/>
+                            <constraint firstItem="5r8-rM-Y7J" firstAttribute="top" secondItem="6Tn-HP-Mei" secondAttribute="top" id="QW1-IG-LOM"/>
                             <constraint firstItem="5r8-rM-Y7J" firstAttribute="leading" secondItem="6Tn-HP-Mei" secondAttribute="leading" id="Sf0-nP-oGc"/>
-                            <constraint firstItem="HuW-xk-uWe" firstAttribute="top" secondItem="5r8-rM-Y7J" secondAttribute="bottom" id="a23-1f-fjk"/>
                             <constraint firstAttribute="trailing" secondItem="5r8-rM-Y7J" secondAttribute="trailing" id="iLa-eo-7CG"/>
-                            <constraint firstItem="5r8-rM-Y7J" firstAttribute="top" secondItem="6Tn-HP-Mei" secondAttribute="topMargin" id="jDR-Dl-WBz"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>

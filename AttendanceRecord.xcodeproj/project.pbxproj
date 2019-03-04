@@ -110,7 +110,21 @@
 		C86F61731E88DC5A00C829A0 /* EntryTrial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F61721E88DC5A00C829A0 /* EntryTrial.swift */; };
 		C86F61751E88E8D300C829A0 /* EasyTipView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C86F61741E88E8D300C829A0 /* EasyTipView.framework */; };
 		C8778F281E997BB900E336E7 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8778F271E997BB900E336E7 /* FilePath.swift */; };
+		C8830A06222C692D0060664B /* GroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8830A05222C692D0060664B /* GroupManager.swift */; };
+		C8830A08222C695E0060664B /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8830A07222C695E0060664B /* Group.swift */; };
+		C8830A0A222C6B340060664B /* GroupMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8830A09222C6B340060664B /* GroupMember.swift */; };
+		C8830A0D222C739A0060664B /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8830A0C222C739A0060664B /* GroupTableViewCell.swift */; };
+		C8830A0F222C73AE0060664B /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8830A0E222C73AE0060664B /* GroupTableViewCell.xib */; };
+		C8830A12222D00B20060664B /* AddressMemberSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8830A11222D00B20060664B /* AddressMemberSelectViewController.swift */; };
+		C8830A14222D05190060664B /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8830A13222D05190060664B /* Contacts.framework */; };
+		C8830A16222D05CD0060664B /* AddressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8830A15222D05CD0060664B /* AddressManager.swift */; };
+		C8830A18222D3E7C0060664B /* StoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8830A17222D3E7C0060664B /* StoreReviewManager.swift */; };
+		C8830A1B222D488B0060664B /* FirebaseAnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8830A1A222D488B0060664B /* FirebaseAnalyticsManager.swift */; };
+		C8830A1D222D530F0060664B /* FirebaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8830A1C222D530F0060664B /* FirebaseDatabaseManager.swift */; };
+		C8830A20222D5BC90060664B /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8830A1F222D5BC90060664B /* FirebaseStorageManager.swift */; };
 		C885804920231D220005089E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C885804820231D220005089E /* GoogleService-Info.plist */; };
+		C8881AB7222C64DA00C51483 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8881AB6222C64DA00C51483 /* GroupViewController.swift */; };
+		C8881AB9222C64EB00C51483 /* GroupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8881AB8222C64EB00C51483 /* GroupViewController.storyboard */; };
 		C892F2051E995897009B852A /* template_event.csv in Resources */ = {isa = PBXBuildFile; fileRef = C892F2031E995897009B852A /* template_event.csv */; };
 		C892F2061E995897009B852A /* template_member.csv in Resources */ = {isa = PBXBuildFile; fileRef = C892F2041E995897009B852A /* template_member.csv */; };
 		C89673891E90D37700D67069 /* MemberSearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C89673871E90D37700D67069 /* MemberSearchViewController.storyboard */; };
@@ -255,7 +269,22 @@
 		C86F61721E88DC5A00C829A0 /* EntryTrial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryTrial.swift; sourceTree = "<group>"; };
 		C86F61741E88E8D300C829A0 /* EasyTipView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyTipView.framework; path = Carthage/Build/iOS/EasyTipView.framework; sourceTree = "<group>"; };
 		C8778F271E997BB900E336E7 /* FilePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePath.swift; sourceTree = "<group>"; };
+		C8830A05222C692D0060664B /* GroupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupManager.swift; sourceTree = "<group>"; };
+		C8830A07222C695E0060664B /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		C8830A09222C6B340060664B /* GroupMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMember.swift; sourceTree = "<group>"; };
+		C8830A0C222C739A0060664B /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
+		C8830A0E222C73AE0060664B /* GroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
+		C8830A11222D00B20060664B /* AddressMemberSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressMemberSelectViewController.swift; sourceTree = "<group>"; };
+		C8830A13222D05190060664B /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		C8830A15222D05CD0060664B /* AddressManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressManager.swift; sourceTree = "<group>"; };
+		C8830A17222D3E7C0060664B /* StoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewManager.swift; sourceTree = "<group>"; };
+		C8830A1A222D488B0060664B /* FirebaseAnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsManager.swift; sourceTree = "<group>"; };
+		C8830A1C222D530F0060664B /* FirebaseDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseManager.swift; sourceTree = "<group>"; };
+		C8830A1E222D57240060664B /* AttendanceRecord.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AttendanceRecord.entitlements; sourceTree = "<group>"; };
+		C8830A1F222D5BC90060664B /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
 		C885804820231D220005089E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C8881AB6222C64DA00C51483 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		C8881AB8222C64EB00C51483 /* GroupViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GroupViewController.storyboard; sourceTree = "<group>"; };
 		C892F2031E995897009B852A /* template_event.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = template_event.csv; sourceTree = "<group>"; };
 		C892F2041E995897009B852A /* template_member.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = template_member.csv; sourceTree = "<group>"; };
 		C89673871E90D37700D67069 /* MemberSearchViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MemberSearchViewController.storyboard; sourceTree = "<group>"; };
@@ -286,6 +315,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8830A14222D05190060664B /* Contacts.framework in Frameworks */,
 				C85C3AD61E8F249600C8B468 /* MessageUI.framework in Frameworks */,
 				C857085E1E8C369A00B21DE4 /* Popover.framework in Frameworks */,
 				C86F61751E88E8D300C829A0 /* EasyTipView.framework in Frameworks */,
@@ -532,6 +562,7 @@
 		C863C8F91E608D0C00FD75F1 /* AttendanceRecord */ = {
 			isa = PBXGroup;
 			children = (
+				C8830A1E222D57240060664B /* AttendanceRecord.entitlements */,
 				C863C91A1E608FA200FD75F1 /* Classes */,
 				C863C98C1E6175AC00FD75F1 /* Resources */,
 				C863C9461E608FA200FD75F1 /* Supporting Files */,
@@ -569,6 +600,8 @@
 		C863C91C1E608FA200FD75F1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C8830A10222D008F0060664B /* Address */,
+				C8881AB5222C64B800C51483 /* Group */,
 				C8ABD7A9202308B900106AF5 /* Memo */,
 				C857086E1E8C3C4F00B21DE4 /* List */,
 				C8508BDB1E745C8D00BCF12A /* Entry */,
@@ -597,6 +630,8 @@
 				C857CC691E718B70007A3E35 /* Lesson.swift */,
 				C8559A711E859E74000C7C49 /* LessonMember.swift */,
 				C85C3ADD1E8FB67F00C8B468 /* PeripheralDevice.swift */,
+				C8830A07222C695E0060664B /* Group.swift */,
+				C8830A09222C6B340060664B /* GroupMember.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -640,6 +675,12 @@
 				C857CC6B1E718C75007A3E35 /* LessonManager.swift */,
 				C85C3AD11E8ED46C00C8B468 /* LessonAttendanceManamger.swift */,
 				C84627931E98FA5000A535F5 /* FileManager.swift */,
+				C8830A05222C692D0060664B /* GroupManager.swift */,
+				C8830A15222D05CD0060664B /* AddressManager.swift */,
+				C8830A17222D3E7C0060664B /* StoreReviewManager.swift */,
+				C8830A1A222D488B0060664B /* FirebaseAnalyticsManager.swift */,
+				C8830A1C222D530F0060664B /* FirebaseDatabaseManager.swift */,
+				C8830A1F222D5BC90060664B /* FirebaseStorageManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -659,6 +700,7 @@
 		C863C93D1E608FA200FD75F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C8830A0B222C73860060664B /* GroupView */,
 				C896738D1E90F60200D67069 /* MemberSearchView */,
 				C85708851E8C3F1600B21DE4 /* SelectionView */,
 				C857083C1E8A4BEB00B21DE4 /* SettingTableCell */,
@@ -739,6 +781,34 @@
 			path = MemberSelect;
 			sourceTree = "<group>";
 		};
+		C8830A0B222C73860060664B /* GroupView */ = {
+			isa = PBXGroup;
+			children = (
+				C8830A0C222C739A0060664B /* GroupTableViewCell.swift */,
+				C8830A0E222C73AE0060664B /* GroupTableViewCell.xib */,
+			);
+			name = GroupView;
+			path = AttendanceRecord/Classes/GroupView;
+			sourceTree = SOURCE_ROOT;
+		};
+		C8830A10222D008F0060664B /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				C8830A11222D00B20060664B /* AddressMemberSelectViewController.swift */,
+			);
+			name = Address;
+			path = AttendanceRecord/Classes/Address;
+			sourceTree = SOURCE_ROOT;
+		};
+		C8881AB5222C64B800C51483 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				C8881AB6222C64DA00C51483 /* GroupViewController.swift */,
+				C8881AB8222C64EB00C51483 /* GroupViewController.storyboard */,
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
 		C89673861E90D37700D67069 /* MemberSearchList */ = {
 			isa = PBXGroup;
 			children = (
@@ -778,6 +848,7 @@
 		E4D2DB8086E7456DABE4B23C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C8830A13222D05190060664B /* Contacts.framework */,
 				C85C3AD51E8F249600C8B468 /* MessageUI.framework */,
 				C857085D1E8C369A00B21DE4 /* Popover.framework */,
 				C857085B1E8C1DF800B21DE4 /* PopoverSwift.framework */,
@@ -810,6 +881,7 @@
 				C863C8F51E608D0C00FD75F1 /* Resources */,
 				740B725ED48AAC478FF6F281 /* [CP] Embed Pods Frameworks */,
 				C863C97C1E60A70500FD75F1 /* Carthage  */,
+				C8830A19222D456D0060664B /* Crashlytics Script */,
 			);
 			buildRules = (
 			);
@@ -852,6 +924,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 5R2LS4A9QF;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					C863C90A1E608D0C00FD75F1 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -911,6 +988,7 @@
 				C8FEA70E1E7333EF00503ED5 /* InputView.xib in Resources */,
 				C89673891E90D37700D67069 /* MemberSearchViewController.storyboard in Resources */,
 				C863C9701E608FA200FD75F1 /* LaunchScreen.storyboard in Resources */,
+				C8881AB9222C64EB00C51483 /* GroupViewController.storyboard in Resources */,
 				C863C9881E616FC900FD75F1 /* SideMenuViewController.storyboard in Resources */,
 				C857CC511E7066E9007A3E35 /* ModeView.xib in Resources */,
 				C84627991E99467000A535F5 /* HowToUseViewController.storyboard in Resources */,
@@ -925,6 +1003,7 @@
 				C896739B1E92C1B800D67069 /* Settings.bundle in Resources */,
 				C885804920231D220005089E /* GoogleService-Info.plist in Resources */,
 				C857CC711E719EA9007A3E35 /* LessonTableViewCell.xib in Resources */,
+				C8830A0F222C73AE0060664B /* GroupTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,26 +1026,32 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-AttendanceRecord/Pods-AttendanceRecord-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CTCheckbox/CTCheckbox.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/HSegmentControl/HSegmentControl.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SWTableViewCell/SWTableViewCell.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftCop/SwiftCop.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CTCheckbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HSegmentControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWTableViewCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCop.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1031,6 +1116,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT/AttendanceRecord/Resources\"";
 		};
+		C8830A19222D456D0060664B /* Crashlytics Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Crashlytics Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/Fabric/run\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1038,10 +1142,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8830A16222D05CD0060664B /* AddressManager.swift in Sources */,
+				C8881AB7222C64DA00C51483 /* GroupViewController.swift in Sources */,
 				C868334C1E8E0C5400162D91 /* MemberSelectViewController.swift in Sources */,
 				C85708721E8C3C4F00B21DE4 /* LoadingController.swift in Sources */,
 				C85708321E89BAFD00B21DE4 /* CGFloat.swift in Sources */,
 				C85708711E8C3C4F00B21DE4 /* AlertController.swift in Sources */,
+				C8830A20222D5BC90060664B /* FirebaseStorageManager.swift in Sources */,
 				C806968B1E6481DE00978338 /* AttendanceRecordFont.swift in Sources */,
 				C85C3AE21E8FCBAF00C8B468 /* PeripheralManager.swift in Sources */,
 				C85C3ACC1E8EC8C600C8B468 /* MailSendViewController.swift in Sources */,
@@ -1057,12 +1164,16 @@
 				C85708401E8A4C6100B21DE4 /* ModeChangeCell.swift in Sources */,
 				C806968D1E6482B900978338 /* Event.swift in Sources */,
 				C85C3ADC1E8FB5D600C8B468 /* PeripheralDeviceManager.swift in Sources */,
+				C8830A0A222C6B340060664B /* GroupMember.swift in Sources */,
 				C89673A11E95539200D67069 /* MailSettingCell.swift in Sources */,
 				C85C3AD01E8ED36C00C8B468 /* LessonAttendanceModel.swift in Sources */,
 				C82876051E8830EE004B4CC9 /* EntryModel.swift in Sources */,
+				C8830A18222D3E7C0060664B /* StoreReviewManager.swift in Sources */,
 				C84627831E96F8DC00A535F5 /* FileImportCell.swift in Sources */,
 				C85708761E8C3C4F00B21DE4 /* CommonWebViewController.swift in Sources */,
 				C863C98A1E616FDB00FD75F1 /* SideMenuViewController.swift in Sources */,
+				C8830A1B222D488B0060664B /* FirebaseAnalyticsManager.swift in Sources */,
+				C8830A1D222D530F0060664B /* FirebaseDatabaseManager.swift in Sources */,
 				C85708441E8A4CB800B21DE4 /* ThemeColorSelectCell.swift in Sources */,
 				C80696871E647C7700978338 /* Attendance.swift in Sources */,
 				C85C3ADE1E8FB67F00C8B468 /* PeripheralDevice.swift in Sources */,
@@ -1083,8 +1194,11 @@
 				C863C9831E616D3F00FD75F1 /* HeaderView.swift in Sources */,
 				C84627971E99465600A535F5 /* HowToUseViewController.swift in Sources */,
 				C89673931E910F7C00D67069 /* Array.swift in Sources */,
+				C8830A06222C692D0060664B /* GroupManager.swift in Sources */,
+				C8830A08222C695E0060664B /* Group.swift in Sources */,
 				C85708351E8A281900B21DE4 /* SWTableViewCell.swift in Sources */,
 				C863C95E1E608FA200FD75F1 /* NSDate.swift in Sources */,
+				C8830A0D222C739A0060664B /* GroupTableViewCell.swift in Sources */,
 				C85C3AD21E8ED46C00C8B468 /* LessonAttendanceManamger.swift in Sources */,
 				C80696931E64910100978338 /* EventManager.swift in Sources */,
 				C8FEA7141E73E86D00503ED5 /* ActionKeys.swift in Sources */,
@@ -1092,6 +1206,7 @@
 				C80696BB1E65E0A200978338 /* MemberAttendanceViewCell.swift in Sources */,
 				C896739D1E93E30900D67069 /* MemberSettingCell.swift in Sources */,
 				C8FEA7101E73340200503ED5 /* InputView.swift in Sources */,
+				C8830A12222D00B20060664B /* AddressMemberSelectViewController.swift in Sources */,
 				C84627881E96FE3000A535F5 /* FileManagementViewController.swift in Sources */,
 				C82876071E883300004B4CC9 /* HeaderModel.swift in Sources */,
 				C851AF9A1E6300F900D9039E /* Member.swift in Sources */,
@@ -1249,6 +1364,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = AttendanceRecord/AttendanceRecord.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1274,6 +1390,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = AttendanceRecord/AttendanceRecord.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;

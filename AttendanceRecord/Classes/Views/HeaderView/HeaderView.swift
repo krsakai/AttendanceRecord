@@ -95,6 +95,8 @@ internal final class HeaderView: UIView {
         case send(HeaderModel?)                     // 送る
         case bulk(HeaderModel?)                     // 一括
         case scale(HeaderModel?)                    // 縮尺
+        case edit(HeaderModel?)                     // 編集
+        case address(HeaderModel?)                  // 連絡帳
         
         var image: UIImage? {
             switch self {
@@ -125,13 +127,15 @@ internal final class HeaderView: UIView {
             case .send: return R.string.localizable.headerButtonLabelSend()
             case .bulk: return R.string.localizable.headerButtonLabelBuld()
             case .scale: return "縮尺"
+            case .edit: return "設定"
+            case .address: return "連絡帳"
             default: return nil
             }
         }
         
         var titleFont: UIFont {
             switch self {
-            case .regist, .reception, .request, .selection, .send, .bulk, .scale:
+            case .regist, .reception, .request, .selection, .send, .bulk, .scale, .edit, .address:
                 return AttendanceRecordFont.HeaderButton.regist
             default: return AttendanceRecordFont.HeaderButton.add
             }
@@ -215,6 +219,18 @@ internal final class HeaderView: UIView {
                 return { _ in
                     model?.action?()
                 }
+            case .edit(let model):
+                return { _ in
+                    model?.action?()
+                }
+            case .address(let model):
+                return { _ in
+                    AddressManager.shared.contactStoreAuthorization() { _ in
+                        let viewController = MemberSelectViewController.instantiate()
+                        UIApplication.topViewController()?.present(viewController, animated: true, completion: nil)
+                        model?.action?()
+                    }
+                }
             }
         }
     }
@@ -228,6 +244,7 @@ internal final class HeaderView: UIView {
     @IBOutlet fileprivate weak var leftStackView: UIStackView!
     @IBOutlet fileprivate weak var rightStackView: UIStackView!
     @IBOutlet fileprivate weak var title: UILabel!
+    @IBOutlet private weak var safeAreaTopConstraints: NSLayoutConstraint!
     
     fileprivate var contentView: UIView!
     
@@ -241,6 +258,19 @@ internal final class HeaderView: UIView {
             make.right.left.bottom.top.equalTo(0)
         }
         contentView.backgroundColor = DeviceModel.themeColor.color
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        safeAreaTopConstraints.constant = DeviceModel.isIPhoneX ? 44 : 20
+        rightStackView.spacing = 8
+        leftStackView.spacing = 0
+        if let constraint = constraints[0] as? NSLayoutConstraint {
+            NSLayoutConstraint.deactivate([constraint])
+        }
+        snp.makeConstraints { make in
+            make.height.equalTo(DeviceModel.isIPhoneX ? 80 : 71)
+        }
     }
 }
 

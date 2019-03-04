@@ -56,6 +56,19 @@ internal final class DeviceModel {
     
     static var characteristicUUID = CBUUID(string: "F3D31BE0-EAD5-48AB-9E4B-F0D60047A476")
     
+    static var isIPhoneX: Bool = {
+        guard #available(iOS 11.0, *),
+            UIDevice().userInterfaceIdiom == .phone else {
+                return false
+        }
+        let nativeSize = UIScreen.main.nativeBounds.size
+        let (w, h) = (nativeSize.width, nativeSize.height)
+        let (d1, d2): (CGFloat, CGFloat) = (1125.0, 2436.0)
+        let (r1, r2): (CGFloat, CGFloat) = (828.0, 1792.0)
+        let (m1, m2): (CGFloat, CGFloat) = (1242.0, 2688.0)
+        return (w == d1 && h == d2) || (w == d2 && h == d1) || (w == r1 && h == r2) || (w == r2 && h == r1) || (w == m1 && h == m2) || (w == m2 && h == m1)
+    }()
+    
     /// NSUserDefaultsのアクセスで使用するキー
     private enum UserDefaultsKey: String {
         case isFirstReadMasterData   = "IsFirstReadMasterData"
@@ -66,6 +79,7 @@ internal final class DeviceModel {
         case isRequireMemberName     = "IsRequireMemberName"
         case isRequireMemberEmail    = "IsRequireMemberEmail"
         case mailAddress             = "MailAddress"
+        case storeReviewDate         = "StoreReviewDate"
     }
     
     static var isFirstReadMasterData: Bool {
@@ -84,6 +98,15 @@ internal final class DeviceModel {
         }
         set {
             UserDefaults.standard.set(newValue.rawValue, forKey: UserDefaultsKey.mode.rawValue)
+        }
+    }
+    
+    static var storeReviewDate: Date {
+        get {
+            return UserDefaults.standard.object(forKey: UserDefaultsKey.storeReviewDate.rawValue) as? Date ?? NSDateZero
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.storeReviewDate.rawValue)
         }
     }
     

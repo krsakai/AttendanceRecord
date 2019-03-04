@@ -40,7 +40,6 @@ internal enum ListType: HeaderButtonModel {
         case (.event(let model), _): return model?.titleName ?? R.string.localizable.headerTitleLabelEventList()
         case (.member(let model), _): return model?.titleName ?? R.string.localizable.sideMenuLabelAttendanceMemberList()
         case (.attendance, _): return R.string.localizable.sideMenuLabelAttendanceTable()
-        default: return ""
         }
     }
     
@@ -80,7 +79,6 @@ internal enum ListType: HeaderButtonModel {
         case (.event, _): return EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(lessonId: sourceViewModel?.id ?? ""))
         case (.member, _): return MemberManager.shared.memberListDataFromRealm()
         case (.attendance, _): return LessonManager.shared.lessonListDataFromRealm()
-        default: return [Object()]
         }
     }
     
@@ -96,6 +94,19 @@ internal enum ListType: HeaderButtonModel {
         case (.attendance, _): return CommonWebViewController.instantiate(requestType: .attendanceList, lesson: sourceViewModel as? Lesson)
         }
     }
+    
+    var emptyMessage: String {
+        switch self {
+        case .lesson:
+            return "講義を登録して下さい"
+        case .event:
+            return "イベントを登録して下さい"
+        case .member:
+            return "受講者を登録して下さい"
+        case .attendance:
+            return "イベントの出欠を登録して下さい"
+        }
+    }
 }
 
 // MARK: - ListViewController
@@ -108,6 +119,10 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
     
     @IBOutlet fileprivate weak var footerView: FooterView!
     @IBOutlet fileprivate weak var tableView: UITableView!
+    
+    @IBOutlet fileprivate weak var emptyView: UIView!
+    @IBOutlet fileprivate weak var emptyMessageLabel: UILabel!
+    
     
     // MARK: - Properties
     
@@ -147,14 +162,7 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
                             self.present(viewController, animated: true, completion: nil)
                         }
                         
-                        // メンバー登録
-                        let entry = PopoverItem(title: R.string.localizable.memberSelectionAlertTitleMemberRegister()) { _ in
-                            self.popover.dismiss()
-                            let viewController = EntryViewController.instantiate(entryModel: EntryModel(entryType: .member, displayModel: model))
-                            UIApplication.topViewController()?.present(viewController, animated: true, completion: nil)
-                        }
-                        
-                        let selectionView = SelectionView.instantiate(owner: self, items: [selection, entry])
+                        let selectionView = SelectionView.instantiate(owner: self, items: [selection])
                         self.popover.show(selectionView, fromView: targetView)
                     })),
                      .add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: model)))]]
@@ -162,7 +170,10 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
             return [[.back],[]]
         case (.member, .organizer):
             return [[.sideMenu],
-                    [.add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: nil)))]]
+                    [
+                        .address(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: nil))),
+                        .add(HeaderModel(entryModel: EntryModel(entryType: self.type.entryType, displayModel: nil)))
+                    ]]
         default: return [[.sideMenu],[]]
         }
     }
@@ -181,7 +192,7 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
         super.viewDidLoad()
         tableView.rowHeight = ListViewController.defalutCellRowHeight
         tableView.separatorColor = DeviceModel.themeColor.color
-        
+        emptyMessageLabel.text = type.emptyMessage
         setupHeaderView(type.headerTitle, buttonTypes: headerButtons)
         
         switch type {
@@ -193,6 +204,7 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        StoreReviewManager.shared.storeReview()
         tableView.reloadData()
     }
 }
@@ -204,7 +216,9 @@ extension ListViewController: UITableViewDataSource {
     static let defalutCellRowHeight = CGFloat(80)
     
     fileprivate var list: [Object] {
-        return type.list(sourceViewModel: type.displayModel)
+        let displayList = type.list(sourceViewModel: type.displayModel)
+        emptyView.isHidden = !displayList.isEmpty
+        return displayList
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

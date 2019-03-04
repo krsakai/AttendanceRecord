@@ -11,6 +11,7 @@ import RealmSwift
 import DrawerController
 import GoogleMobileAds
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,11 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = instantiateRootViewController
         GADMobileAds.configure(withApplicationID: "ca-app-pub-7419271952519725~6218919453")
         FirebaseApp.configure()
+        setupPushNotification(application: application)
         return true
     }
     
     static func migrate() {
-        let config = Realm.Configuration(schemaVersion: 1,
+        let config = Realm.Configuration(schemaVersion: 2,
             migrationBlock: { migration, oldSchemaVersion in
                 if oldSchemaVersion < 1 {
                     migration.enumerateObjects(ofType: Attendance.className()) { oldObject, newObject in
@@ -55,6 +57,56 @@ extension AppDelegate {
             FilesManager.save(fileName: FilePath.sampleFileEvent, dataList: eventList)
             FilesManager.save(fileName: FilePath.sampleFileMember, dataList: memberList)
         }
+    }
+    
+    fileprivate func setupPushNotification(application: UIApplication) {
+        Messaging.messaging().delegate = self
+        
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = self
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        FirebaseAnalyticsManager.shared.setUserProperty(userId: Messaging.messaging().fcmToken ?? "")
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    //アプリ起動時に通知を受け取った時に通る
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // 優先する通知オプションの変更を行う場合は設定する
+        completionHandler([])
+    }
+    
+    //受け取った通知を開いた時に通る
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void){
+        print("")
     }
 }
 

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -44,22 +45,45 @@
                                     <constraint firstAttribute="height" constant="25" id="1VH-1q-hEj"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vyi-sj-acg" userLabel="Empty View">
+                                <rect key="frame" x="0.0" y="71" width="375" height="571"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPI-VB-2v1">
+                                        <rect key="frame" x="32.5" y="266.5" width="310.5" height="38.5"/>
+                                        <string key="text">講義に出欠を記入できる受講者がいません
+講義に受講者を選択/追加して下さい</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="CPI-VB-2v1" firstAttribute="centerX" secondItem="Vyi-sj-acg" secondAttribute="centerX" id="d5q-do-Dch"/>
+                                    <constraint firstItem="CPI-VB-2v1" firstAttribute="centerY" secondItem="Vyi-sj-acg" secondAttribute="centerY" id="qCi-GO-xdR"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="HQA-sl-9jv" firstAttribute="top" secondItem="EMQ-SG-in6" secondAttribute="bottom" id="3QH-vG-7Q3"/>
+                            <constraint firstItem="Vyi-sj-acg" firstAttribute="top" secondItem="0G9-Rt-CfE" secondAttribute="bottom" id="58W-YF-evA"/>
+                            <constraint firstItem="Vyi-sj-acg" firstAttribute="leading" secondItem="KJX-od-5yC" secondAttribute="leading" id="5mE-5k-DWt"/>
                             <constraint firstItem="0G9-Rt-CfE" firstAttribute="leading" secondItem="KJX-od-5yC" secondAttribute="leading" id="RQx-I0-mx3"/>
                             <constraint firstItem="EMQ-SG-in6" firstAttribute="leading" secondItem="KJX-od-5yC" secondAttribute="leading" id="RRa-68-WlX"/>
                             <constraint firstItem="0G9-Rt-CfE" firstAttribute="top" secondItem="KJX-od-5yC" secondAttribute="top" id="SSB-OK-X8q"/>
                             <constraint firstAttribute="trailing" secondItem="HQA-sl-9jv" secondAttribute="trailing" id="TXJ-O7-waJ"/>
                             <constraint firstItem="EMQ-SG-in6" firstAttribute="top" secondItem="0G9-Rt-CfE" secondAttribute="bottom" id="WDf-X5-t7X"/>
+                            <constraint firstItem="HQA-sl-9jv" firstAttribute="top" secondItem="Vyi-sj-acg" secondAttribute="bottom" id="bFX-0C-h3v"/>
+                            <constraint firstAttribute="bottom" secondItem="HQA-sl-9jv" secondAttribute="bottom" id="dgV-8a-2y1"/>
                             <constraint firstAttribute="trailing" secondItem="EMQ-SG-in6" secondAttribute="trailing" id="nYr-1Y-G2j"/>
                             <constraint firstItem="HQA-sl-9jv" firstAttribute="leading" secondItem="KJX-od-5yC" secondAttribute="leading" id="rZr-Lg-m1L"/>
                             <constraint firstAttribute="trailing" secondItem="0G9-Rt-CfE" secondAttribute="trailing" id="rZy-p1-saS"/>
-                            <constraint firstItem="fnW-n9-xHp" firstAttribute="top" secondItem="HQA-sl-9jv" secondAttribute="bottom" id="z3E-Sq-TrK"/>
+                            <constraint firstAttribute="trailing" secondItem="Vyi-sj-acg" secondAttribute="trailing" id="ziZ-cw-jxZ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emptyView" destination="Vyi-sj-acg" id="ZUP-fV-7Qw"/>
                         <outlet property="headerView" destination="0G9-Rt-CfE" id="ydf-Mi-Xt1"/>
                         <outlet property="tableView" destination="EMQ-SG-in6" id="cVJ-RJ-Lav"/>
                     </connections>

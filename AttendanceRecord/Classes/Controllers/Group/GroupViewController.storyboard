@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="hfQ-DJ-Znq">
+            <objects>
+                <viewController id="4s3-Zp-vwe" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3sF-Fk-pNZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1K-nl-7mj" customClass="HeaderView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="Fb4-xL-Tcm"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pei-ZY-6pi">
+                                <rect key="frame" x="0.0" y="71" width="375" height="571"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PnR-Rf-GHG" userLabel="Footer View" customClass="FooterView" customModule="AttendanceRecord" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="642" width="375" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="J5y-Qu-Ik6"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PnR-Rf-GHG" firstAttribute="top" secondItem="Pei-ZY-6pi" secondAttribute="bottom" id="FKO-pD-aDk"/>
+                            <constraint firstItem="Pei-ZY-6pi" firstAttribute="top" secondItem="j1K-nl-7mj" secondAttribute="bottom" id="N0J-Fg-aai"/>
+                            <constraint firstItem="j1K-nl-7mj" firstAttribute="leading" secondItem="YEq-hp-KgI" secondAttribute="leading" id="OGa-sp-HqH"/>
+                            <constraint firstItem="YEq-hp-KgI" firstAttribute="trailing" secondItem="PnR-Rf-GHG" secondAttribute="trailing" id="TL2-q3-5ZX"/>
+                            <constraint firstItem="Pei-ZY-6pi" firstAttribute="leading" secondItem="3sF-Fk-pNZ" secondAttribute="leading" id="YQj-Fa-DCI"/>
+                            <constraint firstItem="j1K-nl-7mj" firstAttribute="top" secondItem="3sF-Fk-pNZ" secondAttribute="top" id="aHu-vz-HaK"/>
+                            <constraint firstItem="PnR-Rf-GHG" firstAttribute="leading" secondItem="YEq-hp-KgI" secondAttribute="leading" id="dRd-ky-Qgl"/>
+                            <constraint firstItem="YEq-hp-KgI" firstAttribute="trailing" secondItem="Pei-ZY-6pi" secondAttribute="trailing" id="oUD-Xn-gNY"/>
+                            <constraint firstItem="YEq-hp-KgI" firstAttribute="trailing" secondItem="j1K-nl-7mj" secondAttribute="trailing" id="owa-op-gS6"/>
+                            <constraint firstItem="YEq-hp-KgI" firstAttribute="bottom" secondItem="PnR-Rf-GHG" secondAttribute="bottom" id="qk1-MU-Ple"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YEq-hp-KgI"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lFQ-ke-LyZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-9" y="101"/>
+        </scene>
+    </scenes>
+</document>

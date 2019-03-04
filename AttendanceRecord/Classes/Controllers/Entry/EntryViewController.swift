@@ -11,12 +11,14 @@ import RealmSwift
 import EasyTipView
 
 internal enum EntryType: HeaderButtonModel {
+    case group
     case lesson
     case event
     case member
     
     var inputTypes: [InputType] {
         switch self {
+        case .group: return [.groupTitle]
         case .lesson: return [.lessonTitle]
         case .event:  return [.eventTitle, .eventDate]
         case .member: return [.memberNameKana, .memberNameJp, .memberEmail]
@@ -25,6 +27,7 @@ internal enum EntryType: HeaderButtonModel {
     
     var headerTitle: String {
         switch self {
+        case .group: return "グループ登録"
         case .lesson: return R.string.localizable.entryHeaderLabelLesson()
         case .event:  return R.string.localizable.entryHeaderLabelEvent()
         case .member: return R.string.localizable.entryHeaderLabelMember()
@@ -33,6 +36,10 @@ internal enum EntryType: HeaderButtonModel {
     
     func headerButtonItems(actions: [String: HeaderView.Action]? = nil) -> [[HeaderView.ButtonType]] {
         switch self {
+        case .group:
+            let entryCompletion = actions?[ActionKyes.groupEntryCompletion] ?? {}
+            let entryReject = actions?[ActionKyes.groupEntryReject] ?? {}
+            return [[.close(HeaderModel(action: entryReject))],[.regist(HeaderModel(action: entryCompletion))]]
         case .lesson:
             let entryCompletion = actions?[ActionKyes.lessonEntryCompletion] ?? {}
             let entryReject = actions?[ActionKyes.lessonEntryReject] ?? {}
@@ -64,6 +71,8 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
     
     fileprivate lazy var inputViews: [InputView] = {
         switch self.entryType {
+        case .group:
+            return [InputView.instantiate(owner: self, inputType: .groupTitle)]
         case .lesson:
             return [InputView.instantiate(owner: self, inputType: .lessonTitle)]
         case .event:
@@ -98,11 +107,21 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
     
     private var actions: [String: HeaderView.Action] {
         switch entryType {
+        case .group:
+            return [ActionKyes.groupEntryCompletion: {
+                let title = self.inputViews.filter { $0.inputType == .groupTitle }.first!
+                let group = Group(groupTitle: title.inputString)
+                GroupManager.shared.saveGroupListToRealm([group])
+                self.entryCompletion?(group) ?? {}()
+                }, ActionKyes.groupEntryReject: {
+                    self.entryReject?(nil)
+                }]
         case .lesson:
             return [ActionKyes.lessonEntryCompletion: {
                 let title = self.inputViews.filter { $0.inputType == .lessonTitle }.first!
                 let lesson = Lesson(lessonTitle: title.inputString)
                 LessonManager.shared.saveLessonListToRealm([lesson])
+                FirebaseAnalyticsManager.shared.recordLesson(lessonName: lesson.lessonTitle)
                 self.entryCompletion?(lesson) ?? {}()
                 }, ActionKyes.lessonEntryReject: {
                     self.entryReject?(nil)
@@ -113,6 +132,7 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
                 let date = self.inputViews.filter { $0.inputType == .eventDate }.first!
                 let event = Event(lessonId: self.sourceViewModel?.id ?? "", eventDate: date.inputString.dateFromDisplayedFormat,  eventTitle: title.inputString)
                 EventManager.shared.saveEventListToRealm([event])
+                FirebaseAnalyticsManager.shared.recordEvent(eventName: event.eventTitle)
                 self.entryCompletion?(event) ?? {}()
                 }, ActionKyes.eventEntryReject: {
                     self.entryReject?(nil)

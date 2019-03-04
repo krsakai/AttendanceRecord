@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,7 +44,7 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QLw-bU-wwp">
                                                 <rect key="frame" x="8" y="8" width="359" height="684"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <mutableString key="text">CSVファイルからデータを取り込む事ができます
+                                                <string key="text">CSVファイルからデータを取り込む事ができます
 
 ■ 手順
 ① メンバーとイベントのテンプレートファイルをアプリからメールで送ります
@@ -68,7 +69,7 @@ Event,タイトル,日付
 
 [ メンバー.csv ] ()内が入力する箇所
 Member,名前(フルネーム),ふりがな,メールアドレス
-1,(名前フルネーム),(ふりがな),(メールアドレス)</mutableString>
+1,(名前フルネーム),(ふりがな),(メールアドレス)</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -95,7 +96,6 @@ Member,名前(フルネーム),ふりがな,メールアドレス
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Al5-8W-PRM" secondAttribute="trailing" id="6jd-uM-51B"/>
-                            <constraint firstItem="dpT-w9-prU" firstAttribute="top" secondItem="CgK-dK-Wbg" secondAttribute="bottom" id="BxI-Os-S3F"/>
                             <constraint firstItem="XUb-gC-Ske" firstAttribute="top" secondItem="qAx-UJ-3hb" secondAttribute="top" id="Cbf-A8-5MN"/>
                             <constraint firstItem="XUb-gC-Ske" firstAttribute="leading" secondItem="qAx-UJ-3hb" secondAttribute="leading" id="S5T-ZY-xE5"/>
                             <constraint firstItem="CgK-dK-Wbg" firstAttribute="leading" secondItem="qAx-UJ-3hb" secondAttribute="leading" id="TNU-fU-0Ys"/>
@@ -103,6 +103,7 @@ Member,名前(フルネーム),ふりがな,メールアドレス
                             <constraint firstItem="CgK-dK-Wbg" firstAttribute="top" secondItem="Al5-8W-PRM" secondAttribute="bottom" id="cxE-qQ-Cmc"/>
                             <constraint firstItem="Al5-8W-PRM" firstAttribute="top" secondItem="XUb-gC-Ske" secondAttribute="bottom" id="hx5-Rl-61h"/>
                             <constraint firstAttribute="trailing" secondItem="XUb-gC-Ske" secondAttribute="trailing" id="kTT-Xg-FQe"/>
+                            <constraint firstAttribute="bottom" secondItem="CgK-dK-Wbg" secondAttribute="bottom" id="qbk-FE-r9t"/>
                             <constraint firstAttribute="trailing" secondItem="CgK-dK-Wbg" secondAttribute="trailing" id="waM-5O-3xK"/>
                         </constraints>
                     </view>
