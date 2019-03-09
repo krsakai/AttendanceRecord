@@ -46,7 +46,7 @@ internal final class SettingViewController: UIViewController, HeaderViewDisplaya
     
     
     fileprivate var settingList: [[Setting]] {
-        return [ [.member(.nameJp),.member(.email)], [.mailAddress], [.themeColor], [.mode], [.fileimport]]
+        return [ [.member(.nameJp),.member(.email),.member(.fullNameSort)], [.mailAddress], [.themeColor], [.mode], [.fileimport]]
     }
     
     // MARK: - Initializer

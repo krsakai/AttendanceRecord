@@ -29,11 +29,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     static func migrate() {
-        let config = Realm.Configuration(schemaVersion: 2,
+        let config = Realm.Configuration(schemaVersion: 3,
             migrationBlock: { migration, oldSchemaVersion in
                 if oldSchemaVersion < 1 {
                     migration.enumerateObjects(ofType: Attendance.className()) { oldObject, newObject in
                         newObject?["reason"] = ""
+                    }
+                }
+                
+                if oldSchemaVersion < 3 {
+                    DeviceModel.isFullNameSort = true
+                    var memberList = [MigrationObject?]()
+                    migration.enumerateObjects(ofType: Member.className()) { oldObject, newObject in
+                        newObject?["nameJpKana"] = (oldObject?["nameJp"] as! String).changeKana
+                        memberList.append(newObject)
+                    }
+                    
+                    migration.enumerateObjects(ofType: Attendance.className()) { oldObject, newObject in
+                        let memberId = (oldObject?["memberId"] as! String)
+                        if let member = ((memberList.flatMap { $0 }).filter { ($0["memberId"] as! String) == memberId }).first {
+                            newObject?["memberNameKana"] =  member["nameJpKana"]
+                        }
+                    }
+                    
+                    migration.enumerateObjects(ofType: LessonMember.className()) { oldObject, newObject in
+                        let memberId = (oldObject?["memberId"] as! String)
+                        if let member = ((memberList.flatMap { $0 }).filter { ($0["memberId"] as! String) == memberId }).first {
+                            newObject?["memberNameKana"] =  member["nameJpKana"]
+                        }
                     }
                 }
             }
@@ -46,6 +69,7 @@ extension AppDelegate {
     
     fileprivate func setupMasterData() {
         if !DeviceModel.isFirstReadMasterData {
+            DeviceModel.isFullNameSort = true
             let eventListData = FilesManager.list(fileName: FilePath.FileName.event, fileType: FilePath.FileType.csv, resourceType: .bundle)
             let memberListData = FilesManager.list(fileName: FilePath.FileName.member, fileType: FilePath.FileType.csv, resourceType: .bundle)
             

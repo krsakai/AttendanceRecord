@@ -103,10 +103,13 @@ internal final class LessonManager {
     
     /// レッスンメンバー一覧情報をRealmから取得
     func lessonMemberListDataFromRealm(predicate: NSPredicate? = nil, realm: Realm = try! Realm()) -> [LessonMember] {
+        let sortParameters = [
+            DeviceModel.isFullNameSort ? SortDescriptor(keyPath: "memberNameKana", ascending: true) : nil
+        ].flatMap { $0 }
         guard let predicate = predicate else {
-            return Array(realm.objects(LessonMember.self))
+            return Array(realm.objects(LessonMember.self).sorted(by: sortParameters))
         }
-        return Array(realm.objects(LessonMember.self).filter(predicate))
+        return Array(realm.objects(LessonMember.self).filter(predicate).sorted(by: sortParameters))
     }
     
     /// ファイルからレッスンとイベントを保存する

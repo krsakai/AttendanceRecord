@@ -14,6 +14,7 @@ internal final class LessonMember: Object, ClonableObject {
     dynamic var lessonMemberId = UUID().uuidString.replacingOccurrences(of: "-", with: "")
     dynamic var lessonId   = ""
     dynamic var memberId   = ""
+    dynamic var memberNameKana = ""
     
     dynamic private(set) var primaryKeyForRealm = ""
     
@@ -36,12 +37,16 @@ extension LessonMember {
         self.init()
         self.lessonId = lessonId
         self.memberId  = memberId
+        if let member = MemberManager.shared.memberListDataFromRealm(predicate: Member.predicate(memberId: memberId)).first {
+            self.memberNameKana = member.nameJpKana
+        }
         updatePrimaryKey()
     }
     
     func updateColumn(reference: LessonMember) -> LessonMember {
         lessonId              = reference.lessonId
-        memberId                = reference.memberId
+        memberId              = reference.memberId
+        memberNameKana        = reference.memberNameKana
         updatePrimaryKey()
         return self
     }

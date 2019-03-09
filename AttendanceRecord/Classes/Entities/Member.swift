@@ -18,7 +18,12 @@ internal enum MemberType: String {
 internal final class Member: Object, ClonableObject {
     
     dynamic fileprivate(set) var memberId   = UUID().uuidString.replacingOccurrences(of: "-", with: "")
-    dynamic var nameJp                  = ""
+    dynamic var nameJp                  = "" {
+        didSet {
+            nameJpKana = nameJp.changeKana
+        }
+    }
+    dynamic var nameJpKana              = ""
     dynamic var nameKana                = ""
     dynamic var email                   = ""
     dynamic var memberTypeRawValue      = "0"
@@ -56,7 +61,7 @@ extension Member: Mappable {
         nameKana            <- map["name_kana"]
         email               <- map["email"]
         memberTypeRawValue  <- map["memberTypeRawValue"]
-        
+        nameJpKana = nameJp.changeKana
         updatePrimaryKey()
     }
 }

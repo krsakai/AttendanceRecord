@@ -21,11 +21,26 @@ internal final class MemberManager {
         let realm = try! Realm()
         try! realm.write {
             for member in memberList {
-                if let _ = realm.object(ofType: Member.self, forPrimaryKey: member.memberId) {
-                    realm.add(member, update: true)
-                } else {
-                    realm.add(member, update: true)
+                realm.add(member, update: true)
+                
+                let attendanceList = AttendanceManager.shared.attendanceListDataFromRealm(
+                    predicate: Attendance.predicate(memberId: member.memberId)
+                ).map { record -> Attendance in
+                    let attendance = record.clone
+                    attendance.memberNameKana = member.nameJpKana
+                    return attendance
                 }
+                
+                let lessonMemberList = LessonManager.shared.lessonMemberListDataFromRealm(
+                    predicate: LessonMember.predicate(memberId: member.memberId)
+                ).map { record -> LessonMember in
+                    let lessonMember = record.clone
+                    lessonMember.memberNameKana = member.nameJpKana
+                    return lessonMember
+                }
+                
+                realm.add(attendanceList, update: true)
+                realm.add(lessonMemberList, update: true)
             }
         }
     }
@@ -51,7 +66,10 @@ internal final class MemberManager {
     
     /// メンバー一覧情報をRealmから取得
     func memberListDataFromRealm(predicate: NSPredicate? = nil, realm: Realm = try! Realm()) -> [Member] {
-        let sortParameters = [SortDescriptor(keyPath: "nameKana", ascending: true)]
+        let sortParameters = [
+            DeviceModel.isFullNameSort ? SortDescriptor(keyPath: "nameJpKana", ascending: true) : nil,
+            SortDescriptor(keyPath: "nameKana", ascending: true)
+        ].flatMap { $0 }
         guard let predicate = predicate else {
             return Array(realm.objects(Member.self).sorted(by: sortParameters))
         }

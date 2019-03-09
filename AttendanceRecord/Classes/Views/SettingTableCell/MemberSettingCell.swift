@@ -11,11 +11,13 @@ import UIKit
 internal enum MemberSettingType {
     case nameJp
     case email
+    case fullNameSort
     
     var title: String {
         switch self {
         case .nameJp: return R.string.localizable.settingLabelMemberName()
         case .email: return R.string.localizable.settingLabelMemberEmail()
+        case .fullNameSort: return "名前順(フルネーム)並び替え"
         }
     }
     
@@ -24,12 +26,14 @@ internal enum MemberSettingType {
             switch self {
             case .nameJp: return DeviceModel.isRequireMemberName
             case .email: return DeviceModel.isRequireEmail
+            case .fullNameSort: return DeviceModel.isFullNameSort
             }
         }
         set {
             switch self {
             case .nameJp: DeviceModel.isRequireMemberName = newValue
             case .email: DeviceModel.isRequireEmail = newValue
+            case .fullNameSort: DeviceModel.isFullNameSort = newValue
             }
         }
     }

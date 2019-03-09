@@ -41,3 +41,17 @@ extension Array {
         return count - 1
     }
 }
+
+extension Array where Element == Member {
+
+    var sortedName: [Member] {
+        return DeviceModel.isFullNameSort ? sorted { $0.nameJp.changeKana < $1.nameJp.changeKana } : self
+    }
+}
+
+extension Array where Element == Attendance {
+    
+    var sortedName: [Attendance] {
+        return DeviceModel.isFullNameSort ? sorted { $0.memberName.changeKana < $1.memberName.changeKana } : self
+    }
+}

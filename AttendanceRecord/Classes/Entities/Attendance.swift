@@ -22,13 +22,14 @@ internal final class Attendance: Object, ClonableObject {
     dynamic fileprivate(set) var lessonId                   = ""
     dynamic fileprivate(set) var eventId                    = ""
     dynamic fileprivate(set) var memberId                   = ""
+    dynamic var memberNameKana             = ""
     dynamic var isHidden                   = false
     dynamic var reason                     = ""
     dynamic var attendanceStatusRawValue   = "-"
     
     var memberName: String {
         let member = MemberManager.shared.memberListDataFromRealm(predicate: Member.predicate(memberId: memberId)).first!
-        return member.nameKana
+        return member.nameJpKana
     }
     
     dynamic private(set) var primaryKeyForRealm = ""
@@ -77,6 +78,7 @@ extension Attendance {
         self.lessonId = lessonId
         self.eventId = eventId
         self.memberId = memberId
+        self.memberNameKana = memberName
         self.attendanceStatusRawValue = attendanceStatus.rawValue
         
         updatePrimaryKey()
@@ -86,6 +88,7 @@ extension Attendance {
         attendanceId                = reference.attendanceId
         eventId                     = reference.eventId
         memberId                    = reference.memberId
+        memberNameKana              = reference.memberNameKana
         lessonId                    = reference.lessonId
         reason                      = reference.reason
         attendanceStatusRawValue    = reference.attendanceStatusRawValue

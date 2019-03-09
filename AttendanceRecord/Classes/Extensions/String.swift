@@ -103,6 +103,45 @@ extension String {
 
 extension String {
     
+    var changeKana: String {
+        
+        let inputText = self as NSString
+        
+        let outputText = NSMutableString()
+        
+        var range: CFRange = CFRangeMake(0, inputText.length)
+        let locale: CFLocale = CFLocaleCopyCurrent()
+        
+        let tokenizer: CFStringTokenizer = CFStringTokenizerCreate(kCFAllocatorDefault, inputText as CFString, range, kCFStringTokenizerUnitWordBoundary, locale)
+        
+        var tokenType: CFStringTokenizerTokenType = CFStringTokenizerGoToTokenAtIndex(tokenizer, 0)
+        
+        while tokenType.rawValue != 0 {
+            dump(tokenType)
+            range = CFStringTokenizerGetCurrentTokenRange(tokenizer)
+            
+            guard tokenType.rawValue != 1 else {
+                tokenType = CFStringTokenizerAdvanceToNextToken(tokenizer)
+                continue
+            }
+            
+            let latin: CFTypeRef = CFStringTokenizerCopyCurrentTokenAttribute(tokenizer, kCFStringTokenizerAttributeLatinTranscription)
+            
+            let romaji = latin as! NSString
+            
+            let furigana: NSMutableString = romaji.mutableCopy() as! NSMutableString
+            CFStringTransform(furigana as CFMutableString, nil, kCFStringTransformLatinKatakana, false)
+            
+            outputText.append(furigana as String)
+            tokenType = CFStringTokenizerAdvanceToNextToken(tokenizer)
+        }
+        
+        return outputText as String
+    }
+}
+
+extension String {
+    
     static var encodingTypes: [String.Encoding] {
         return [String.Encoding.shiftJIS ,String.Encoding.utf8]
     }

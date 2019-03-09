@@ -78,6 +78,7 @@ internal final class DeviceModel {
         case themeColor              = "ThemeColor"
         case isRequireMemberName     = "IsRequireMemberName"
         case isRequireMemberEmail    = "IsRequireMemberEmail"
+        case isFullNameSort          = "IsFullNameSort"
         case mailAddress             = "MailAddress"
         case storeReviewDate         = "StoreReviewDate"
     }
@@ -134,6 +135,15 @@ internal final class DeviceModel {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.isRequireMemberEmail.rawValue)
+        }
+    }
+    
+    static var isFullNameSort: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: UserDefaultsKey.isFullNameSort.rawValue)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.isFullNameSort.rawValue)
         }
     }
     
