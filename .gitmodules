@@ -1,0 +1,6 @@
+[submodule "Carthage"]
+	path = Carthage
+	url = https://github.com/krsakai/Carthage
+[submodule "Pods"]
+	path = Pods
+	url = https://github.com/krsakai/Pods

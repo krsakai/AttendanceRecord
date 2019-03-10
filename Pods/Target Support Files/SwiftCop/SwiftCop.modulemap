@@ -1,6 +1,0 @@
-framework module SwiftCop {
-  umbrella header "SwiftCop-umbrella.h"
-
-  export *
-  module * { export * }
-}
