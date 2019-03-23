@@ -9,7 +9,7 @@
 import UIKit
 import SWTableViewCell
 
-internal final class MemberAttendanceViewCell: SWTableViewCell {
+internal final class MemberAttendanceViewCell: SWTableViewCell, NibRegistrable {
     
     private var completion: (() -> Void)?
     
@@ -20,29 +20,37 @@ internal final class MemberAttendanceViewCell: SWTableViewCell {
     
     private var viewModel: AttendanceViewModel!
     
-    static func instantiate(_ owner: SWTableViewCellDelegate, viewModel: AttendanceViewModel,
-                            index: Int, editMode: Bool = false ,
-                            completion: (() -> Void)? = nil) -> MemberAttendanceViewCell {
-        let cell = R.nib.memberAttendanceViewCell.firstView(owner: owner, options: nil)!
-        cell.kanaNameLabel.text = viewModel.member.nameKana
-        cell.jpNameLabel.text = viewModel.member.nameJp
-        cell.emailLabel.text = viewModel.member.email
-        cell.attendanceButton.setTitle(viewModel.attendance.attendanceStatusRawValue, for: .normal)
-        cell.attendanceButton.setTitle(viewModel.attendance.attendanceStatusRawValue, for: .highlighted)
-        cell.attendanceButton.setTitleColor(DeviceModel.themeColor.color, for: .normal)
-        cell.attendanceButton.setTitleColor(DeviceModel.themeColor.color, for: .highlighted)
-        cell.completion = completion
-        cell.viewModel = viewModel
+    func setup(_ owner: SWTableViewCellDelegate, viewModel: AttendanceViewModel,
+               index: Int, editMode: Bool = false, completion: (() -> Void)? = nil) {
+        kanaNameLabel.text = viewModel.member.nameKana
+        jpNameLabel.text = viewModel.member.nameJp
+        emailLabel.text = viewModel.member.email
+        UIView.setAnimationsEnabled(false)
+        attendanceButton.setTitle(viewModel.attendance.attendanceStatusRawValue, for: .normal)
+        attendanceButton.setTitle(viewModel.attendance.attendanceStatusRawValue, for: .highlighted)
+        attendanceButton.setTitleColor(DeviceModel.themeColor.color, for: .normal)
+        attendanceButton.setTitleColor(DeviceModel.themeColor.color, for: .highlighted)
+        attendanceButton.layoutIfNeeded()
+        UIView.setAnimationsEnabled(true)
+        self.completion = completion
+        self.viewModel = viewModel
         let utilityButtons = NSMutableArray()
         utilityButtons.sw_addUtilityButton(with: DeviceModel.themeColor.color, title: "非表示")
-        cell.leftUtilityButtons = utilityButtons as [AnyObject]
-        cell.delegate = owner
+        leftUtilityButtons = utilityButtons as [AnyObject]
+        delegate = owner
         if editMode {
-            cell.showLeftUtilityButtons(animated: false)
+            showLeftUtilityButtons(animated: false)
         } else {
-            cell.hideUtilityButtons(animated: false)
+            hideUtilityButtons(animated: false)
         }
-        return cell
+        attendanceButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        attendanceButton.titleLabel?.minimumScaleFactor = 0.1
+        attendanceButton.titleLabel?.baselineAdjustment = .alignCenters
+        let longPressRecognizer = UILongPressGestureRecognizer(
+            target: owner,
+            action: #selector(MemberAttendanceViewController.attendanceButtonLongPress(_:))
+        )
+        attendanceButton.addGestureRecognizer(longPressRecognizer)
     }
     
     @IBAction func didTap(attendanceButton: UIButton) {
@@ -50,38 +58,18 @@ internal final class MemberAttendanceViewCell: SWTableViewCell {
                                       message: viewModel.member.nameJp,
                                       preferredStyle: .actionSheet)
         
-        
-        let attendAction = UIAlertAction(title: AttendanceStatus.attend.rawValue, style: UIAlertActionStyle.default) { _ in
-            let attendance = self.viewModel.attendance.clone
-            attendance.attendanceStatusRawValue = AttendanceStatus.attend.rawValue
-            AttendanceManager.shared.saveAttendanceListToRealm([attendance])
-            self.completion?()
+        AttendanceManager.shared.attendanceStatusListDataFromRealm().forEach { status in
+            let action = UIAlertAction(title: status.rawValue, style: UIAlertActionStyle.default) { _ in
+                let attendance = self.viewModel.attendance.clone
+                attendance.attendanceStatusRawValue = status.rawValue
+                AttendanceManager.shared.saveAttendanceListToRealm([attendance])
+                self.completion?()
+            }
+            alert.addAction(action)
         }
         
-        let undfineAction = UIAlertAction(title: AttendanceStatus.undfine.rawValue,  style: UIAlertActionStyle.default) { _ in
-            let attendance = self.viewModel.attendance.clone
-            attendance.attendanceStatusRawValue = AttendanceStatus.undfine.rawValue
-            AttendanceManager.shared.saveAttendanceListToRealm([attendance])
-            self.completion?()
-        }
-        let absencAction = UIAlertAction(title: AttendanceStatus.absence.rawValue,  style: UIAlertActionStyle.default) { _ in
-            let attendance = self.viewModel.attendance.clone
-            attendance.attendanceStatusRawValue = AttendanceStatus.absence.rawValue
-            AttendanceManager.shared.saveAttendanceListToRealm([attendance])
-            self.completion?()
-        }
-        let noEntryAction = UIAlertAction(title: AttendanceStatus.noEntry.rawValue,  style: UIAlertActionStyle.default) { _ in
-            let attendance = self.viewModel.attendance.clone
-            attendance.attendanceStatusRawValue = AttendanceStatus.noEntry.rawValue
-            AttendanceManager.shared.saveAttendanceListToRealm([attendance])
-            self.completion?()
-        }
         let cancelAction = UIAlertAction(title: R.string.localizable.commonLabelCancel(),
                                          style: UIAlertActionStyle.cancel)
-        alert.addAction(attendAction)
-        alert.addAction(undfineAction)
-        alert.addAction(absencAction)
-        alert.addAction(noEntryAction)
         alert.addAction(cancelAction)
         AppDelegate.navigation?.present(alert, animated: true, completion: nil)
     }

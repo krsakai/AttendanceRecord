@@ -69,6 +69,8 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
     
     fileprivate var editMember: Member?
     
+    fileprivate var editEvent: Event?
+    
     fileprivate lazy var inputViews: [InputView] = {
         switch self.entryType {
         case .group:
@@ -76,8 +78,8 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
         case .lesson:
             return [InputView.instantiate(owner: self, inputType: .lessonTitle)]
         case .event:
-            return [InputView.instantiate(owner: self, inputType: .eventTitle),
-                    InputView.instantiate(owner: self, inputType: .eventDate)]
+            return [InputView.instantiate(owner: self, inputType: .eventTitle, defalut: self.editEvent?.eventTitle),
+                    InputView.instantiate(owner: self, inputType: .eventDate, defaultDate: self.editEvent?.eventDate)]
         case .member:
             var inputViews = [InputView]()
             if DeviceModel.isRequireMemberName {
@@ -130,7 +132,15 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
             return [ActionKyes.eventEntryCompletion: {
                 let title = self.inputViews.filter { $0.inputType == .eventTitle }.first!
                 let date = self.inputViews.filter { $0.inputType == .eventDate }.first!
-                let event = Event(lessonId: self.sourceViewModel?.id ?? "", eventDate: date.inputString.dateFromDisplayedFormat,  eventTitle: title.inputString)
+                var event: Event
+                if let cloneEvent = self.editEvent?.clone {
+                    cloneEvent.eventTitle = title.inputString
+                    cloneEvent.eventDate = date.inputString.dateFromDisplayedFormat
+                    event = cloneEvent
+                } else {
+                    event = Event(lessonId: self.sourceViewModel?.id ?? "", eventDate: date.inputString.dateFromDisplayedFormat,  eventTitle: title.inputString)
+                }
+                
                 EventManager.shared.saveEventListToRealm([event])
                 FirebaseAnalyticsManager.shared.recordEvent(eventName: event.eventTitle)
                 self.entryCompletion?(event) ?? {}()
@@ -183,13 +193,14 @@ internal final class EntryViewController: UIViewController, HeaderViewDisplayabl
     
     // MARK: - Initializer
     
-    static func instantiate(entryModel: EntryModel, member: Member? = nil) -> EntryViewController {
+    static func instantiate(entryModel: EntryModel, member: Member? = nil, event: Event? = nil) -> EntryViewController {
         let viewController = R.storyboard.entryViewController.entryViewController()!
         viewController.entryCompletion = entryModel.entryCompletion
         viewController.entryReject = entryModel.entryReject
         viewController.sourceViewModel = entryModel.displayModel
         viewController.entryType = entryModel.entryType
         viewController.editMember = member
+        viewController.editEvent = event
         return viewController
     }
     

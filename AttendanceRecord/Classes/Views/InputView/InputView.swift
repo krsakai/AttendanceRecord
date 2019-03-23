@@ -72,11 +72,11 @@ internal final class InputView: UIView {
     
     var inputType: InputType!
     
-    static func instantiate(owner: UITextFieldDelegate, inputType: InputType, defalut: String? = nil) -> InputView {
+    static func instantiate(owner: UITextFieldDelegate, inputType: InputType, defalut: String? = nil, defaultDate: Date? = nil) -> InputView {
         let inputView = R.nib.inputView.firstView(owner: owner, options: nil)!
         inputView.titleLabel.adjustsFontSizeToFitWidth = true
         inputView.titleLabel.text = inputType.titleLabel
-        inputView.textField.text = defalut
+        inputView.textField.text = defalut ?? defaultDate?.stringToDisplayedFormat ?? ""
         inputView.textField.delegate = owner
         inputView.textField.keyboardType = inputType.keyboardType
         inputView.textField.returnKeyType = inputType.returnKeyType
@@ -94,7 +94,7 @@ internal final class InputView: UIView {
         inputView.datePicker.addTarget(inputView, action: #selector(InputView.changedDate), for: UIControlEvents.valueChanged)
         inputView.datePicker.datePickerMode = UIDatePickerMode.dateAndTime
         inputView.datePicker.minuteInterval = 15
-        inputView.datePicker.date = Calendar(identifier: .gregorian).startOfDay(for: Date()).addingTimeInterval(19 * 60 * 60)
+        inputView.datePicker.date = defaultDate ?? Calendar(identifier: .gregorian).startOfDay(for: Date()).addingTimeInterval(19 * 60 * 60)
         inputView.textField.inputView = inputView.datePicker
         inputView.toolBar = UIToolbar()
         inputView.toolBar.tintColor = UIColor.darkGray

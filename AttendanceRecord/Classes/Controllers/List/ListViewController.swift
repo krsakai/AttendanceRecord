@@ -197,7 +197,14 @@ internal final class ListViewController: UIViewController, HeaderViewDisplayable
         
         switch type {
         case .lesson, .attendance: tableView.register(LessonTableViewCell.self)
-        case .event: tableView.register(EventListTableCell.self)
+        case .event:
+            let longPressRecognizer = UILongPressGestureRecognizer(
+                target: self,
+                action: #selector(ListViewController.longPress(_:))
+            )
+            longPressRecognizer.delegate = self
+            tableView.addGestureRecognizer(longPressRecognizer)
+            tableView.register(EventListTableCell.self)
         case .member: tableView.register(MemberListTableCell.self)
         }
     }
@@ -273,6 +280,28 @@ extension ListViewController: UITableViewDelegate {
                 navigationController?.present(viewController, animated: true, completion: nil)
             }
             
+        }
+    }
+}
+
+// MARK: - UITapGestureRecognizerDelegate
+
+extension ListViewController: UIGestureRecognizerDelegate {
+    
+    @objc func longPress(_ recognizer: UILongPressGestureRecognizer) {
+        guard let indexPath = tableView.indexPathForRow(at: recognizer.location(in: tableView)) else {
+            return
+        }
+        if recognizer.state == UIGestureRecognizerState.began {
+            let object = list[indexPath.row]
+            let completion: EntryCompletion = { _ in
+                self.tableView.reloadData()
+            }
+            if let event = EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(eventId: object.id)).first {
+                let entryModel = EntryModel(entryType: .event, displayModel: event, entryCompletion: completion)
+                let viewController = EntryViewController.instantiate(entryModel: entryModel, event: event)
+                navigationController?.present(viewController, animated: true, completion: nil)
+            }
         }
     }
 }

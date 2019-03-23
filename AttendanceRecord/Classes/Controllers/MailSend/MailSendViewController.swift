@@ -13,14 +13,14 @@ internal class MailSendViewController: MFMailComposeViewController, MFMailCompos
     
     // MARK: - Initializer
     
-    static func instantiate(lesson: Lesson) -> MailSendViewController {
+    static func instantiate(lesson: Lesson, mode: AggregateMode) -> MailSendViewController {
         let viewController = MailSendViewController()
         let dataModel = LessonAttendanceModel.instantiate(lesson: lesson)
         viewController.setToRecipients([DeviceModel.mailAddress])
         viewController.setSubject(lesson.lessonTitle)
-        viewController.setMessageBody(dataModel.htmlString, isHTML: true)
+        viewController.setMessageBody(mode.htmlString(dataModel), isHTML: true)
         viewController.mailComposeDelegate = viewController
-        viewController.addAttachmentData(dataModel.csvData, mimeType: FilePath.MineType.csv, fileName: "\(lesson.lessonTitle)\(FilePath.Extension.csv)")
+        viewController.addAttachmentData(mode.csvData(dataModel), mimeType: FilePath.MineType.csv, fileName: "\(lesson.lessonTitle)\(FilePath.Extension.csv)")
         return viewController
     }
     

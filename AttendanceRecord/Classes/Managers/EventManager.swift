@@ -22,7 +22,7 @@ internal final class EventManager {
         try! realm.write {
             for event in eventList {
                 LessonManager.shared.lessonMemberListDataFromRealm(predicate: LessonMember.predicate(lessonId: event.lessonId)).forEach { lessonMember in
-                    let attendance = Attendance(lessonId: event.lessonId, eventId: event.eventId, memberId: lessonMember.memberId, attendanceStatus: .noEntry)
+                    let attendance = Attendance(lessonId: event.lessonId, eventId: event.eventId, memberId: lessonMember.memberId)
                     // 紐づく出欠も登録
                     realm.add(attendance, update: true)
                 }

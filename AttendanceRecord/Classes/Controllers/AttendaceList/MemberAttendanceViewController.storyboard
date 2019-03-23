@@ -28,8 +28,64 @@
                                     <constraint firstAttribute="height" constant="71" id="Dud-Hp-0dg"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MDc-OH-fRc" userLabel="Filter View">
+                                <rect key="frame" x="0.0" y="71" width="375" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30人中 15人表示" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWl-Hj-h7B" userLabel="Count Label">
+                                        <rect key="frame" x="15" y="11" width="115" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="非表示有" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHL-gc-faJ" userLabel="Hidden Setting Label">
+                                        <rect key="frame" x="188.5" y="11" width="61.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="○" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABN-OJ-X0C" userLabel="Filtered Label">
+                                        <rect key="frame" x="260" y="10" width="15" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7H-2c-Fnm" userLabel="Filter Button">
+                                        <rect key="frame" x="285" y="5.5" width="80" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="Ebl-q6-zPC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="絞り込み"/>
+                                        <connections>
+                                            <action selector="didFileterButtonTapped:" destination="kSU-z7-rMg" eventType="touchUpInside" id="eGK-yA-viI"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8pe-bI-04k" userLabel="Line View">
+                                        <rect key="frame" x="0.0" y="39" width="375" height="1"/>
+                                        <color key="backgroundColor" red="0.015686274510000001" green="0.23529411759999999" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="mtn-T2-Ss0"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="8pe-bI-04k" secondAttribute="trailing" id="0Ss-W5-e4J"/>
+                                    <constraint firstItem="k7H-2c-Fnm" firstAttribute="centerY" secondItem="MDc-OH-fRc" secondAttribute="centerY" id="3lb-6h-bjS"/>
+                                    <constraint firstItem="8pe-bI-04k" firstAttribute="leading" secondItem="MDc-OH-fRc" secondAttribute="leading" id="5qb-BC-0X1"/>
+                                    <constraint firstItem="uWl-Hj-h7B" firstAttribute="centerY" secondItem="MDc-OH-fRc" secondAttribute="centerY" id="8LH-im-Ieo"/>
+                                    <constraint firstItem="uWl-Hj-h7B" firstAttribute="leading" secondItem="MDc-OH-fRc" secondAttribute="leading" constant="15" id="BWm-AQ-mVQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="8pe-bI-04k" secondAttribute="bottom" id="F9B-KF-eQB"/>
+                                    <constraint firstItem="ABN-OJ-X0C" firstAttribute="leading" secondItem="qHL-gc-faJ" secondAttribute="trailing" constant="10" id="H9e-NE-9J6"/>
+                                    <constraint firstItem="qHL-gc-faJ" firstAttribute="centerY" secondItem="MDc-OH-fRc" secondAttribute="centerY" id="XuG-jH-CsI"/>
+                                    <constraint firstAttribute="trailing" secondItem="k7H-2c-Fnm" secondAttribute="trailing" constant="10" id="cEu-kC-XWl"/>
+                                    <constraint firstItem="k7H-2c-Fnm" firstAttribute="leading" secondItem="ABN-OJ-X0C" secondAttribute="trailing" constant="10" id="vry-zS-Ph3"/>
+                                    <constraint firstItem="ABN-OJ-X0C" firstAttribute="centerY" secondItem="MDc-OH-fRc" secondAttribute="centerY" id="xlt-h7-iPf"/>
+                                    <constraint firstAttribute="height" constant="40" id="zug-BR-bKg"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EMQ-SG-in6">
-                                <rect key="frame" x="0.0" y="71" width="375" height="571"/>
+                                <rect key="frame" x="0.0" y="111" width="375" height="531"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.015686274510000001" green="0.23529411759999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -45,11 +101,11 @@
                                     <constraint firstAttribute="height" constant="25" id="1VH-1q-hEj"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vyi-sj-acg" userLabel="Empty View">
-                                <rect key="frame" x="0.0" y="71" width="375" height="571"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vyi-sj-acg" userLabel="Empty View">
+                                <rect key="frame" x="0.0" y="111" width="375" height="531"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPI-VB-2v1">
-                                        <rect key="frame" x="32.5" y="266.5" width="310.5" height="38.5"/>
+                                        <rect key="frame" x="32.5" y="246.5" width="310.5" height="38.5"/>
                                         <string key="text">講義に出欠を記入できる受講者がいません
 講義に受講者を選択/追加して下さい</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -66,25 +122,33 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="MDc-OH-fRc" firstAttribute="leading" secondItem="KJX-od-5yC" secondAttribute="leading" id="1Gv-qE-4hi"/>
                             <constraint firstItem="HQA-sl-9jv" firstAttribute="top" secondItem="EMQ-SG-in6" secondAttribute="bottom" id="3QH-vG-7Q3"/>
-                            <constraint firstItem="Vyi-sj-acg" firstAttribute="top" secondItem="0G9-Rt-CfE" secondAttribute="bottom" id="58W-YF-evA"/>
+                            <constraint firstItem="Vyi-sj-acg" firstAttribute="top" secondItem="MDc-OH-fRc" secondAttribute="bottom" id="3QL-gi-qCk"/>
                             <constraint firstItem="Vyi-sj-acg" firstAttribute="leading" secondItem="KJX-od-5yC" secondAttribute="leading" id="5mE-5k-DWt"/>
                             <constraint firstItem="0G9-Rt-CfE" firstAttribute="leading" secondItem="KJX-od-5yC" secondAttribute="leading" id="RQx-I0-mx3"/>
                             <constraint firstItem="EMQ-SG-in6" firstAttribute="leading" secondItem="KJX-od-5yC" secondAttribute="leading" id="RRa-68-WlX"/>
                             <constraint firstItem="0G9-Rt-CfE" firstAttribute="top" secondItem="KJX-od-5yC" secondAttribute="top" id="SSB-OK-X8q"/>
                             <constraint firstAttribute="trailing" secondItem="HQA-sl-9jv" secondAttribute="trailing" id="TXJ-O7-waJ"/>
-                            <constraint firstItem="EMQ-SG-in6" firstAttribute="top" secondItem="0G9-Rt-CfE" secondAttribute="bottom" id="WDf-X5-t7X"/>
                             <constraint firstItem="HQA-sl-9jv" firstAttribute="top" secondItem="Vyi-sj-acg" secondAttribute="bottom" id="bFX-0C-h3v"/>
                             <constraint firstAttribute="bottom" secondItem="HQA-sl-9jv" secondAttribute="bottom" id="dgV-8a-2y1"/>
+                            <constraint firstItem="EMQ-SG-in6" firstAttribute="top" secondItem="MDc-OH-fRc" secondAttribute="bottom" id="f03-Hr-4SR"/>
+                            <constraint firstAttribute="trailing" secondItem="MDc-OH-fRc" secondAttribute="trailing" id="khl-L4-nrH"/>
                             <constraint firstAttribute="trailing" secondItem="EMQ-SG-in6" secondAttribute="trailing" id="nYr-1Y-G2j"/>
                             <constraint firstItem="HQA-sl-9jv" firstAttribute="leading" secondItem="KJX-od-5yC" secondAttribute="leading" id="rZr-Lg-m1L"/>
                             <constraint firstAttribute="trailing" secondItem="0G9-Rt-CfE" secondAttribute="trailing" id="rZy-p1-saS"/>
+                            <constraint firstItem="MDc-OH-fRc" firstAttribute="top" secondItem="0G9-Rt-CfE" secondAttribute="bottom" id="u5j-j8-ZX5"/>
                             <constraint firstAttribute="trailing" secondItem="Vyi-sj-acg" secondAttribute="trailing" id="ziZ-cw-jxZ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="countLabel" destination="uWl-Hj-h7B" id="v0K-lc-STT"/>
                         <outlet property="emptyView" destination="Vyi-sj-acg" id="ZUP-fV-7Qw"/>
+                        <outlet property="filterButton" destination="k7H-2c-Fnm" id="dtI-cr-F9h"/>
+                        <outlet property="filteredLabel" destination="ABN-OJ-X0C" id="Vh2-sK-e96"/>
                         <outlet property="headerView" destination="0G9-Rt-CfE" id="ydf-Mi-Xt1"/>
+                        <outlet property="hiddenSettingLabel" destination="qHL-gc-faJ" id="6Of-Wd-ZlI"/>
+                        <outlet property="lineView" destination="8pe-bI-04k" id="rhW-EZ-trW"/>
                         <outlet property="tableView" destination="EMQ-SG-in6" id="cVJ-RJ-Lav"/>
                     </connections>
                 </viewController>

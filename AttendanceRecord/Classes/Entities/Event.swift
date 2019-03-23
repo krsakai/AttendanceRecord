@@ -10,15 +10,29 @@ import Foundation
 import RealmSwift
 import ObjectMapper
 
-internal final class Event: Object {
+internal final class Event: Object, ClonableObject {
     
     dynamic fileprivate(set) var eventId    = UUID().uuidString.replacingOccurrences(of: "-", with: "")
     dynamic fileprivate(set) var lessonId   = ""
-    dynamic fileprivate(set) var eventTitle = ""
-    dynamic fileprivate(set) var eventDate  = NSDateZero
+    dynamic var eventTitle = ""
+    dynamic var eventDate  = NSDateZero
     
     override static func primaryKey() -> String? {
         return "eventId"
+    }
+    
+    // プライマリーキーを更新
+    fileprivate func updatePrimaryKey() {
+    }
+    
+    func updateColumn(reference: Event) -> Event {
+        eventId     = reference.eventId
+        lessonId    = reference.lessonId
+        eventTitle  = reference.eventTitle
+        eventDate   = reference.eventDate
+        
+        updatePrimaryKey()
+        return self
     }
 }
 

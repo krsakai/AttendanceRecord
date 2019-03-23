@@ -97,6 +97,7 @@ internal final class HeaderView: UIView {
         case scale(HeaderModel?)                    // 縮尺
         case edit(HeaderModel?)                     // 編集
         case address(HeaderModel?)                  // 連絡帳
+        case mode(HeaderModel?)                     // 切替
         
         var image: UIImage? {
             switch self {
@@ -129,13 +130,14 @@ internal final class HeaderView: UIView {
             case .scale: return "縮尺"
             case .edit: return "設定"
             case .address: return "連絡帳"
+            case .mode: return "切替"
             default: return nil
             }
         }
         
         var titleFont: UIFont {
             switch self {
-            case .regist, .reception, .request, .selection, .send, .bulk, .scale, .edit, .address:
+            case .regist, .reception, .request, .selection, .send, .bulk, .scale, .edit, .address, .mode:
                 return AttendanceRecordFont.HeaderButton.regist
             default: return AttendanceRecordFont.HeaderButton.add
             }
@@ -230,6 +232,10 @@ internal final class HeaderView: UIView {
                         UIApplication.topViewController()?.present(viewController, animated: true, completion: nil)
                         model?.action?()
                     }
+                }
+            case .mode(let model):
+                return { _ in
+                    model?.action?()
                 }
             }
         }

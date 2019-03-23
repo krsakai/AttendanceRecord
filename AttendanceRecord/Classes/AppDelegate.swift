@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     static func migrate() {
-        let config = Realm.Configuration(schemaVersion: 3,
+        let config = Realm.Configuration(schemaVersion: 4,
             migrationBlock: { migration, oldSchemaVersion in
                 if oldSchemaVersion < 1 {
                     migration.enumerateObjects(ofType: Attendance.className()) { oldObject, newObject in
@@ -68,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     
     fileprivate func setupMasterData() {
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         if !DeviceModel.isFirstReadMasterData {
             DeviceModel.isFullNameSort = true
             let eventListData = FilesManager.list(fileName: FilePath.FileName.event, fileType: FilePath.FileType.csv, resourceType: .bundle)
@@ -80,6 +81,16 @@ extension AppDelegate {
             
             FilesManager.save(fileName: FilePath.sampleFileEvent, dataList: eventList)
             FilesManager.save(fileName: FilePath.sampleFileMember, dataList: memberList)
+        }
+        
+        if !DeviceModel.isFirstAttendanceStatus {
+            let attendanceStatusList = [
+                AttendanceStatusTemplates.noEntry,
+                AttendanceStatusTemplates.absence,
+                AttendanceStatusTemplates.undfine,
+                AttendanceStatusTemplates.attend
+            ].map { AttendanceStatus(rawValue: $0.rawValue) }
+            AttendanceManager.shared.saveAttendanceStatusListToRealm(attendanceStatusList)
         }
     }
     

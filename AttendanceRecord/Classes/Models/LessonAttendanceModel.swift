@@ -51,6 +51,30 @@ internal final class LessonAttendanceModel {
         return rows.map { $0.map { "\"\($0)\"" }.joined(separator: ",")}.joined(separator: "\n").utf8StringData
     }
     
+    var distributionCsvData: Data {
+        var rows = [[String]]()
+        rows.append([""] + self.eventList.map { $0.eventTitle })
+        
+        var statusAttendanceRow = [String]()
+        _ = AttendanceManager.shared.attendanceStatusListDataFromRealm().enumerated().map { (index, status) in
+            statusAttendanceRow.append(status.rawValue)
+            eventList.forEach { event in
+                let nonFilteredList = AttendanceManager.shared.attendanceListDataFromRealm(
+                    predicate: Attendance.predicate(
+                        lessonId: event.lessonId,
+                        eventId: event.eventId
+                    )
+                )
+                let filteredList = nonFilteredList.filter { $0.attendaceStatus.rawValue == status.rawValue }
+                let distribution = "\(filteredList.count) / \(nonFilteredList.count)"
+                statusAttendanceRow.append(distribution)
+            }
+        }
+        rows.append(statusAttendanceRow)
+        
+        return rows.map { $0.map { "\"\($0)\"" }.joined(separator: ",")}.joined(separator: "\n").utf8StringData
+    }
+    
     var htmlString: String {
         
         guard !eventList.isEmpty else { return "1件もイベントが登録されていません" }
@@ -71,6 +95,39 @@ internal final class LessonAttendanceModel {
             htmlString = htmlString.tr(row: index).td() + member.nameJp.td(.close)
             attendanceList[index].forEach { attendance in
                 htmlString = htmlString.td() + attendance.attendanceStatusRawValue.td(.close)
+            }
+            htmlString = htmlString.tr(.close)
+        }
+        return htmlString.table(.close).body(.close).html(.close)
+    }
+    
+    var distributionHtmlString: String {
+        
+        guard !eventList.isEmpty else { return "1件もイベントが登録されていません" }
+        
+        // HTML文字列
+        var htmlString = ""
+        htmlString = htmlString.html().body().table(colspan: eventList.count).tr(row: -1).td().td(.close)
+        
+        // イベント(横欄)追加
+        eventList.forEach { event in
+            htmlString = htmlString.td() + event.eventTitle.td(.close)
+        }
+        
+        htmlString = htmlString.td(.close)
+        
+        _ = AttendanceManager.shared.attendanceStatusListDataFromRealm().enumerated().map { (index, status) in
+            
+            htmlString = htmlString.tr(row: index).td() + status.rawValue.td(.close)
+            eventList.forEach { event in
+                let nonFilteredList = AttendanceManager.shared.attendanceListDataFromRealm(
+                    predicate: Attendance.predicate(
+                        lessonId: event.lessonId,
+                        eventId: event.eventId
+                    )
+                )
+                let filteredList = nonFilteredList.filter { $0.attendaceStatus.rawValue == status.rawValue }
+                htmlString = htmlString.td() + "\(filteredList.count) / \(nonFilteredList.count)".td(.close)
             }
             htmlString = htmlString.tr(.close)
         }

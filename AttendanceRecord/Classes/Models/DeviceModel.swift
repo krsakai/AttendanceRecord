@@ -72,6 +72,7 @@ internal final class DeviceModel {
     /// NSUserDefaultsのアクセスで使用するキー
     private enum UserDefaultsKey: String {
         case isFirstReadMasterData   = "IsFirstReadMasterData"
+        case isFirstAttendanceStatus = "IsFirstAttendanceStatus"
         case mode                    = "Mode"
         case serviceUUID             = "ServiceUUID"
         case characteristicUUID      = "CharacteristicUUID"
@@ -88,6 +89,15 @@ internal final class DeviceModel {
             return true
         } else {
             UserDefaults.standard.set(true, forKey: UserDefaultsKey.isFirstReadMasterData.rawValue)
+            return false
+        }
+    }
+    
+    static var isFirstAttendanceStatus: Bool {
+        if UserDefaults.standard.bool(forKey: UserDefaultsKey.isFirstAttendanceStatus.rawValue) {
+            return true
+        } else {
+            UserDefaults.standard.set(true, forKey: UserDefaultsKey.isFirstAttendanceStatus.rawValue)
             return false
         }
     }

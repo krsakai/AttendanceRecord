@@ -81,7 +81,7 @@ internal final class LessonManager {
                 if realm.object(ofType: LessonMember.self, forPrimaryKey: lessonMember.primaryKeyForRealm) == nil {
                     let eventList = EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(lessonId: lessonMember.lessonId))
                     eventList.forEach { event in
-                        let attendance = Attendance(lessonId: lessonMember.lessonId, eventId: event.eventId, memberId: lessonMember.memberId, attendanceStatus: .noEntry)
+                        let attendance = Attendance(lessonId: lessonMember.lessonId, eventId: event.eventId, memberId: lessonMember.memberId)
                         // レッスンに紐づくイベントの出欠も登録
                         realm.add(attendance, update: true)
                     }

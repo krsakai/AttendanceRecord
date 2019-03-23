@@ -52,12 +52,34 @@ internal final class AttendanceManager {
         }
     }
     
+    func saveAttendanceStatusListToRealm(_ attendanceStatusList: [AttendanceStatus]) {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(attendanceStatusList, update: true)
+        }
+    }
+    
+    /// 出席ステータスを取得
+    func attendanceStatusListDataFromRealm(realm: Realm = try! Realm()) -> [AttendanceStatus] {
+        let sortParameters = [
+                SortDescriptor(keyPath: "updateDate", ascending: false)
+            ]
+        return Array(realm.objects(AttendanceStatus.self).sorted(by: sortParameters))
+    }
+    
     /// イベント毎出欠一覧ビューモデルを取得
-    func eventAttendanceViewModels(event: Event?, filterHidden: Bool = true) -> [AttendanceViewModel] {
+    func eventAttendanceViewModels(event: Event?, filterHidden: Bool = true, filterStatus: AttendanceStatus? = nil) -> [AttendanceViewModel] {
         guard let event = event else {
             return [AttendanceViewModel]()
         }
-        let attendanceList = attendanceListDataFromRealm(predicate: Attendance.predicate(lessonId: event.lessonId, eventId: event.eventId, filterHidden: filterHidden))
+        let attendanceList = attendanceListDataFromRealm(
+            predicate: Attendance.predicate(
+                lessonId: event.lessonId,
+                eventId: event.eventId,
+                filterHidden: filterHidden,
+                filterStatus: filterStatus
+            )
+        )
         var viewModels = [AttendanceViewModel]()
         attendanceList.forEach { attendance in
             let event = EventManager.shared.eventListDataFromRealm(predicate: Event.predicate(eventId: attendance.eventId)).first ?? Event()

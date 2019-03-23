@@ -29,6 +29,7 @@
 		C84627941E98FA5000A535F5 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84627931E98FA5000A535F5 /* FileManager.swift */; };
 		C84627971E99465600A535F5 /* HowToUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84627961E99465600A535F5 /* HowToUseViewController.swift */; };
 		C84627991E99467000A535F5 /* HowToUseViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C84627981E99467000A535F5 /* HowToUseViewController.storyboard */; };
+		C84C62512246A84200BFDE1F /* AttendanceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84C62502246A84200BFDE1F /* AttendanceStatus.swift */; };
 		C8508BDE1E745C8D00BCF12A /* EntryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8508BDC1E745C8D00BCF12A /* EntryViewController.storyboard */; };
 		C8508BDF1E745C8D00BCF12A /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8508BDD1E745C8D00BCF12A /* EntryViewController.swift */; };
 		C851AF841E62ACA300D9039E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C851AF821E62ACA300D9039E /* Localizable.strings */; };
@@ -183,6 +184,7 @@
 		C84627931E98FA5000A535F5 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		C84627961E99465600A535F5 /* HowToUseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToUseViewController.swift; sourceTree = "<group>"; };
 		C84627981E99467000A535F5 /* HowToUseViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HowToUseViewController.storyboard; sourceTree = "<group>"; };
+		C84C62502246A84200BFDE1F /* AttendanceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceStatus.swift; sourceTree = "<group>"; };
 		C8508BDC1E745C8D00BCF12A /* EntryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EntryViewController.storyboard; sourceTree = "<group>"; };
 		C8508BDD1E745C8D00BCF12A /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		C851AF831E62ACA300D9039E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -632,6 +634,7 @@
 				C85C3ADD1E8FB67F00C8B468 /* PeripheralDevice.swift */,
 				C8830A07222C695E0060664B /* Group.swift */,
 				C8830A09222C6B340060664B /* GroupMember.swift */,
+				C84C62502246A84200BFDE1F /* AttendanceStatus.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1180,6 +1183,7 @@
 				C857CC4F1E7065CA007A3E35 /* ModeView.swift in Sources */,
 				C896738A1E90D37700D67069 /* MemberSearchViewController.swift in Sources */,
 				C863C9901E61765F00FD75F1 /* R.generated.swift in Sources */,
+				C84C62512246A84200BFDE1F /* AttendanceStatus.swift in Sources */,
 				C863C94B1E608FA200FD75F1 /* AppDelegate.swift in Sources */,
 				C8D14FAE1E6AB0C600FEB634 /* LocationManager.swift in Sources */,
 				C8ABD7AB2023091000106AF5 /* MemoViewController.swift in Sources */,

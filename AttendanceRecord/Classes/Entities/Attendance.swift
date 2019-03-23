@@ -9,13 +9,6 @@
 import Foundation
 import RealmSwift
 
-internal enum AttendanceStatus: String {
-    case attend     = "◯"
-    case undfine    = "△"
-    case absence    = "✕"
-    case noEntry    = "ー"
-}
-
 internal final class Attendance: Object, ClonableObject {
     
     dynamic fileprivate(set) var attendanceId               = UUID().uuidString.replacingOccurrences(of: "-", with: "")
@@ -59,7 +52,7 @@ extension Attendance {
     /// 出欠ステータス
     var attendaceStatus: AttendanceStatus {
         get {
-            return AttendanceStatus(rawValue: attendanceStatusRawValue) ?? .noEntry
+            return AttendanceStatus(rawValue: attendanceStatusRawValue)
         }
         set {
             attendanceStatusRawValue = newValue.rawValue
@@ -73,7 +66,7 @@ extension Attendance {
 
 extension Attendance {
     /// イニシャライザ
-    convenience init(lessonId: String, eventId: String, memberId: String, attendanceStatus: AttendanceStatus) {
+    convenience init(lessonId: String, eventId: String, memberId: String, attendanceStatus: AttendanceStatus = AttendanceStatus(rawValue: "ー")) {
         self.init()
         self.lessonId = lessonId
         self.eventId = eventId
@@ -103,11 +96,28 @@ extension Attendance {
         return NSPredicate(format: "lessonId = %@ AND memberId = %@", lessonId, memberId)
     }
     
-    static func predicate(lessonId: String, eventId: String, filterHidden: Bool = false) -> NSPredicate {
+    static func predicate(lessonId: String, eventId: String, filterHidden: Bool = false, filterStatus: AttendanceStatus? = nil) -> NSPredicate {
+        guard let filterStatus = filterStatus else {
+            if filterHidden {
+                return NSPredicate(format: "lessonId = %@ AND eventId = %@ AND isHidden = NO", lessonId, eventId)
+            } else {
+                return NSPredicate(format: "lessonId = %@ AND eventId = %@", lessonId, eventId)
+            }
+        }
+        
         if filterHidden {
-            return NSPredicate(format: "lessonId = %@ AND eventId = %@ AND isHidden = NO", lessonId, eventId)
+            return NSPredicate(format: "lessonId = %@ AND eventId = %@ AND isHidden = NO AND attendanceStatusRawValue = %@", lessonId, eventId, filterStatus.rawValue)
         } else {
-            return NSPredicate(format: "lessonId = %@ AND eventId = %@", lessonId, eventId)
+            return NSPredicate(format: "lessonId = %@ AND eventId = %@ AND attendanceStatusRawValue = %@", lessonId, eventId, filterStatus.rawValue)
+        }
+        
+    }
+    
+    static func predicate(event: Event, isHidden: Bool = true) -> NSPredicate {
+        if isHidden {
+            return NSPredicate(format: "lessonId = %@ AND eventId = %@ AND isHidden = YES", event.lessonId, event.eventId)
+        } else {
+           return NSPredicate(format: "lessonId = %@ AND eventId = %@ AND isHidden = NO", event.lessonId, event.eventId)
         }
         
     }
